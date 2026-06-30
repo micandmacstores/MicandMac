@@ -12,12 +12,14 @@ import { Product }        from './modules/product';
 import { RecentlyViewed } from './modules/recently-viewed';
 import { Home }           from './modules/home';
 import { Contact }        from './modules/contact';
+import { ScrollReveal }   from './modules/scroll-reveal';
 
 // ── Global modules (run on every page) ────────────────────
 new Header();    // sticky header, mobile nav, cart toggle (replaces inline code)
 new Search();    // predictive search drawer
 new Wishlist();  // heart toggles + wishlist badge count
 new AuthMerge(); // merge guest wishlist on login
+new ScrollReveal();
 
 // ── Scroll-reveal (used site-wide via [data-animate]) ─────
 {

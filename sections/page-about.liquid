@@ -6,13 +6,6 @@
 
   <!-- 1. HERO -->
   <section class="about-hero">
-    <div class="about-hero__bg">
-      {%- if section.settings.hero_image != blank -%}
-        <img src="{{ section.settings.hero_image | image_url: width: 1440 }}" alt="Everyday Skincare" width="1440" height="700" loading="eager" aria-hidden="true" class="about-hero__img">
-      {%- else -%}
-        <div class="about-hero__placeholder" style="background: var(--color-bg-cream, #F5ECD7);"></div>
-      {%- endif -%}
-    </div>
     <div class="container">
       <div class="about-hero__content">
         <h1 class="about-hero__title">{{ section.settings.hero_title }}</h1>
@@ -25,28 +18,17 @@
   <section class="about-intent section-padding">
     <div class="container container--narrow">
       <div class="about-intent__content">
-        <p class="about-intent__text">{{ section.settings.intent_text | newline_to_br }}</p>
+        <p class="about-intent__text" data-scroll-reveal>{{ section.settings.intent_text | newline_to_br }}</p>
       </div>
     </div>
   </section>
 
   <!-- 3. THE PROBLEM -->
   <section class="about-problem section-padding">
-    <div class="container">
-      <div class="split-layout">
-        <div class="split-layout__content">
-          <div class="about-problem__text-block">
-            <h2 class="about-section-title">{{ section.settings.problem_title }}</h2>
-            <div class="about-section-text">{{ section.settings.problem_text }}</div>
-          </div>
-        </div>
-        <div class="split-layout__media">
-          {%- if section.settings.problem_image != blank -%}
-            <img src="{{ section.settings.problem_image | image_url: width: 800 }}" alt="" width="800" height="800" loading="lazy" class="about-media-img">
-          {%- else -%}
-            <div class="about-media-placeholder" style="background: var(--color-bg-cream, #F5ECD7);"></div>
-          {%- endif -%}
-        </div>
+    <div class="container container--narrow text-center">
+      <div class="about-problem__text-block">
+        <h2 class="about-section-title" data-scroll-reveal>{{ section.settings.problem_title }}</h2>
+        <div class="about-section-text" data-scroll-reveal>{{ section.settings.problem_text }}</div>
       </div>
     </div>
   </section>
@@ -67,34 +49,13 @@
     </div>
   </section>
 
-  <!-- 5. INGREDIENT PHILOSOPHY -->
-  <section class="about-philosophy section-padding">
-    <div class="container">
-      <div class="split-layout split-layout--reverse">
-        <div class="split-layout__content">
-          <div class="about-philosophy__text-block">
-            <h2 class="about-section-title">{{ section.settings.philosophy_title }}</h2>
-            <div class="about-section-text">{{ section.settings.philosophy_text }}</div>
-            <a href="/pages/ingredients" class="about-link">Discover our ingredients &rarr;</a>
-          </div>
-        </div>
-        <div class="split-layout__media">
-          {%- if section.settings.philosophy_image != blank -%}
-            <img src="{{ section.settings.philosophy_image | image_url: width: 800 }}" alt="" width="800" height="800" loading="lazy" class="about-media-img">
-          {%- else -%}
-            <div class="about-media-placeholder" style="background: var(--color-bg-cream, #F5ECD7);"></div>
-          {%- endif -%}
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- 6. PRODUCT THINKING -->
   <section class="about-thinking section-padding">
     <div class="container container--narrow">
       <div class="about-thinking__content">
-        <h2 class="about-section-title text-center">{{ section.settings.thinking_title }}</h2>
-        <div class="thinking-blocks">
+        <h2 class="about-section-title text-center" data-scroll-reveal>{{ section.settings.thinking_title }}</h2>
+        <div class="thinking-blocks" data-scroll-reveal>
           {{ section.settings.thinking_text }}
         </div>
       </div>
@@ -102,18 +63,9 @@
   </section>
 
   <!-- 7. EXPERIENCE -->
-  <section class="about-experience">
-    <div class="about-experience__media">
-      {%- if section.settings.experience_image != blank -%}
-        <img src="{{ section.settings.experience_image | image_url: width: 1440 }}" alt="" width="1440" height="600" loading="lazy" class="about-experience__img">
-      {%- else -%}
-        <div class="about-experience__placeholder" style="background: var(--color-bg-cream, #F5ECD7);"></div>
-      {%- endif -%}
-    </div>
-    <div class="about-experience__content section-padding">
-      <div class="container container--narrow text-center">
-        <p class="about-experience__text">{{ section.settings.experience_text | newline_to_br }}</p>
-      </div>
+  <section class="about-experience section-padding">
+    <div class="container container--narrow text-center">
+      <p class="about-experience__text" data-scroll-reveal>{{ section.settings.experience_text | newline_to_br }}</p>
     </div>
   </section>
 
@@ -131,10 +83,9 @@
   <!-- 9. SOFT CTA -->
   <section class="about-cta section-padding">
     <div class="container text-center">
-      <h2 class="about-cta__title">{{ section.settings.cta_title }}</h2>
+      <h2 class="about-cta__title" data-scroll-reveal>{{ section.settings.cta_title }}</h2>
       <div class="about-cta__actions">
-        <a href="{{ routes.all_products_collection_url }}/cleansing-bars" class="btn btn--primary">{{ section.settings.cta_button_1 }}</a>
-        <a href="{{ routes.collections_url }}/combo-offers" class="btn btn--outline">{{ section.settings.cta_button_2 }}</a>
+        <a href="/collections/soaps" class="btn btn--primary">{{ section.settings.cta_button_1 }}</a>
       </div>
       
       <!-- Micro founder line -->
@@ -190,29 +141,11 @@
 /* 1. HERO */
 .about-hero {
   position: relative;
-  min-height: 70vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   padding: 80px 0;
   text-align: center;
-}
-
-.about-hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.about-hero__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-}
-
-.about-hero__placeholder {
-  width: 100%;
-  height: 100%;
 }
 
 .about-hero__content {
@@ -220,10 +153,6 @@
   z-index: 1;
   max-width: 800px;
   margin: 0 auto;
-  background: rgba(243, 232, 228, 0.85);
-  padding: 60px 40px;
-  border-radius: 16px;
-  backdrop-filter: blur(8px);
 }
 
 .about-hero__title {
@@ -310,14 +239,16 @@
 .approach-card {
   text-align: left;
   padding: 40px;
-  background: var(--color-bg-cream, #F5ECD7);
-  border-radius: 12px;
+  background: linear-gradient(135deg, var(--mm-deep-garnet, #4B2A31) 0%, var(--mm-dark-espresso, #2E1F1A) 100%);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(212, 175, 55, 0.15);
 }
 
 .approach-card__title {
   font-family: var(--font-display);
   font-size: 1.75rem;
-  color: var(--mm-deep-garnet, #4B2A31);
+  color: var(--mm-champagne-gold, #D4AF37);
   margin-bottom: 16px;
   font-weight: 400;
 }
@@ -325,15 +256,13 @@
 .approach-card__text {
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--mm-dark-espresso, #2E1F1A);
-  opacity: 0.85;
+  color: var(--color-text-on-dark, #F3E8E4);
+  opacity: 0.9;
 }
 
 /* 6. PRODUCT THINKING */
 .about-thinking {
-  background: var(--color-bg-cream, #F5ECD7);
-  border-radius: 24px;
-  margin: 0 20px;
+  /* Transparent background */
 }
 
 .thinking-blocks {
@@ -346,24 +275,7 @@
 
 /* 7. EXPERIENCE */
 .about-experience {
-  margin-top: 80px;
-}
-
-.about-experience__media {
-  width: 100%;
-  height: 60vh;
-  min-height: 400px;
-}
-
-.about-experience__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.about-experience__placeholder {
-  width: 100%;
-  height: 100%;
+  /* Transparent background */
 }
 
 .about-experience__text {
@@ -487,21 +399,16 @@
       "content": "1. Hero"
     },
     {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero Image"
-    },
-    {
       "type": "text",
       "id": "hero_title",
       "label": "Hero Title",
-      "default": "Love Your Skin. Every Day. 365."
+      "default": "Designed to Withstand the City."
     },
     {
       "type": "text",
       "id": "hero_subtext",
       "label": "Hero Subtext",
-      "default": "A conscious approach to everyday skincare."
+      "default": "Mic & Mac Glow Bars — keeping you fresh and confident from home to work."
     },
     {
       "type": "header",
@@ -511,7 +418,7 @@
       "type": "textarea",
       "id": "intent_text",
       "label": "Intent Text",
-      "default": "We didn’t build Mic & Mac to add more products.\n\nWe built it to simplify what skincare should feel like —\nclean, effective, and part of a daily ritual."
+      "default": "We didn’t build Mic & Mac to just make another soap.\n\nWe built it to solve a daily reality: urban transit. We create high-performance Glow Bars that act as your defense against heat, dust, and pollution, ensuring your morning freshness doesn't fade before you reach the office."
     },
     {
       "type": "header",
@@ -521,39 +428,13 @@
       "type": "text",
       "id": "problem_title",
       "label": "Problem Title",
-      "default": "Skincare today is overwhelming."
+      "default": "The Transit Drain"
     },
     {
       "type": "richtext",
       "id": "problem_text",
       "label": "Problem Text",
-      "default": "<p>Too many products.</p><p>Too many promises.</p><p>Too little clarity.</p>"
-    },
-    {
-      "type": "image_picker",
-      "id": "problem_image",
-      "label": "Problem Image"
-    },
-    {
-      "type": "header",
-      "content": "5. Ingredient Philosophy"
-    },
-    {
-      "type": "text",
-      "id": "philosophy_title",
-      "label": "Philosophy Title",
-      "default": "We believe ingredients should work with your skin, not against it."
-    },
-    {
-      "type": "richtext",
-      "id": "philosophy_text",
-      "label": "Philosophy Text",
-      "default": "<p>Every formulation is designed to cleanse, restore, and support — without disrupting your natural balance.</p>"
-    },
-    {
-      "type": "image_picker",
-      "id": "philosophy_image",
-      "label": "Philosophy Image"
+      "default": "<p>Every morning, you leave home fresh, clean, and ready. But the journey changes everything.</p><p>Daily transit through Indian heat, dust, and heavy traffic leaves your skin feeling dull, sweaty, and visually drained. By the time you arrive at work, your morning energy and freshness are gone. The body is present, but the freshness is gone.</p>"
     },
     {
       "type": "header",
@@ -563,28 +444,23 @@
       "type": "text",
       "id": "thinking_title",
       "label": "Thinking Title",
-      "default": "Each product is created with purpose."
+      "default": "Why Glow Bars?"
     },
     {
       "type": "richtext",
       "id": "thinking_text",
       "label": "Thinking Text",
-      "default": "<p>No duplicates.</p><p>No unnecessary variants.</p><p>No noise.</p>"
+      "default": "<p>Because you deserve a product that matches the speed and demands of urban life.</p><p>No gimmicks, no ordinary soap, and no complex routines. Just high-performance urban freshness.</p>"
     },
     {
       "type": "header",
       "content": "7. Experience"
     },
     {
-      "type": "image_picker",
-      "id": "experience_image",
-      "label": "Experience Image"
-    },
-    {
       "type": "textarea",
       "id": "experience_text",
       "label": "Experience Text",
-      "default": "Skincare should feel calm.\nNot rushed. Not complicated.\n\nA moment you return to, every day."
+      "default": "Your morning glow is your armor.\nKeep it intact, from the moment you step out of the door to the minute you step into the office.\n\nWithstand the day."
     },
     {
       "type": "header",
@@ -594,25 +470,19 @@
       "type": "text",
       "id": "cta_title",
       "label": "CTA Title",
-      "default": "Start your daily ritual."
+      "default": "Ready to withstand the city?"
     },
     {
       "type": "text",
       "id": "cta_button_1",
       "label": "Button 1 Text",
-      "default": "Shop Cleansing Bars"
-    },
-    {
-      "type": "text",
-      "id": "cta_button_2",
-      "label": "Button 2 Text",
-      "default": "Explore Combos"
+      "default": "Explore Glow Bars"
     },
     {
       "type": "textarea",
       "id": "founder_line",
       "label": "Micro Founder Line",
-      "default": "Built with a simple idea —\nskincare should feel as natural as your daily routine."
+      "default": "Built for the urban Indian — because your freshness shouldn't be compromised by the commute."
     }
   ],
   "blocks": [
@@ -625,13 +495,13 @@
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Clean Formulation"
+          "default": "Withstand the Transit"
         },
         {
           "type": "textarea",
           "id": "text",
           "label": "Text",
-          "default": "No unnecessary ingredients. Only what matters."
+          "default": "Our formulation creates a daily defense shield against urban pollution and heat, locking in your morning glow."
         }
       ]
     }
@@ -643,22 +513,22 @@
         {
           "type": "pillar",
           "settings": {
-            "title": "Clean Formulation",
-            "text": "No unnecessary ingredients. Only what matters."
+            "title": "Withstand the Transit",
+            "text": "Our formulation creates a daily defense shield against urban pollution and heat, locking in your morning glow."
           }
         },
         {
           "type": "pillar",
           "settings": {
-            "title": "Everyday Ritual",
-            "text": "Simple routines that fit real life."
+            "title": "Urban Freshness",
+            "text": "We don't position our bars as bathing products. They are morning freshness solutions for transit fatigue."
           }
         },
         {
           "type": "pillar",
           "settings": {
-            "title": "Balanced Care",
-            "text": "Not aggressive. Not complicated. Just effective."
+            "title": "Morning Confidence",
+            "text": "Stay ready, clean, and confident from home to work. Start your day with a clear advantage."
           }
         }
       ]

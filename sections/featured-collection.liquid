@@ -39,7 +39,7 @@
   <div class="container px-4">
     <div class="section-heading text-center" style="margin-bottom: 60px;">
       {%- if section.settings.heading != blank -%}
-        <h2 style="font-family: var(--font-body, 'Inter', sans-serif); font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 400; color: var(--mm-dark-espresso); text-transform: lowercase; letter-spacing: -0.02em;">
+        <h2 style="font-family: var(--font-body, 'Inter', sans-serif); font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 400; color: var(--mm-dark-espresso); text-transform: uppercase; letter-spacing: -0.02em;">
           {{ section.settings.heading }}
         </h2>
       {%- endif -%}
@@ -58,16 +58,25 @@
       {%- if display_products != blank -%}
         {%- assign count = 0 -%}
         {%- for product in display_products -%}
+          {%- assign product_title_down = product.title | downcase -%}
+          {%- assign product_type_down = product.type | downcase -%}
+          {%- assign product_tags_down = product.tags | join: ' ' | downcase -%}
+          {%- assign product_benefit_down = product.metafields.custom.primary_benefit | downcase -%}
+          {%- if product_title_down contains 'combo' or product_title_down contains 'set' or product_type_down contains 'combo' or product_tags_down contains 'combo' or product_benefit_down contains 'combo' -%}
+            {%- continue -%}
+          {%- endif -%}
           {%- if count >= section.settings.products_to_show -%}{%- break -%}{%- endif -%}
           {%- assign count = count | plus: 1 -%}
-          {% render 'product-card', product: product %}
+          {% render 'product-card', product: product, force_badge: section.settings.badge_text %}
         {%- endfor -%}
       {%- endif -%}
     </div>
 
-    {%- if section.settings.show_view_all and section.settings.collection != blank -%}
+    {%- if section.settings.show_view_all -%}
+      {%- assign default_url = routes.collections_url | append: '/bestsellers' -%}
+      {%- assign view_all_url = section.settings.collection.url | default: default_url -%}
       <div class="text-center" style="margin-top: 40px;">
-        <a href="{{ section.settings.collection.url }}" class="link-underline font-medium uppercase tracking-widest text-sm text-primary">
+        <a href="{{ view_all_url }}" class="link-underline font-medium uppercase tracking-widest text-sm text-primary">
           {{ 'sections.featured_collection.view_all' | t | default: 'View All' }}
         </a>
       </div>
@@ -86,6 +95,12 @@
       "id": "heading",
       "label": "Heading",
       "default": "Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Force Badge Text",
+      "info": "Overrides default product badges (like 'NEW')"
     },
     {
       "type": "textarea",

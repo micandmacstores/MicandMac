@@ -84,6 +84,19 @@
   text-align: center;
   padding-inline: var(--space-4);
   flex-shrink: 0;
+  /* Strict single-line enforcement */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.announcement-bar__item span,
+.announcement-bar__item a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
 }
 
 .announcement-bar__link {
@@ -95,6 +108,14 @@
 
 .announcement-bar__link:hover {
   opacity: 1;
+}
+
+/* Mobile: reduce font size to fit more text in one line */
+@media (max-width: 767px) {
+  .announcement-bar {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
 }
 
 /* 
@@ -157,6 +178,7 @@
           "type": "text",
           "id": "text",
           "label": "Announcement text",
+          "info": "⚠️ Max 50 characters recommended (35 for mobile). Keep it short — text is enforced to one line.",
           "default": "Free Shipping on Orders Over ₹999 + Use Code: WELCOME15"
         },
         {

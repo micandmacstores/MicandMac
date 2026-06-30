@@ -316,62 +316,18 @@
 
   {%- comment -%} ── MEDIA LAYER ─────────────────────────────── {%- endcomment -%}
   <div class="cine-hero__media">
-
-    {%- if section.settings.background_video != blank -%}
-      {%- comment -%} Shopify hosted video (uploaded via Files) {%- endcomment -%}
-      <video
-        id="CineHeroVideo-{{ section.id }}"
-        class="cine-hero__video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        aria-hidden="true"
-      >
-        {%- for source in section.settings.background_video.sources -%}
-          <source src="{{ source.url }}" type="{{ source.mime_type }}">
-        {%- endfor -%}
-        {%- comment -%} Image fallback inside <video> {%- endcomment -%}
-        {%- if section.settings.fallback_image != blank -%}
-          <img
-            src="{{ section.settings.fallback_image | image_url: width: 1600 }}"
-            alt=""
-            class="cine-hero__img"
-            width="1600"
-            height="{{ 1600 | divided_by: section.settings.fallback_image.aspect_ratio | round }}"
-            fetchpriority="low"
-          >
-        {%- endif -%}
-      </video>
-
-    {%- elsif section.settings.video_url != blank -%}
-      {%- comment -%} External / CDN-hosted MP4 {%- endcomment -%}
-      <video
-        id="CineHeroVideo-{{ section.id }}"
-        class="cine-hero__video"
-        src="{{ section.settings.video_url }}"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        aria-hidden="true"
-      ></video>
-
-    {%- elsif section.settings.fallback_image != blank -%}
-      {%- comment -%} Static image with slow-zoom animation {%- endcomment -%}
-      <img
-        src="{{ section.settings.fallback_image | image_url: width: 2000 }}"
-        alt="{{ section.settings.fallback_image.alt | escape }}"
-        class="cine-hero__img"
-        width="2000"
-        height="{{ 2000 | divided_by: section.settings.fallback_image.aspect_ratio | round }}"
-        fetchpriority="high"
-        loading="eager"
-      >
-    {%- endif -%}
-
+    <video
+      id="CineHeroVideo-{{ section.id }}"
+      class="cine-hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+    >
+      <source src="{{ 'hf_20260630_141430_4cd1ce29-e852-41d4-913c-76927374c460.mp4' | asset_url }}" type="video/mp4">
+    </video>
   </div>
 
 
@@ -449,9 +405,7 @@
       }
     });
 
-
-
-    /* ── 3. Smart Pause on Scroll ────────────────────────────── */
+    /* ── 2. Smart Pause on Scroll ────────────────────────────── */
     var ticking = false;
     window.addEventListener('scroll', function () {
       if (ticking) return;
@@ -469,11 +423,9 @@
     }, { passive: true });
   }
 
-  /* ── 4. Smooth Cinematic Fade to Next Section ──────────────── */
   var nextSection = heroEl.nextElementSibling;
   if (nextSection) {
     nextSection.style.cssText += 'position:relative;';
-    /* Already handled by section z-stacking — no extra work needed */
   }
 })();
 </script>

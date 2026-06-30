@@ -123,3 +123,21 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ---- SCROLL REVEAL (GSAP) ---- */
+.scroll-reveal {
+  margin: 0;
+}
+
+.scroll-reveal-text {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+.word {
+  display: inline-block;
+}

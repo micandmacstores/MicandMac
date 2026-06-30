@@ -2,7 +2,47 @@
   "sections": {
     "main": {
       "type": "page-about",
-      "settings": {}
+      "settings": {
+        "hero_title": "Designed to Withstand the City.",
+        "hero_subtext": "Mic & Mac Glow Bars — keeping you fresh and confident from home to work.",
+        "intent_text": "We didn’t build Mic & Mac to just make another soap.\n\nWe built it to solve a daily reality: urban transit. We create high-performance Glow Bars that act as your defense against heat, dust, and pollution, ensuring your morning freshness doesn't fade before you reach the office.",
+        "problem_title": "The Transit Drain",
+        "problem_text": "<p>Every morning, you leave home fresh, clean, and ready. But the journey changes everything.</p><p>Daily transit through Indian heat, dust, and heavy traffic leaves your skin feeling dull, sweaty, and visually drained. By the time you arrive at work, your morning energy and freshness are gone. The body is present, but the freshness is gone.</p>",
+        "thinking_title": "Why Glow Bars?",
+        "thinking_text": "<p>Because you deserve a product that matches the speed and demands of urban life.</p><p>No gimmicks, no ordinary soap, and no complex routines. Just high-performance urban freshness.</p>",
+        "experience_text": "Your morning glow is your armor.\nKeep it intact, from the moment you step out of the door to the minute you step into the office.\n\nWithstand the day.",
+        "cta_title": "Ready to withstand the city?",
+        "cta_button_1": "Explore Glow Bars",
+        "founder_line": "Built for the urban Indian — because your freshness shouldn't be compromised by the commute."
+      },
+      "blocks": {
+        "pillar_1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Withstand the Transit",
+            "text": "Our formulation creates a daily defense shield against urban pollution and heat, locking in your morning glow."
+          }
+        },
+        "pillar_2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Urban Freshness",
+            "text": "We don't position our bars as bathing products. They are morning freshness solutions for transit fatigue."
+          }
+        },
+        "pillar_3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Morning Confidence",
+            "text": "Stay ready, clean, and confident from home to work. Start your day with a clear advantage."
+          }
+        }
+      },
+      "block_order": [
+        "pillar_1",
+        "pillar_2",
+        "pillar_3"
+      ]
     }
   },
   "order": [
