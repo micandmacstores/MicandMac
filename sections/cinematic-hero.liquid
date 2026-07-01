@@ -316,18 +316,40 @@
 
   {%- comment -%} ── MEDIA LAYER ─────────────────────────────── {%- endcomment -%}
   <div class="cine-hero__media">
-    <video
-      id="CineHeroVideo-{{ section.id }}"
-      class="cine-hero__video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      aria-hidden="true"
-    >
-      <source src="{{ 'hf_20260630_141430_4cd1ce29-e852-41d4-913c-76927374c460.mp4' | asset_url }}" type="video/mp4">
-    </video>
+    {%- if section.settings.background_video != blank or section.settings.video_url != blank or section.settings.fallback_image == blank -%}
+      <video
+        id="CineHeroVideo-{{ section.id }}"
+        class="cine-hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+        {%- if section.settings.fallback_image != blank -%}
+          poster="{{ section.settings.fallback_image | image_url: width: 2000 }}"
+        {%- endif -%}
+      >
+        {%- if section.settings.background_video != blank -%}
+          {%- for source in section.settings.background_video.sources -%}
+            <source src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endfor -%}
+        {%- elsif section.settings.video_url != blank -%}
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        {%- else -%}
+          <source src="{{ 'hero video.mp4' | asset_url }}" type="video/mp4">
+        {%- endif -%}
+      </video>
+    {%- else -%}
+      <img
+        class="cine-hero__img"
+        src="{{ section.settings.fallback_image | image_url: width: 2000 }}"
+        alt="{{ section.settings.fallback_image.alt | escape }}"
+        loading="eager"
+        width="2000"
+        height="{{ 2000 | divided_by: section.settings.fallback_image.aspect_ratio | round }}"
+      >
+    {%- endif -%}
   </div>
 
 
