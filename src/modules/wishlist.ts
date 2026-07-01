@@ -117,18 +117,26 @@ export class Wishlist {
   private async _fetchProductCard(handle: string): Promise<string> {
     try {
       const res = await fetch(`/products/${handle}?section_id=wishlist-item`);
-      if (!res.ok) return '';
+      if (!res.ok) {
+        console.warn(`[Wishlist] Failed to fetch product: ${handle} (${res.status})`);
+        return '';
+      }
       const text = await res.text();
-      
+
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = text;
-      
-      const card = tempDiv.querySelector('.pc');
+
+      // Shopify wraps section responses in a div.shopify-section wrapper
+      // The actual product card (.pc) is inside that wrapper
+      const card = tempDiv.querySelector('.pc') || tempDiv.querySelector('.product-card');
       if (card) {
         return card.outerHTML;
       }
+
+      console.warn(`[Wishlist] No .pc card found in response for: ${handle}`);
       return '';
-    } catch {
+    } catch (err) {
+      console.warn(`[Wishlist] Error fetching product card for: ${handle}`, err);
       return '';
     }
   }

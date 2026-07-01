@@ -1,0 +1,18 @@
+{% comment %}
+  Section: wishlist-item
+  Used exclusively by wishlist.ts via:
+    fetch(`/products/${handle}?section_id=wishlist-item`)
+  Returns ONE product card (.pc) which wishlist.ts extracts and
+  injects into #WishlistGrid.
+  This section MUST NOT contain any outer wrapper — wishlist.ts
+  searches for the first .pc directly.
+{% endcomment %}
+
+{% render 'product-card', product: product %}
+
+{% schema %}
+{
+  "name": "Wishlist Item",
+  "settings": []
+}
+{% endschema %}
