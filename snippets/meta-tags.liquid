@@ -9,27 +9,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 {%- liquid
-  assign brand = shop.name
+  assign brand = 'Mic & Mac Glow Bars'
 
   case template.name
     when 'index'
-      assign seo_title = brand | append: ' | Natural Artisan Skincare - Glowing Bars & Lip Care'
-      assign seo_desc  = 'Mic & Mac - Lab-certified artisan skincare crafted with natural ingredients. Discover glowing bars, nourishing lip care & more. Free shipping over ₹999.'
+      assign seo_title = brand | append: ' | Daily Defense Against Transit Fatigue & Urban Dullness'
+      assign seo_desc  = 'Mic & Mac Glow Bars help urban Indians stay fresh, clean, and confident. Keep your morning glow from home to work despite pollution, heat, and daily transit fatigue.'
+    when 'password'
+      assign seo_title = brand | append: ' | Coming Soon - Urban Freshness Company'
+      assign seo_desc  = 'Mic & Mac Glow Bars help urban Indians stay fresh, clean, and confident. Launching soon as a daily defense against transit fatigue and urban dullness.'
     when 'product'
       assign seo_title = product.title | append: ' | ' | append: brand
       assign seo_desc  = product.description | strip_html | truncatewords: 25
       if seo_desc == blank
-        assign seo_desc = 'Shop ' | append: product.title | append: ' at Mic & Mac - premium natural skincare. Free shipping over ₹999.'
+        assign seo_desc = 'Shop ' | append: product.title | append: ' at Mic & Mac Glow Bars - premium natural skincare. Free shipping over ₹999.'
       endif
     when 'collection'
       assign seo_title = collection.title | append: ' | ' | append: brand
       assign seo_desc  = collection.description | strip_html | truncatewords: 25
       if seo_desc == blank
-        assign seo_desc = 'Shop ' | append: collection.title | append: ' at Mic & Mac - premium natural skincare. Free shipping over ₹999.'
+        assign seo_desc = 'Shop ' | append: collection.title | append: ' at Mic & Mac Glow Bars - premium natural skincare. Free shipping over ₹999.'
       endif
     when 'blog'
       assign seo_title = blog.title | append: ' | ' | append: brand
-      assign seo_desc  = 'Skincare tips, ingredient guides and wellness stories from the Mic & Mac team.'
+      assign seo_desc  = 'Skincare tips, ingredient guides and wellness stories from the Mic & Mac Glow Bars team.'
     when 'article'
       assign seo_title = article.title | append: ' | ' | append: brand
       assign seo_desc  = article.excerpt_or_content | strip_html | truncatewords: 25
@@ -37,20 +40,20 @@
       assign seo_title = page.title | append: ' | ' | append: brand
       assign seo_desc  = page.content | strip_html | truncatewords: 25
       if seo_desc == blank
-        assign seo_desc = 'Mic & Mac - Premium natural skincare made with lab-certified ingredients.'
+        assign seo_desc = 'Mic & Mac Glow Bars - Premium natural skincare made with lab-certified ingredients.'
       endif
     when 'search'
       assign seo_title = 'Search | ' | append: brand
-      assign seo_desc  = 'Search Mic & Mac for natural skincare products, glowing bars, lip care and more.'
+      assign seo_desc  = 'Search Mic & Mac Glow Bars for natural skincare products, glowing bars, lip care and more.'
     when 'cart'
       assign seo_title = 'Your Bag | ' | append: brand
-      assign seo_desc  = 'Review and checkout your Mic & Mac order.'
+      assign seo_desc  = 'Review and checkout your Mic & Mac Glow Bars order.'
     when '404'
       assign seo_title = 'Page Not Found | ' | append: brand
       assign seo_desc  = 'The page you are looking for does not exist. Browse our full range of natural skincare.'
     else
       assign seo_title = page_title | default: brand
-      assign seo_desc  = page_description | default: 'Mic & Mac - Premium natural skincare made with lab-certified ingredients.'
+      assign seo_desc  = page_description | default: 'Mic & Mac Glow Bars - Premium natural skincare made with lab-certified ingredients.'
   endcase
 
   if current_page > 1
