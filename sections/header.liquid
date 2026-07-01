@@ -44,66 +44,14 @@
 
   <!-- Scrollable body: all sections sequential -->
   <div class="mnav__body">
-    <!-- ── Primary links ── -->
-    <div class="mnav__primary">
-      <a href="{{ routes.root_url }}" class="mnav__primary-link{% if request.path == '/' %} is-active{% endif %}">
-        Home
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-        >
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
-
-    <div class="mnav__divider-heavy"></div>
-
-    <!-- ── ACCORDION: Shop ── -->
-    <div class="mnav__accordion" data-accordion>
-      <button class="mnav__accordion-trigger" aria-expanded="true" data-trigger>
-        <span class="mnav__accordion-label">
-          <span class="mnav__acc-eyebrow">CATEGORY</span>
-          Shop
-        </span>
-        <svg
-          class="mnav__acc-chevron"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-        >
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-      </button>
-      <div class="mnav__accordion-body" data-body>
-        <ul class="mnav__sub-links">
-          <li>
-            <a href="{{ routes.collections_url }}/face-care" class="mnav__sub-link">
-              <span class="mnav__sub-dot"></span>Face Care
-            </a>
-          </li>
-          <li>
-            <a href="{{ routes.collections_url }}/body-care" class="mnav__sub-link">
-              <span class="mnav__sub-dot"></span>Body Care
-            </a>
-          </li>
-          <li>
-            <a href="{{ routes.collections_url }}/lip-care" class="mnav__sub-link">
-              <span class="mnav__sub-dot"></span>Lip Care
-            </a>
-          </li>
-        </ul>
-        <a href="{{ routes.all_products_collection_url }}" class="mnav__view-all">View All Products →</a>
-      </div>
+    <!-- ── SHOP Group ── -->
+    <div class="mnav__group">
+      <p class="mnav__group-label">SHOP</p>
+      <ul class="mnav__flat-links">
+        <li><a href="{{ routes.all_products_collection_url }}" class="mnav__flat-link">All Products</a></li>
+        <li><a href="{{ routes.all_products_collection_url }}/glowing-bar" class="mnav__flat-link">Glowing Bars</a></li>
+        <li><a href="{{ routes.all_products_collection_url }}/lip-care" class="mnav__flat-link">Lip Care</a></li>
+      </ul>
     </div>
 
     <div class="mnav__divider"></div>
@@ -134,14 +82,11 @@
 
     <div class="mnav__divider"></div>
 
-    <!-- ── Direct links: About ── -->
-    <div class="mnav__group">
-      <p class="mnav__group-label">ABOUT</p>
-      <ul class="mnav__flat-links">
-        <li><a href="/pages/about-us" class="mnav__flat-link">Our Story</a></li>
-        <li><a href="/pages/ingredients" class="mnav__flat-link">Ingredients</a></li>
-        <li><a href="/blogs/journal" class="mnav__flat-link">Journal</a></li>
-      </ul>
+    <!-- ── Big Centered Link: Our Story ── -->
+    <div class="mnav__primary" style="text-align: center; display: flex; justify-content: center; padding: 16px 0;">
+      <a href="/pages/our-story" class="mnav__primary-link" style="justify-content: center; font-size: 28px; border-bottom: none; width: 100%; text-align: center; display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;">
+        Our Story
+      </a>
     </div>
 
     <div class="mnav__divider"></div>
@@ -219,7 +164,7 @@
       <p class="mnav__group-label">CONNECT</p>
       <div class="mnav__social-row">
         <a
-          href="https://instagram.com/micandmac"
+          href="https://instagram.com/micandmacstores"
           class="mnav__social-btn"
           target="_blank"
           rel="noopener"
@@ -231,7 +176,7 @@
           <span>Instagram</span>
         </a>
         <a
-          href="https://wa.me/919999999999"
+          href="https://wa.me/917339663196"
           class="mnav__social-btn"
           target="_blank"
           rel="noopener"
@@ -241,18 +186,6 @@
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
           </svg>
           <span>WhatsApp</span>
-        </a>
-        <a
-          href="https://youtube.com/@micandmac"
-          class="mnav__social-btn"
-          target="_blank"
-          rel="noopener"
-          aria-label="YouTube"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
-          </svg>
-          <span>YouTube</span>
         </a>
       </div>
     </div>
