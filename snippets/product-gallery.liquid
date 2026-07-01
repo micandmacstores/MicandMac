@@ -43,6 +43,7 @@
         {%- elsif media.media_type == 'external_video' -%}
           {{ media | external_video_tag: class: 'product-gallery__video' }}
         {%- else -%}
+          <div class="product-gallery__skeleton"></div>
           <img
             src="{{ media | image_url: width: 1200 }}"
             srcset="
@@ -57,6 +58,7 @@
             height="1200"
             loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
             class="product-gallery__img"
+            onload="this.previousElementSibling.style.display='none'"
           >
         {%- endif -%}
       </div>

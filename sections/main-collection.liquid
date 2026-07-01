@@ -32,9 +32,41 @@
                 <li><a href="{{ link.url }}" class="plp-quick-link {% if link.active %}is-active{% endif %}">{{ link.title }}</a></li>
               {%- endfor -%}
             {%- else -%}
-              <li><a href="#all" class="plp-quick-link js-filter-btn is-active" data-filter="all">All</a></li>
-              <li><a href="#glowing-bars" class="plp-quick-link js-filter-btn" data-filter="glowing-bars">Glowing Bars</a></li>
-              <li><a href="#lip-care" class="plp-quick-link js-filter-btn" data-filter="lip-care">Lip Care</a></li>
+              <li>
+                <a href="#all" class="plp-quick-link js-filter-btn is-active" data-filter="all">
+                  <span class="plp-tab-icon plp-tab-icon--mobile">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="3" y="3" width="7" height="7" rx="1"/>
+                      <rect x="14" y="3" width="7" height="7" rx="1"/>
+                      <rect x="3" y="14" width="7" height="7" rx="1"/>
+                      <rect x="14" y="14" width="7" height="7" rx="1"/>
+                    </svg>
+                  </span>
+                  <span class="plp-tab-label">All</span>
+                </a>
+              </li>
+              <li>
+                <a href="#glowing-bars" class="plp-quick-link js-filter-btn" data-filter="glowing-bars">
+                  <span class="plp-tab-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M12 2C8 2 5 5.5 5 9c0 2.5 1.5 4.5 3.5 5.5V17a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-2.5C17.5 13.5 19 11.5 19 9c0-3.5-3-7-7-7z"/>
+                      <path d="M9 21h6"/>
+                    </svg>
+                  </span>
+                  <span class="plp-tab-label">Glowing Bars</span>
+                </a>
+              </li>
+              <li>
+                <a href="#lip-care" class="plp-quick-link js-filter-btn" data-filter="lip-care">
+                  <span class="plp-tab-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M12 3C9 3 7 5 7 7.5c0 1.5.8 2.8 2 3.5V13h6v-2c1.2-.7 2-2 2-3.5C17 5 15 3 12 3z"/>
+                      <path d="M9 13v2a3 3 0 0 0 6 0v-2"/>
+                    </svg>
+                  </span>
+                  <span class="plp-tab-label">Lip Care</span>
+                </a>
+              </li>
             {%- endif -%}
           </ul>
         </div>
@@ -246,6 +278,7 @@
     background-color: var(--mm-soft-blush);
     padding: var(--space-4) 0 var(--space-12) 0;
   }
+  /* Filter tabs: desktop — normal flex row */
   .plp-quick-list {
     display: flex;
     justify-content: center;
@@ -259,8 +292,21 @@
     align-items: baseline;
   }
   .plp-quick-list::-webkit-scrollbar { display: none; }
+
+  /* On desktop: only Glowing Bars / Lip Care show icon, All stays text-only */
+  .plp-tab-icon--mobile { display: none; }
+  .plp-tab-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .plp-tab-label { display: inline; }
   .plp-quick-link {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
     color: var(--mm-dark-espresso);
     text-decoration: none;
     font-family: var(--font-display);
@@ -272,6 +318,16 @@
     opacity: 0.35;
     padding: 4px 8px;
     transition: all var(--transition-fast);
+  }
+  /* Desktop: icon + text side by side for Glowing Bars / Lip Care */
+  .plp-quick-link .plp-tab-icon {
+    display: inline-flex;
+  }
+  /* On desktop keep label inline next to icon */
+  .plp-quick-link {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
   }
   .plp-quick-link sup {
     font-size: 0.35em;
@@ -305,6 +361,51 @@
     align-items: flex-start;
   }
   @media (max-width: 767px) {
+    /* Horizontal scroll filter tabs on mobile */
+    .plp-quick-list {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 0 16px 8px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .plp-quick-list li {
+      flex-shrink: 0;
+    }
+    .plp-quick-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      padding: 10px 14px;
+      border: 1.5px solid rgba(75, 42, 49, 0.15);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.6);
+      min-width: 72px;
+      scroll-snap-align: start;
+      opacity: 1;
+    }
+    .plp-quick-link.is-active {
+      background: var(--mm-deep-garnet);
+      color: var(--mm-soft-blush);
+      border-color: var(--mm-deep-garnet);
+    }
+    .plp-quick-link.is-active svg {
+      stroke: var(--mm-soft-blush);
+    }
+    /* Show the All icon on mobile (hidden on desktop) */
+    .plp-tab-icon--mobile {
+      display: inline-flex !important;
+    }
+    .plp-tab-icon {
+      display: inline-flex;
+    }
     .plp-combo-row {
       grid-template-columns: 1fr;
       gap: var(--space-8);

@@ -132,13 +132,24 @@
       margin-bottom: 2rem;
     }
 
+    /* Horizontal scroll strip on mobile */
     .ingredients-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 12px;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    .ingredients-grid::-webkit-scrollbar { display: none; }
 
     .ingredient-card {
+      min-width: 200px;
+      max-width: 200px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
       padding: 16px;
     }
 
