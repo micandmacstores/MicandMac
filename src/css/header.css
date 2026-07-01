@@ -644,8 +644,10 @@
     display: none !important;
   }
 
+  /* Push mobile topbar below the fixed announcement bar */
   .mobile-topbar {
     display: flex;
+    top: var(--announcement-height, 30px);
   }
 
   .bottom-dock {
