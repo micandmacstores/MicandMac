@@ -1,10 +1,20 @@
+{%- comment -%}
+  Section: Policy / Page — Premium styled layout
+  Handles both Shopify policy objects and custom pages.
+{%- endcomment -%}
+
+{%- liquid
+  assign content_title = page.title | default: policy.title
+  assign content_body  = page.content | default: policy.body
+-%}
+
 <div class="main-policy-page">
-  <div class="main-policy section-padding">
-    <div class="container container--narrow">
-      {% render 'breadcrumb' %}
-      <h1 class="main-policy__title split-heading--auto">{{ page.title }}</h1>
+  <div class="main-policy">
+    <div class="policy-container">
+      <h1 class="main-policy__title">{{ content_title }}</h1>
+      <div class="policy-divider"></div>
       <div class="rte main-policy__body">
-        {{ page.content }}
+        {{ content_body }}
       </div>
     </div>
   </div>
@@ -17,20 +27,87 @@
   font-family: var(--font-body);
   min-height: 80vh;
 }
+
+.main-policy {
+  padding: 6rem 1.5rem 8rem;
+}
+
+.policy-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
 .main-policy__title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 300;
   color: var(--mm-deep-garnet, #4B2A31);
-  margin-bottom: var(--space-8);
+  margin-bottom: 2rem;
+  line-height: 1.1;
 }
+
+.policy-divider {
+  width: 60px;
+  height: 2px;
+  background-color: var(--mm-deep-garnet, #4B2A31);
+  opacity: 0.3;
+  margin-bottom: 3rem;
+}
+
 .main-policy__body {
   color: var(--mm-dark-espresso, #2E1F1A);
-  opacity: 0.85;
-  line-height: 1.8;
+  opacity: 0.9;
+  line-height: 1.85;
   font-size: 1.05rem;
 }
+
 .main-policy__body p {
   margin-bottom: 1.5rem;
+}
+
+.main-policy__body h2,
+.main-policy__body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 300;
+  color: var(--mm-deep-garnet, #4B2A31);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.main-policy__body h4,
+.main-policy__body h5 {
+  font-weight: 500;
+  color: var(--mm-dark-espresso, #2E1F1A);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.main-policy__body ul,
+.main-policy__body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.main-policy__body li {
+  margin-bottom: 0.5rem;
+}
+
+.main-policy__body a {
+  color: var(--mm-deep-garnet, #4B2A31);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.main-policy__body strong {
+  font-weight: 600;
+  color: var(--mm-dark-espresso, #2E1F1A);
+}
+
+@media (max-width: 767px) {
+  .main-policy {
+    padding: 4rem 1.25rem 6rem;
+  }
 }
 </style>

@@ -5,8 +5,16 @@
   - Minimal UI: clean typography, full-row clickable, subtle + to × icon animation.
 {% endcomment %}
 
-<section class="faq-section section-padding">
-  <div class="container">
+<section class="faq-section">
+  <div class="faq-page-container">
+
+    {%- if page.title != blank -%}
+      <div class="faq-page-hero">
+        <h1 class="faq-page-title">{{ page.title }}</h1>
+        <div class="faq-page-divider"></div>
+      </div>
+    {%- endif -%}
+
     <div class="faq-layout">
       <!-- Left Info -->
       <div class="faq-layout__aside">
@@ -71,6 +79,32 @@
   font-family: var(--font-body);
 }
 
+.faq-page-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 8rem;
+}
+
+.faq-page-hero {
+  margin-bottom: 4rem;
+}
+
+.faq-page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--mm-deep-garnet, #4B2A31);
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.faq-page-divider {
+  width: 60px;
+  height: 2px;
+  background-color: var(--mm-deep-garnet, #4B2A31);
+  opacity: 0.3;
+}
+
 .faq-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -78,9 +112,19 @@
 }
 @media (min-width: 900px) {
   .faq-layout {
-    grid-template-columns: 1fr 1.5fr;
-    gap: var(--space-16);
+    grid-template-columns: 280px 1fr;
+    gap: 5rem;
     align-items: start;
+  }
+
+  .faq-page-container {
+    padding-top: 6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .faq-page-container {
+    padding: 4rem 1.25rem 6rem;
   }
 }
 

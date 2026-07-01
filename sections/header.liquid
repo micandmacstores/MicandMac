@@ -320,7 +320,7 @@
         <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
       </svg>
     </button>
-    <button class="mtb__btn mtb__cart" id="CartToggleMobile" aria-label="Cart">
+    <a href="/cart" class="mtb__btn mtb__cart" aria-label="Cart">
       <svg
         width="20"
         height="20"
@@ -337,7 +337,7 @@
       {%- else -%}
         <span class="mtb__cart-badge mtb__cart-badge--hidden" id="MtbCartCount"></span>
       {%- endif -%}
-    </button>
+    </a>
   </div>
 </div>
 
@@ -458,7 +458,7 @@
           {%- endif -%}
 
           <!-- Cart -->
-          <button class="site-header__action-btn site-header__cart" id="CartToggle" aria-label="Cart">
+          <a href="/cart" class="site-header__action-btn site-header__cart" aria-label="Cart">
             <svg
               width="21"
               height="21"
@@ -477,7 +477,7 @@
             {%- else -%}
               <span class="cart-count cart-count--hidden" id="CartCount"></span>
             {%- endif -%}
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -720,7 +720,7 @@
     </span>
     <span>Saved</span>
   </a>
-  <button class="bdock__item" id="CartToggleDock" aria-label="Cart">
+  <a href="/cart" class="bdock__item" aria-label="Cart">
     <span class="bdock__cart-wrap">
       <svg
         width="22"
@@ -740,7 +740,7 @@
       {%- endif -%}
     </span>
     <span>Cart</span>
-  </button>
+  </a>
   {%- if customer -%}
     <a
       href="/pages/my-account"

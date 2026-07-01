@@ -1,162 +1,164 @@
-// src/modules/cart.ts - CartDrawer with full TypeScript
+// src/modules/cart.ts
+// Full-page cart only. Adds items via AJAX then redirects to /cart.
 
-import type { ShopifyCart, ShopifyCartItem } from '../types/shopify';
+import type { ShopifyCart } from '../types/shopify';
 import { CartAPI } from '../utils/api';
 import { $, $$ } from '../utils/dom';
-import { formatMoney } from '../utils/money';
 
-class CartDrawer {
-  private drawer   = $<HTMLElement>('#CartDrawer');
-  private overlay  = $<HTMLElement>('#SiteOverlay');
-  private body     = $<HTMLElement>('#CartDrawerBody');
-  private totalEl  = $<HTMLElement>('#CartTotal');
-  private countEls = $$<HTMLElement>('#CartCount');
-  private emptyEl  = $<HTMLElement>('#CartEmpty');
-  private filledEl = $<HTMLElement>('#CartFilled');
+class CartManager {
+  private countEls = $$<HTMLElement>('#CartCount, #MtbCartCount, #DockCartCount');
 
   constructor() {
-    this.bindEvents();
-    void this.refresh();
+    void this.syncCount();
+    this.bindAtc();
+    this.bindCartPage();
   }
 
-  open(): void {
-    this.drawer?.classList.add('is-open');
-    this.overlay?.classList.add('is-active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  close(): void {
-    this.drawer?.classList.remove('is-open');
-    this.overlay?.classList.remove('is-active');
-    document.body.style.overflow = '';
-  }
-
-  async addItem(variantId: number, quantity = 1): Promise<void> {
+  // ------------------------------------------------------------------
+  // Sync badge count from live cart
+  // ------------------------------------------------------------------
+  private async syncCount(): Promise<void> {
     try {
-      await CartAPI.add({ id: variantId, quantity });
-      await this.refresh();
-      this.open();
-    } catch (err) {
-      console.error('Add to cart error:', err);
-      this.showToast('Could not add to cart. Please try again.');
-    }
-  }
-
-  async refresh(): Promise<void> {
-    const cart = await CartAPI.get();
-    this.updateCount(cart.item_count);
-    this.renderItems(cart);
+      const cart: ShopifyCart = await CartAPI.get();
+      this.updateCount(cart.item_count);
+    } catch { /* silent */ }
   }
 
   private updateCount(count: number): void {
     this.countEls.forEach(el => {
       el.textContent = String(count);
       el.classList.toggle('cart-count--hidden', count === 0);
-      if (count > 0) {
-        el.classList.add('bump');
-        setTimeout(() => el.classList.remove('bump'), 400);
+      el.classList.toggle('mtb__cart-badge--hidden', count === 0);
+      el.classList.toggle('bdock__badge--hidden', count === 0);
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // Global ATC delegation — reads qty from stepper, adds via AJAX,
+  // then navigates to /cart so the full-page cart shows up.
+  // ------------------------------------------------------------------
+  private bindAtc(): void {
+    document.addEventListener('click', async (e) => {
+      const btn = (e.target as Element).closest<HTMLButtonElement>('[data-atc]');
+      if (!btn) return;
+
+      const variantId = Number(btn.dataset.variantId);
+      if (!variantId) return;
+
+      // Read qty from the nearest quantity input in the product form
+      const form = btn.closest('form') ?? document.querySelector<HTMLFormElement>('#ProductForm');
+      const qtyInput = form?.querySelector<HTMLInputElement>('input[name="quantity"]');
+      const quantity = Math.max(1, parseInt(qtyInput?.value ?? '1', 10));
+
+      // Visual feedback
+      btn.disabled = true;
+      const originalHTML = btn.innerHTML;
+      btn.textContent = 'Adding…';
+
+      try {
+        await CartAPI.add({ id: variantId, quantity });
+        btn.textContent = 'Added ✓';
+        // Short pause so user sees confirmation, then go to cart page
+        setTimeout(() => {
+          window.location.href = '/cart';
+        }, 600);
+      } catch (err) {
+        console.error('[Cart] Add failed:', err);
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
       }
     });
   }
 
-  private renderItems(cart: ShopifyCart): void {
-    const isEmpty = cart.item_count === 0;
-    this.emptyEl?.classList.toggle('hidden', !isEmpty);
-    this.filledEl?.classList.toggle('hidden', isEmpty);
+  // ------------------------------------------------------------------
+  // Full-page cart page events delegation (qty stepper & remove button)
+  // ------------------------------------------------------------------
+  private bindCartPage(): void {
+    const isCartPage = window.location.pathname.replace(/\/$/, '') === '/cart';
+    if (!isCartPage) return;
 
-    if (this.totalEl) {
-      this.totalEl.textContent = formatMoney(cart.total_price);
-    }
-    if (!this.body || isEmpty) return;
-
-    this.body.innerHTML = cart.items.map(item => this.itemHTML(item)).join('');
-    this.bindItemEvents();
-  }
-
-  private itemHTML(item: ShopifyCartItem): string {
-    const imgSrc = item.featured_image?.url ?? '';
-    const variantLabel = item.variant_title && item.variant_title !== 'Default Title'
-      ? `<p class="cart-item__variant">${item.variant_title}</p>`
-      : '';
-
-    return `
-      <div class="cart-item" data-key="${item.key}">
-        <a href="${item.url}" class="cart-item__image-link" tabindex="-1">
-          ${imgSrc
-            ? `<img src="${imgSrc.replace('?', '?width=150&')}" alt="${item.product_title}" width="80" height="80" loading="lazy">`
-            : '<div class="cart-item__image-placeholder"></div>'
-          }
-        </a>
-        <div class="cart-item__info">
-          <a href="${item.url}" class="cart-item__title">${item.product_title}</a>
-          ${variantLabel}
-          <div class="cart-item__bottom">
-            <div class="qty-input qty-input--sm">
-              <button class="qty-input__btn" data-action="decrease" data-key="${item.key}" data-qty="${item.quantity}" aria-label="Decrease quantity">−</button>
-              <span class="qty-input__value">${item.quantity}</span>
-              <button class="qty-input__btn" data-action="increase" data-key="${item.key}" data-qty="${item.quantity}" aria-label="Increase quantity">+</button>
-            </div>
-            <p class="cart-item__price">${formatMoney(item.final_line_price)}</p>
-          </div>
-        </div>
-        <button class="cart-item__remove" data-key="${item.key}" aria-label="Remove ${item.product_title}">×</button>
-      </div>`;
-  }
-
-  private bindItemEvents(): void {
-    this.body?.querySelectorAll<HTMLButtonElement>('[data-action]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const key = btn.dataset.key!;
-        const qty = parseInt(btn.dataset.qty ?? '1', 10);
-        const newQty = btn.dataset.action === 'increase' ? qty + 1 : Math.max(0, qty - 1);
-        void CartAPI.change({ id: key, quantity: newQty }).then(() => this.refresh());
-      });
-    });
-
-    this.body?.querySelectorAll<HTMLButtonElement>('.cart-item__remove').forEach(btn => {
-      btn.addEventListener('click', () => {
-        void CartAPI.change({ id: btn.dataset.key!, quantity: 0 }).then(() => this.refresh());
-      });
-    });
-  }
-
-  private bindEvents(): void {
-    $<HTMLButtonElement>('#CartToggle')?.addEventListener('click', () => this.open());
-    $<HTMLButtonElement>('#CartDrawerClose')?.addEventListener('click', () => this.close());
-    this.overlay?.addEventListener('click', () => this.close());
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') this.close();
-    });
-
-    // Global Add-to-Cart delegation
+    // Delegate clicks on quantity minus, plus, and remove buttons
     document.addEventListener('click', async (e) => {
-      const btn = (e.target as Element).closest<HTMLButtonElement>('[data-atc]');
-      if (!btn) return;
-      const variantId = Number(btn.dataset.variantId);
-      if (!variantId) return;
+      const target = e.target as HTMLElement;
 
-      btn.disabled = true;
-      const original = btn.textContent ?? 'Add to Cart';
-      btn.textContent = 'Adding…';
+      // 1. Remove button
+      const removeBtn = target.closest<HTMLButtonElement>('[data-cart-remove]');
+      if (removeBtn) {
+        const key = removeBtn.dataset.cartRemove!;
+        removeBtn.disabled = true;
+        removeBtn.textContent = 'Removing…';
+        try {
+          await CartAPI.change({ id: key, quantity: 0 });
+          window.location.reload();
+        } catch (err) {
+          console.error('[Cart] Remove failed:', err);
+          removeBtn.disabled = false;
+          removeBtn.textContent = 'Remove';
+        }
+        return;
+      }
 
-      await this.addItem(variantId);
+      // 2. Minus button
+      const minusBtn = target.closest<HTMLButtonElement>('[data-cart-qty-minus]');
+      if (minusBtn) {
+        const key = minusBtn.dataset.cartQtyMinus!;
+        const input = document.querySelector<HTMLInputElement>(`[data-qty-input="${key}"]`);
+        if (!input) return;
+        const currentQty = parseInt(input.value, 10);
+        const newQty = Math.max(0, currentQty - 1);
+        
+        minusBtn.disabled = true;
+        try {
+          await CartAPI.change({ id: key, quantity: newQty });
+          window.location.reload();
+        } catch (err) {
+          console.error('[Cart] Decrease quantity failed:', err);
+          minusBtn.disabled = false;
+        }
+        return;
+      }
 
-      btn.textContent = 'Added ✓';
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.disabled = false;
-      }, 2000);
+      // 3. Plus button
+      const plusBtn = target.closest<HTMLButtonElement>('[data-cart-qty-plus]');
+      if (plusBtn) {
+        const key = plusBtn.dataset.cartQtyPlus!;
+        const input = document.querySelector<HTMLInputElement>(`[data-qty-input="${key}"]`);
+        if (!input) return;
+        const currentQty = parseInt(input.value, 10);
+        const newQty = currentQty + 1;
+
+        plusBtn.disabled = true;
+        try {
+          await CartAPI.change({ id: key, quantity: newQty });
+          window.location.reload();
+        } catch (err) {
+          console.error('[Cart] Increase quantity failed:', err);
+          plusBtn.disabled = false;
+        }
+        return;
+      }
     });
-  }
 
-  private showToast(msg: string): void {
-    // TODO: wire up a real toast UI
-    console.warn('[Cart]', msg);
+    // Handle manual input changes
+    document.querySelectorAll<HTMLInputElement>('[data-qty-input]').forEach(input => {
+      input.addEventListener('change', async () => {
+        const key = input.dataset.qtyInput!;
+        const newQty = Math.max(0, parseInt(input.value, 10) || 0);
+        input.disabled = true;
+        try {
+          await CartAPI.change({ id: key, quantity: newQty });
+          window.location.reload();
+        } catch (err) {
+          console.error('[Cart] Manual quantity update failed:', err);
+          input.disabled = false;
+        }
+      });
+    });
   }
 }
 
-// Initialise and expose close globally
-const cartDrawer = new CartDrawer();
+// Initialise
+new CartManager();
 
-(window as Window & { closeCartDrawer?: () => void }).closeCartDrawer =
-  () => cartDrawer.close();
+// Remove legacy global (was used by drawer)
+delete (window as Window & { closeCartDrawer?: () => void }).closeCartDrawer;
