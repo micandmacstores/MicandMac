@@ -56,15 +56,35 @@ class SearchOverlay {
       this._onInput(e.target.value.trim());
     });
 
+    this.input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const query = this.input.value.trim();
+        if (query) {
+          this._performSearch(query);
+        }
+      }
+    });
+
+    const searchIcon = this.overlay.querySelector(".search-overlay__field-icon");
+    if (searchIcon) {
+      searchIcon.addEventListener("click", () => {
+        const query = this.input.value.trim();
+        if (query) {
+          this._performSearch(query);
+        }
+      });
+    }
+
     this.resetBtn.addEventListener("click", () => {
       this.input.value = "";
       this._onInput("");
       this.input.focus();
     });
 
-    // Suggestion clicks (Recent)
+    // Suggestion clicks (Recent, Query, and Trending/Suggestion buttons)
     document.addEventListener("click", (e) => {
-      const suggestionBtn = e.target.closest(".recent-search-btn, .query-suggestion-btn");
+      const suggestionBtn = e.target.closest(".recent-search-btn, .query-suggestion-btn, .suggestion-btn");
       if (suggestionBtn) {
         const query = suggestionBtn.dataset.query;
         this.input.value = query;
