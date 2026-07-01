@@ -38,11 +38,6 @@
               </button>
             </li>
             <li>
-              <button class="account-nav__link" data-tab="wishlist" aria-selected="false" type="button">
-                Wishlist
-              </button>
-            </li>
-            <li>
               <button class="account-nav__link" data-tab="details" aria-selected="false" type="button">
                 Account Details
               </button>
@@ -118,13 +113,18 @@
         <!-- ─── PANEL 2 — ADDRESSES ───────────────────────────────────── -->
         <div class="acct-panel" id="panel-addresses" role="tabpanel" aria-label="Addresses" hidden>
 
-          <div class="acct-header">
-            <h1 class="acct-header__title">Saved Addresses</h1>
-            {%- if customer.addresses.size > 0 -%}
-              <p class="acct-header__subtitle">
-                {{ customer.addresses.size }} address{% if customer.addresses.size != 1 %}es{% endif %} saved
-              </p>
-            {%- endif -%}
+          <div class="acct-header acct-header--split">
+            <div>
+              <h1 class="acct-header__title">Saved Addresses</h1>
+              {%- if customer.addresses.size > 0 -%}
+                <p class="acct-header__subtitle">
+                  {{ customer.addresses.size }} address{% if customer.addresses.size != 1 %}es{% endif %} saved
+                </p>
+              {%- endif -%}
+            </div>
+            <button type="button" class="btn-outline btn-outline--small" id="ToggleNewAddressBtn">
+              Add Address
+            </button>
           </div>
 
           {%- if customer.addresses.size > 0 -%}
@@ -173,12 +173,13 @@
           {%- else -%}
             <div class="acct-empty">
               <h2 class="acct-empty__title">No addresses saved</h2>
-              <p class="acct-empty__text">Add a shipping address to speed up checkout.</p>
+              <p class="acct-empty__text" style="margin-bottom: 1.5rem;">Add a shipping address to speed up checkout.</p>
+              <button type="button" class="btn-outline" id="EmptyAddAddressBtn">Add Address</button>
             </div>
           {%- endif -%}
 
           <!-- Add New Address Form -->
-          <div class="acct-card address-form-wrap">
+          <div class="acct-card address-form-wrap" id="NewAddressFormWrap" style="{% unless form.errors %}display: none;{% endunless %} margin-top: 2rem;">
             <h2 class="acct-card__title">Add New Address</h2>
 
             {%- form 'customer_address', customer.new_address, id: 'NewAddressForm' -%}
@@ -248,32 +249,14 @@
                 </label>
               </div>
 
-              <button type="submit" class="btn-primary">Save address</button>
+              <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1.5rem;">
+                <button type="submit" class="btn-primary" style="margin-top: 0;">Save address</button>
+                <button type="button" class="btn-outline" id="CancelNewAddressBtn">Cancel</button>
+              </div>
             {%- endform -%}
           </div>
 
         </div>
-
-
-        <!-- ─── PANEL 3 — WISHLIST ─────────────────────────────────────── -->
-        <div class="acct-panel" id="panel-wishlist" role="tabpanel" aria-label="Wishlist" hidden>
-
-          <div class="acct-header">
-            <h1 class="acct-header__title">Saved for Later</h1>
-            <p class="acct-header__subtitle">Products you've set aside</p>
-          </div>
-
-          <!-- wishlist.ts injects .wishlist-card elements into #WishlistGrid -->
-          <div class="wishlist-page-grid" id="WishlistGrid">
-            <div class="acct-empty" id="WishlistEmpty" style="display:none">
-              <h2 class="acct-empty__title">Nothing saved yet</h2>
-              <p class="acct-empty__text">Tap the heart on any product to save it here.</p>
-              <a href="{{ routes.all_products_collection_url }}" class="btn-outline">Browse products</a>
-            </div>
-          </div>
-
-        </div>
-
 
         <!-- ─── PANEL 4 — ACCOUNT DETAILS ─────────────────────────────── -->
         <div class="acct-panel" id="panel-details" role="tabpanel" aria-label="Account details" hidden>
@@ -452,6 +435,28 @@
 
   toggleEditBtn?.addEventListener('click', () => setEditMode(true));
   cancelEditBtn?.addEventListener('click', () => setEditMode(false));
+
+  /* ── Address Form Toggle ───────────────────────────────── */
+  const toggleNewAddressBtn = document.getElementById('ToggleNewAddressBtn');
+  const emptyAddAddressBtn  = document.getElementById('EmptyAddAddressBtn');
+  const cancelNewAddressBtn = document.getElementById('CancelNewAddressBtn');
+  const newAddressFormWrap  = document.getElementById('NewAddressFormWrap');
+
+  function toggleAddressForm(show) {
+    if (!newAddressFormWrap) return;
+    const isShowing = show !== undefined ? show : (newAddressFormWrap.style.display === 'none');
+    newAddressFormWrap.style.display = isShowing ? 'block' : 'none';
+    if (toggleNewAddressBtn) {
+      toggleNewAddressBtn.textContent = isShowing ? 'Cancel' : 'Add Address';
+    }
+    if (isShowing) {
+      newAddressFormWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  toggleNewAddressBtn?.addEventListener('click', () => toggleAddressForm());
+  emptyAddAddressBtn?.addEventListener('click', () => toggleAddressForm(true));
+  cancelNewAddressBtn?.addEventListener('click', () => toggleAddressForm(false));
 
   /* ── Toast ──────────────────────────────────────────────── */
   function showToast(msg, dur) {

@@ -50,7 +50,8 @@
 /* ── SIDEBAR NAVIGATION ───────────────────────────────────── */
 .account-page__sidebar {
   position: sticky;
-  top: 160px;
+  top: 2rem;
+  align-self: start;
 }
 
 .account-nav__profile {

@@ -700,3 +700,79 @@ body.template-index:not(.is-scrolled) .site-header.megamenu-active .site-nav__li
   color: var(--mm-champagne-gold) !important;
 }
 
+/* ============================================
+   ACCOUNT DROPDOWN (Logged-in state)
+   ============================================ */
+.auth-user-menu {
+  position: relative;
+}
+
+.auth-user-menu__dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background: #FFFFFF;
+  border: 1px solid rgba(46, 31, 26, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(46, 31, 26, 0.12);
+  padding: 8px;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.25s ease;
+  z-index: 500;
+}
+
+.auth-user-menu:hover .auth-user-menu__dropdown,
+.auth-user-menu__btn:focus + .auth-user-menu__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.auth-user-menu__greeting {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #2E1F1A;
+  padding: 8px 12px 12px;
+  border-bottom: 1px solid rgba(46, 31, 26, 0.08);
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.auth-user-menu__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #2E1F1A;
+  transition: background 0.15s ease;
+  text-align: left;
+}
+
+.auth-user-menu__link:hover {
+  background: #f7ede4;
+}
+
+.auth-user-menu__divider {
+  height: 1px;
+  background: rgba(46, 31, 26, 0.08);
+  margin: 4px 0;
+}
+
+.auth-user-menu__link--logout {
+  color: #7A6F68;
+}
+
+.auth-user-menu__link--logout:hover {
+  color: #8B2020;
+  background: #fff4f4;
+}
+
+

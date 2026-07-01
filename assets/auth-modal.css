@@ -366,21 +366,86 @@
 
 .auth-modal__alt-cta {
   display: block;
+  width: 100%;
+  box-sizing: border-box;
   text-align: center;
   font-size: 0.78rem;
   font-weight: 600;
   color: #2E1F1A;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease;
   border: 1px solid rgba(46, 31, 26, 0.2);
   border-radius: 8px;
   padding: 12px;
+  cursor: pointer;
+  background: transparent;
 }
 
 .auth-modal__alt-cta:hover {
   color: #5A2D3A;
   border-color: #5A2D3A;
 }
+
+/* --- Social Separator & Google Button --- */
+.auth-modal__social-separator {
+  position: relative;
+  text-align: center;
+  margin: 20px 0 16px;
+}
+
+.auth-modal__social-separator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(46, 31, 26, 0.08);
+}
+
+.auth-modal__social-separator span {
+  position: relative;
+  padding: 0 12px;
+  background: #fff;
+  font-size: 0.72rem;
+  color: #9E9289;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.auth-modal__google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2E1F1A;
+  text-decoration: none;
+  background: #FFFFFF;
+  border: 1px solid rgba(46, 31, 26, 0.15);
+  border-radius: 8px;
+  padding: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 8px;
+}
+
+.auth-modal__google-btn:hover {
+  background: #FAF8F6;
+  border-color: rgba(46, 31, 26, 0.3);
+  box-shadow: 0 4px 12px rgba(46, 31, 26, 0.05);
+}
+
+.auth-modal__google-icon {
+  flex-shrink: 0;
+  display: block;
+}
+
 
 /* --- Account Dropdown (Logged-in state) --- */
 .auth-user-menu {
