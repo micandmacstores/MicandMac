@@ -11,7 +11,7 @@
    ============================================ */
 .mobile-topbar {
   position: fixed;
-  top: 0;
+  top: var(--announcement-height, 30px); /* sit below fixed announcement bar */
   left: 0;
   right: 0;
   height: 58px;
@@ -31,8 +31,15 @@
   background: rgba(243, 232, 228, 0.97);
 }
 
-/* ── TRANSPARENT TOPBAR (HOMEPAGE HERO) ── */
+/* ── TRANSPARENT TOPBAR + FULL-BLEED HERO (HOMEPAGE) ── */
+/* On homepage hero (not yet scrolled): hide announcement bar + snap topbar to top: 0
+   so the hero is completely full-bleed like desktop */
+body.template-index:not(.is-scrolled) .announcement-bar {
+  display: none !important;
+}
+
 body.template-index:not(.is-scrolled) .mobile-topbar {
+  top: 0 !important;
   background: transparent !important;
   border-bottom-color: transparent !important;
   box-shadow: none !important;
