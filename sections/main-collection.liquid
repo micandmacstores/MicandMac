@@ -34,36 +34,16 @@
             {%- else -%}
               <li>
                 <a href="#all" class="plp-quick-link js-filter-btn is-active" data-filter="all">
-                  <span class="plp-tab-icon plp-tab-icon--mobile">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <rect x="3" y="3" width="7" height="7" rx="1"/>
-                      <rect x="14" y="3" width="7" height="7" rx="1"/>
-                      <rect x="3" y="14" width="7" height="7" rx="1"/>
-                      <rect x="14" y="14" width="7" height="7" rx="1"/>
-                    </svg>
-                  </span>
                   <span class="plp-tab-label">All</span>
                 </a>
               </li>
               <li>
                 <a href="#glowing-bars" class="plp-quick-link js-filter-btn" data-filter="glowing-bars">
-                  <span class="plp-tab-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <path d="M12 2C8 2 5 5.5 5 9c0 2.5 1.5 4.5 3.5 5.5V17a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-2.5C17.5 13.5 19 11.5 19 9c0-3.5-3-7-7-7z"/>
-                      <path d="M9 21h6"/>
-                    </svg>
-                  </span>
                   <span class="plp-tab-label">Glowing Bars</span>
                 </a>
               </li>
               <li>
                 <a href="#lip-care" class="plp-quick-link js-filter-btn" data-filter="lip-care">
-                  <span class="plp-tab-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <path d="M12 3C9 3 7 5 7 7.5c0 1.5.8 2.8 2 3.5V13h6v-2c1.2-.7 2-2 2-3.5C17 5 15 3 12 3z"/>
-                      <path d="M9 13v2a3 3 0 0 0 6 0v-2"/>
-                    </svg>
-                  </span>
                   <span class="plp-tab-label">Lip Care</span>
                 </a>
               </li>
@@ -293,20 +273,12 @@
   }
   .plp-quick-list::-webkit-scrollbar { display: none; }
 
-  /* On desktop: only Glowing Bars / Lip Care show icon, All stays text-only */
-  .plp-tab-icon--mobile { display: none; }
-  .plp-tab-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 4px;
-  }
   .plp-tab-label { display: inline; }
   .plp-quick-link {
     display: inline-flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
     color: var(--mm-dark-espresso);
     text-decoration: none;
     font-family: var(--font-display);
@@ -318,16 +290,6 @@
     opacity: 0.35;
     padding: 4px 8px;
     transition: all var(--transition-fast);
-  }
-  /* Desktop: icon + text side by side for Glowing Bars / Lip Care */
-  .plp-quick-link .plp-tab-icon {
-    display: inline-flex;
-  }
-  /* On desktop keep label inline next to icon */
-  .plp-quick-link {
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
   }
   .plp-quick-link sup {
     font-size: 0.35em;
@@ -376,35 +338,27 @@
       flex-shrink: 0;
     }
     .plp-quick-link {
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      letter-spacing: 0.06em;
-      padding: 10px 14px;
-      border: 1.5px solid rgba(75, 42, 49, 0.15);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.6);
-      min-width: 72px;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      min-width: auto;
       scroll-snap-align: start;
-      opacity: 1;
+      opacity: 0.35;
+      transition: all var(--transition-fast);
     }
     .plp-quick-link.is-active {
-      background: var(--mm-deep-garnet);
-      color: var(--mm-soft-blush);
-      border-color: var(--mm-deep-garnet);
-    }
-    .plp-quick-link.is-active svg {
-      stroke: var(--mm-soft-blush);
-    }
-    /* Show the All icon on mobile (hidden on desktop) */
-    .plp-tab-icon--mobile {
-      display: inline-flex !important;
-    }
-    .plp-tab-icon {
-      display: inline-flex;
+      opacity: 1;
+      color: var(--mm-deep-garnet);
+      font-weight: 600;
+      background: transparent;
+      border: none;
     }
     .plp-combo-row {
       grid-template-columns: 1fr;
