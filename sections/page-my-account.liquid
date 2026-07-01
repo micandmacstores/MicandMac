@@ -86,8 +86,22 @@
 
                   <div class="order-card__body">
                     {%- assign f_status = order.fulfillment_status | default: 'unfulfilled' -%}
-                    <span class="order-card__status {% if f_status == 'fulfilled' %}order-card__status--fulfilled{% elsif f_status == 'in_progress' %}order-card__status--processing{% endif %}">
-                      {{ f_status | replace: '_', ' ' | capitalize }}
+                    {%- case f_status -%}
+                      {%- when 'fulfilled' -%}
+                        {%- assign status_label = 'Delivered' -%}
+                        {%- assign status_mod   = 'order-card__status--fulfilled' -%}
+                      {%- when 'in_progress' -%}
+                        {%- assign status_label = 'In Transit' -%}
+                        {%- assign status_mod   = 'order-card__status--shipping' -%}
+                      {%- when 'partial' -%}
+                        {%- assign status_label = 'Partially Shipped' -%}
+                        {%- assign status_mod   = 'order-card__status--shipping' -%}
+                      {%- else -%}
+                        {%- assign status_label = 'Order Confirmed' -%}
+                        {%- assign status_mod   = 'order-card__status--confirmed' -%}
+                    {%- endcase -%}
+                    <span class="order-card__status {{ status_mod }}">
+                      {{ status_label }}
                     </span>
                     <span class="order-card__items">{{ order.line_items_count }} item{% if order.line_items_count != 1 %}s{% endif %}</span>
                   </div>

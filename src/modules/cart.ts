@@ -11,7 +11,39 @@ class CartManager {
   constructor() {
     void this.syncCount();
     this.bindAtc();
+    this.bindBuyNow();
     this.bindCartPage();
+  }
+
+  // ------------------------------------------------------------------
+  // Buy Now — AJAX add to cart with correct qty, then go to /checkout
+  // ------------------------------------------------------------------
+  private bindBuyNow(): void {
+    document.addEventListener('click', async (e) => {
+      const btn = (e.target as Element).closest<HTMLButtonElement>('[data-buy-now]');
+      if (!btn) return;
+
+      const variantId = Number(btn.dataset.variantId);
+      if (!variantId) return;
+
+      // Read qty from the PDP stepper (same as ATC)
+      const form = btn.closest('form') ?? document.querySelector<HTMLFormElement>('#ProductForm');
+      const qtyInput = form?.querySelector<HTMLInputElement>('input[name="quantity"]');
+      const quantity = Math.max(1, parseInt(qtyInput?.value ?? '1', 10));
+
+      btn.disabled = true;
+      btn.textContent = 'Processing…';
+
+      try {
+        await CartAPI.add({ id: variantId, quantity });
+        // Redirect cleanly — Shopify builds the correct checkout session from cart
+        window.location.href = '/checkout';
+      } catch (err) {
+        console.error('[Cart] Buy Now failed:', err);
+        btn.disabled = false;
+        btn.textContent = 'Buy Now';
+      }
+    });
   }
 
   // ------------------------------------------------------------------

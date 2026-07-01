@@ -87,6 +87,10 @@ export class Product {
     const atcBtn = document.querySelector<HTMLButtonElement>('#ProductATC');
     if (atcBtn) atcBtn.dataset.variantId = String(match.id);
 
+    // Update Buy Now button
+    const buyNowBtn = document.querySelector<HTMLButtonElement>('#ProductBuyNow');
+    if (buyNowBtn) buyNowBtn.dataset.variantId = String(match.id);
+
     // Update price
     this._updatePrice(match);
 

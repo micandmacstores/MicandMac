@@ -121,13 +121,15 @@
 
         <!-- Secondary: Buy Now -->
         {%- if section.settings.show_buy_now -%}
-          <a
-            href="/checkout?variant={{ current_variant.id }}&quantity=1"
+          <button
+            type="button"
             class="product-form__buy-now"
             id="ProductBuyNow"
+            data-buy-now
+            data-variant-id="{{ current_variant.id }}"
           >
             Buy Now
-          </a>
+          </button>
         {%- endif -%}
       </div>
     {%- endif -%}

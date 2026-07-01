@@ -300,6 +300,18 @@
   color: #1A5E32;
 }
 
+/* Warm amber — order placed, not yet shipped */
+.order-card__status--confirmed {
+  background: #FEF3E2;
+  color: #92400E;
+}
+
+/* Blue — in transit / partially shipped */
+.order-card__status--shipping {
+  background: #EFF6FF;
+  color: #1E40AF;
+}
+
 .order-card__items {
   font-size: 0.85rem;
   color: var(--acct-text-secondary);
