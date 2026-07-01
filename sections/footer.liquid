@@ -197,9 +197,16 @@
 
   .footer__top {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 3fr; /* brand | all 3 link columns */
     gap: var(--space-8);
     padding-bottom: var(--space-6);
+  }
+
+  /* The 3 link columns sit side-by-side on desktop */
+  .footer__cols-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-8);
   }
 
   .footer__logo-icon {
@@ -422,24 +429,23 @@
     width: auto;
   }
 
-  /* Responsive */
+  /* Tablet: stack brand above, keep link columns in a row */
   @media (max-width: 1023px) {
     .footer__top {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-8);
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    .footer__cols-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-6);
     }
   }
 
+  /* Mobile: single brand column, link columns in 2-col grid */
   @media (max-width: 639px) {
-    .footer__top {
-      grid-template-columns: 1fr;   /* brand full-width */
-      gap: var(--space-6);
-    }
-    /* Link columns sit side-by-side in 2-col grid */
     .footer__cols-grid {
-      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-6) var(--space-4);
+      gap: var(--space-5) var(--space-4);
     }
     .footer__bottom {
       flex-direction: column;
