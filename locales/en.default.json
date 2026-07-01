@@ -31,7 +31,7 @@
     "title": "Your Cart",
     "update": "Update",
     "remove": "Remove",
-    "empty": "Your cart is empty — but it doesn't have to be",
+    "empty": "Your cart is empty - but it doesn't have to be",
     "item_count_html": "{{ count }} item",
     "item_count_html_other": "{{ count }} items",
     "subtotal": "Subtotal",

@@ -1,4 +1,4 @@
-// src/utils/dom.ts — Type-safe DOM helpers
+// src/utils/dom.ts - Type-safe DOM helpers
 
 export const $ = <T extends Element>(sel: string, ctx: ParentNode = document): T | null =>
   ctx.querySelector<T>(sel);

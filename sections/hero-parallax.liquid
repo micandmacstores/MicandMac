@@ -1,14 +1,14 @@
 {% comment %}
   Section: Hero Parallax
-  Depth illusion — "text behind image" technique.
+  Depth illusion - "text behind image" technique.
   ─────────────────────────────────────────────────────────────
-  Layer 1 (z-index 1): Background          — parallax speed 0.15
-  Layer 2 (z-index 2): Heading + CTA text  — parallax speed 0.40
-  Layer 3 (z-index 3): Product / plant PNG — parallax speed 0 (fixed)
+  Layer 1 (z-index 1): Background          - parallax speed 0.15
+  Layer 2 (z-index 2): Heading + CTA text  - parallax speed 0.40
+  Layer 3 (z-index 3): Product / plant PNG - parallax speed 0 (fixed)
   ─────────────────────────────────────────────────────────────
   Because the PNG is in front of the text (z-index 3 > 2) and its
   background is transparent, the text appears to pass BEHIND the product.
-  No clip-path, no masking — just z-index + a transparent PNG.
+  No clip-path, no masking - just z-index + a transparent PNG.
 
   IMPORTANT: Liquid variables cannot be used inside a .css asset file,
   so all customisable values are injected as CSS custom properties on
@@ -110,7 +110,7 @@
       "type": "image_picker",
       "id": "plant_image",
       "label": "Product / plant image (transparent PNG)",
-      "info": "MUST be a PNG with transparent background — this sits in front of the heading."
+      "info": "MUST be a PNG with transparent background - this sits in front of the heading."
     },
     {
       "type": "image_picker",

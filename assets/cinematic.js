@@ -1,5 +1,5 @@
 /**
- * MicandMac — Scroll Reveal Engine v2.0
+ * MicandMac - Scroll Reveal Engine v2.0
  * ─────────────────────────────────────
  * Zero dependencies. Pure IntersectionObserver + CSS transitions.
  * Replaces GSAP/ScrollTrigger entirely.
@@ -10,11 +10,11 @@
   // Respect reduced-motion preference
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // Skip on cart page entirely — no animations needed there
+  // Skip on cart page entirely - no animations needed there
   if (document.body.classList.contains('template-cart')) return;
 
   /* ─────────────────────────────────────────────────────────────
-   * 1. CSS INJECTION — define the reveal transition states
+   * 1. CSS INJECTION - define the reveal transition states
    * ───────────────────────────────────────────────────────────── */
   const style = document.createElement('style');
   style.textContent = `
@@ -49,7 +49,7 @@
   document.head.appendChild(style);
 
   /* ─────────────────────────────────────────────────────────────
-   * 2. OBSERVER — watches elements and flips class when in view
+   * 2. OBSERVER - watches elements and flips class when in view
    * ───────────────────────────────────────────────────────────── */
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -61,10 +61,10 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   /* ─────────────────────────────────────────────────────────────
-   * 3. TARGET ELEMENTS — tag + observe
+   * 3. TARGET ELEMENTS - tag + observe
    * ───────────────────────────────────────────────────────────── */
   function init() {
-    // Section headings — slide up
+    // Section headings - slide up
     document.querySelectorAll('h2, h3.section-title, .section-eyebrow').forEach(function (el, i) {
       if (el.closest('.site-header, .site-footer, .the-act-hero')) return;
       el.classList.add('sr-hidden');
@@ -72,7 +72,7 @@
       observer.observe(el);
     });
 
-    // Cards — staggered slide up
+    // Cards - staggered slide up
     document.querySelectorAll('.product-card, .ingredient-feature, [class*="-card"]').forEach(function (el, i) {
       if (el.closest('.site-header, .site-footer, .the-act-hero')) return;
       el.classList.add('sr-hidden');
@@ -80,14 +80,14 @@
       observer.observe(el);
     });
 
-    // Images — scale in
+    // Images - scale in
     document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
       if (img.closest('.site-header, .site-footer, .the-act-hero, .cart-card')) return;
       img.classList.add('sr-hidden-scale');
       observer.observe(img);
     });
 
-    // FAQ items — slide from left
+    // FAQ items - slide from left
     document.querySelectorAll('.faq__item, [class*="faq"] > *').forEach(function (el, i) {
       el.classList.add('sr-hidden-left');
       el.style.transitionDelay = (i * 0.06) + 's';
@@ -115,7 +115,7 @@
       observer.observe(el);
     });
 
-    // WhatsApp button — delayed pop-in via CSS only
+    // WhatsApp button - delayed pop-in via CSS only
     const wa = document.querySelector('.wa-sticky');
     if (wa) {
       wa.style.cssText += 'opacity:0;transform:scale(0.6) translateX(40px);transition:opacity 0.6s ease 2s,transform 0.6s cubic-bezier(0.34,1.56,0.64,1) 2s;';

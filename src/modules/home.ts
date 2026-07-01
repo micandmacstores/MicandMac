@@ -52,7 +52,7 @@ export class Home {
   }
 
   // ------------------------------------------------------------------
-  // Scroll reveal — adds .is-visible when element enters viewport
+  // Scroll reveal - adds .is-visible when element enters viewport
   // Any element with class .reveal will animate in
   // ------------------------------------------------------------------
   private _initScrollReveal(): void {

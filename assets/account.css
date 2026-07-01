@@ -1,24 +1,30 @@
 /* ============================================
-   MIC & MAC — ACCOUNT DASHBOARD CSS
+   MIC & MAC - ACCOUNT DASHBOARD CSS
    Layered Neutral Aesthetic System
    ============================================ */
 
 /* ── COLOR SYSTEM & TOKENS ────────────────────────────────── */
 :root {
   /* Background layers */
-  --acct-bg-page: #F7F3EF;      /* Very light warm neutral */
-  --acct-bg-card: #FFFFFF;      /* Pure white for separation */
-  --acct-border: #E8E1D9;       /* Subtle structure border */
-  
+  --acct-bg-page: #F7F3EF;
+  /* Very light warm neutral */
+  --acct-bg-card: #FFFFFF;
+  /* Pure white for separation */
+  --acct-border: #E8E1D9;
+  /* Subtle structure border */
+
   /* Text Hierarchy */
-  --acct-text-primary: #2B2B2B;   /* Deep brown / near black */
-  --acct-text-secondary: #7A6F66; /* Muted grey-brown */
-  --acct-text-accent: #6B3E2E;    /* Brand accent */
-  
+  --acct-text-primary: #2B2B2B;
+  /* Deep brown / near black */
+  --acct-text-secondary: #7A6F66;
+  /* Muted grey-brown */
+  --acct-text-accent: #6B3E2E;
+  /* Brand accent */
+
   /* Status */
   --acct-status-bg: #F0EDE8;
   --acct-status-text: #6B3E2E;
-  
+
   /* Layout Spacing */
   --acct-space-sm: 1rem;
   --acct-space-md: 1.5rem;
@@ -121,7 +127,8 @@
 
 .account-nav__link:hover {
   color: var(--acct-text-primary);
-  background: rgba(232, 225, 217, 0.4); /* subtle hover */
+  background: rgba(232, 225, 217, 0.4);
+  /* subtle hover */
 }
 
 /* Active State Design Rule */
@@ -137,7 +144,8 @@
 }
 
 .account-nav__link--logout {
-  color: #8B2020; /* Subtle red for exit */
+  color: #8B2020;
+  /* Subtle red for exit */
 }
 
 /* ── MAIN PANELS ──────────────────────────────────────────── */
@@ -150,8 +158,15 @@
 }
 
 @keyframes panelFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .acct-header {
@@ -713,17 +728,19 @@ select.form-input {
   padding: 0.85rem 1.5rem;
   border-radius: 6px;
   font-size: 0.85rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 100;
   opacity: 0;
   transform: translateY(8px);
   transition: all 0.3s ease;
   pointer-events: none;
 }
+
 .acct-toast.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 /* ── MODALS ───────────────────────────────────────────────── */
 .acct-modal-overlay {
   position: fixed;
@@ -755,8 +772,15 @@ select.form-input {
 }
 
 @keyframes modalScaleIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .acct-modal__title {
@@ -785,25 +809,26 @@ select.form-input {
   .account-page {
     padding-block: 2rem 4rem;
   }
-  
+
   .account-page__layout {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   /* Hide sidebar details */
   .account-page__sidebar {
     position: static;
   }
-  
+
   .account-nav__profile {
-    display: none; /* remove profile card */
+    display: none;
+    /* remove profile card */
   }
-  
+
   .desktop-only {
     display: none !important;
   }
-  
+
   /* Top Horizontal Tabs */
   .account-nav__list {
     flex-direction: row;
@@ -813,14 +838,14 @@ select.form-input {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--acct-border);
     /* Hide scrollbar */
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  
-  .account-nav__list::-webkit-scrollbar { 
-    display: none; 
+
+  .account-nav__list::-webkit-scrollbar {
+    display: none;
   }
-  
+
   .account-nav__link {
     display: inline-block;
     width: auto;
@@ -832,31 +857,31 @@ select.form-input {
     font-size: 0.95rem;
     text-align: center;
   }
-  
+
   .account-nav__link.is-active {
     background: transparent;
     border-left: none;
     border-bottom-color: var(--acct-text-primary);
     color: var(--acct-text-primary);
   }
-  
+
   /* Card formatting */
   .order-card {
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1.25rem;
   }
-  
+
   .order-card__header {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
   }
-  
+
   .order-card__price-area {
     text-align: right;
   }
-  
+
   .order-card__body {
     align-items: flex-start;
     flex-direction: row;
@@ -864,23 +889,23 @@ select.form-input {
     width: 100%;
     margin-top: 0.5rem;
   }
-  
+
   .order-card__cta {
     width: 100%;
     justify-content: center;
     margin-top: 0.5rem;
   }
-  
+
   /* Details Read Mode Stacked */
   .acct-details-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
   }
-  
+
   .acct-header__title {
     font-size: 1.6rem;
   }

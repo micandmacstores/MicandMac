@@ -1,4 +1,4 @@
-// src/utils/api.ts — Shopify Storefront Ajax API wrappers
+// src/utils/api.ts - Shopify Storefront Ajax API wrappers
 
 import type {
   ShopifyCart,

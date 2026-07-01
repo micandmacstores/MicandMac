@@ -1,4 +1,4 @@
-// build.mjs — esbuild pipeline for Mic & Mac theme TypeScript
+// build.mjs - esbuild pipeline for Mic & Mac theme TypeScript
 import esbuild from 'esbuild';
 import chokidar from 'chokidar';
 import fs from 'fs';

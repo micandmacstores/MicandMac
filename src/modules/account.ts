@@ -3,7 +3,7 @@
  * Account dashboard interactive features:
  *  - Inline address form toggle (show/hide without page reload)
  *  - Delete address confirmation prompt
- *  - Set default address — optimistic UI
+ *  - Set default address - optimistic UI
  */
 
 export class Account {

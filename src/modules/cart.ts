@@ -1,4 +1,4 @@
-// src/modules/cart.ts — CartDrawer with full TypeScript
+// src/modules/cart.ts - CartDrawer with full TypeScript
 
 import type { ShopifyCart, ShopifyCartItem } from '../types/shopify';
 import { CartAPI } from '../utils/api';

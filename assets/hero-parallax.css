@@ -1,5 +1,5 @@
 /* ============================================================
-   Hero Parallax — assets/hero-parallax.css
+   Hero Parallax - assets/hero-parallax.css
    ─────────────────────────────────────────────────────────────
    The "text behind image" depth illusion:
      .hero-parallax__text   → z-index 2  (behind the product)
@@ -43,7 +43,7 @@
     display: block;
 }
 
-/* ── Layer 2: Text — sits BEHIND the product ─────────── */
+/* ── Layer 2: Text - sits BEHIND the product ─────────── */
 .hero-parallax__text {
     z-index: 2;
     display: flex;
@@ -105,7 +105,7 @@
     transform: translateY(-2px);
 }
 
-/* ── Layer 3: Product PNG — IN FRONT of text ─────────── */
+/* ── Layer 3: Product PNG - IN FRONT of text ─────────── */
 .hero-parallax__plant {
     z-index: 3;
     pointer-events: none;
@@ -150,7 +150,7 @@
     }
 }
 
-/* ── Mobile (touch) — parallax disabled by JS, but   ─── */
+/* ── Mobile (touch) - parallax disabled by JS, but   ─── */
 /* ── also freeze in CSS as a safe fallback           ─── */
 @media (max-width: 768px) {
     .hero-parallax__heading {

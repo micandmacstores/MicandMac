@@ -1,4 +1,4 @@
-# Hero Parallax Section — Agent Task Brief
+# Hero Parallax Section - Agent Task Brief
 > Paste this entire file into the Antigravity Agent panel and say: "Follow this brief exactly."
 
 ---
@@ -10,7 +10,7 @@ A Shopify hero section that replicates this visual effect:
 - A **plant/product image with a transparent background** layered ON TOP of the text
 - This creates a "text behind image" depth illusion
 - All three layers (background, text, image) move at **different speeds on scroll** (parallax)
-- Clean, minimal skincare brand aesthetic — no clutter
+- Clean, minimal skincare brand aesthetic - no clutter
 
 Reference visual: aloe vera plant PNG sits above big serif heading text, both over a soft blue/neutral background. As the user scrolls, each layer drifts at a different rate, creating a 3D depth effect.
 
@@ -34,16 +34,16 @@ MicandMac/
 
 ## 📋 Step-by-Step Instructions
 
-### STEP 1 — Create `sections/hero-parallax.liquid`
+### STEP 1 - Create `sections/hero-parallax.liquid`
 
 Create this file exactly:
 
 ```liquid
 {% comment %}
   Section: Hero Parallax
-  - Layer 1 (z-index 1): Background colour / image — slowest parallax (0.15x)
-  - Layer 2 (z-index 2): Large heading text — medium parallax (0.4x)
-  - Layer 3 (z-index 3): Plant/product PNG with transparent BG — no parallax (stays fixed)
+  - Layer 1 (z-index 1): Background colour / image - slowest parallax (0.15x)
+  - Layer 2 (z-index 2): Large heading text - medium parallax (0.4x)
+  - Layer 3 (z-index 3): Plant/product PNG with transparent BG - no parallax (stays fixed)
   The "text behind image" effect = plant is z-index 3, text is z-index 2. That's it.
 {% endcomment %}
 
@@ -82,7 +82,7 @@ Create this file exactly:
     {% endif %}
   </div>
 
-  {{-- Layer 3: Plant / product image (sits IN FRONT of text — key to the effect) --}}
+  {{-- Layer 3: Plant / product image (sits IN FRONT of text - key to the effect) --}}
   <div class="hero-parallax__plant" data-parallax-speed="0">
     {% if section.settings.plant_image != blank %}
       <img
@@ -188,7 +188,7 @@ Create this file exactly:
 
 ---
 
-### STEP 2 — Create `assets/hero-parallax.css`
+### STEP 2 - Create `assets/hero-parallax.css`
 
 ```css
 /* ============================================================
@@ -321,7 +321,7 @@ Create this file exactly:
     font-size: clamp(2.5rem, 18vw, 5rem);
   }
 
-  /* Disable parallax on touch — feels wrong on mobile scroll */
+  /* Disable parallax on touch - feels wrong on mobile scroll */
   .hero-parallax__bg,
   .hero-parallax__text,
   .hero-parallax__plant {
@@ -337,7 +337,7 @@ Create this file exactly:
 
 ---
 
-### STEP 3 — Create `assets/hero-parallax.ts`
+### STEP 3 - Create `assets/hero-parallax.ts`
 
 ```typescript
 /**
@@ -346,7 +346,7 @@ Create this file exactly:
  * a proportional translateY on scroll using requestAnimationFrame.
  *
  * Speed values:
- *   0    = no movement (plant stays fixed — appears "in front")
+ *   0    = no movement (plant stays fixed - appears "in front")
  *   0.15 = very slow (background drifts gently)
  *   0.4  = medium (text moves moderately)
  *
@@ -446,12 +446,12 @@ if (document.readyState === 'loading') {
 
 ---
 
-### STEP 4 — Wire up `build.js`
+### STEP 4 - Wire up `build.js`
 
 Open the existing `build.js` file and add `hero-parallax.ts` as an entry point. It should look something like this (adjust to match your existing build config):
 
 ```javascript
-// In your existing build.js — add the new entry:
+// In your existing build.js - add the new entry:
 const entries = [
   // ... existing entries ...
   'assets/hero-parallax.ts',
@@ -469,7 +469,7 @@ This should compile `assets/hero-parallax.ts` → `assets/hero-parallax.js`.
 
 ---
 
-### STEP 5 — Verify with Shopify CLI
+### STEP 5 - Verify with Shopify CLI
 
 Your `shopify theme dev` should already be running. Check the terminal for sync confirmation, then open your preview URL:
 
@@ -488,8 +488,8 @@ Go to the theme customizer and add the "Hero Parallax" section to the homepage. 
 Before finishing, confirm all of these:
 
 - [ ] `sections/hero-parallax.liquid` created with correct schema
-- [ ] `assets/hero-parallax.css` created — z-index 2 for text, z-index 3 for plant
-- [ ] `assets/hero-parallax.ts` created — rAF scroll listener, touch/motion disabled
+- [ ] `assets/hero-parallax.css` created - z-index 2 for text, z-index 3 for plant
+- [ ] `assets/hero-parallax.ts` created - rAF scroll listener, touch/motion disabled
 - [ ] CSS colour variables fixed (use CSS custom properties via inline style, not Liquid inside CSS)
 - [ ] `build.js` updated and TypeScript compiled to `assets/hero-parallax.js`
 - [ ] Section appears in Shopify theme customizer under "Add section"
@@ -505,9 +505,9 @@ Before finishing, confirm all of these:
 | Mistake | Fix |
 |---|---|
 | Putting Liquid variables inside `.css` asset file | Use CSS custom properties set via inline `style=""` on the section element |
-| Plant image has a white background | Must be a PNG with **transparent** background — that's what creates the depth illusion |
+| Plant image has a white background | Must be a PNG with **transparent** background - that's what creates the depth illusion |
 | Text appears in front of plant | Swap z-index: text = 2, plant = 3 |
-| Scroll feels janky | Make sure you're using `requestAnimationFrame` with a `ticking` flag — never apply transforms directly in the scroll event |
+| Scroll feels janky | Make sure you're using `requestAnimationFrame` with a `ticking` flag - never apply transforms directly in the scroll event |
 | Section not showing in customizer | Check `"presets"` array exists in the schema |
 | JS not loading | Check `build.js` compiled the TS and `hero-parallax.js` exists in `assets/` |
 
@@ -520,21 +520,21 @@ User's eyes
      │
      ▼
 ┌─────────────────────────────┐
-│  Layer 3 — Plant PNG        │  z-index: 3  ← closest to viewer
+│  Layer 3 - Plant PNG        │  z-index: 3  ← closest to viewer
 │  (transparent background)   │  parallax speed: 0 (doesn't move)
 ├─────────────────────────────┤
-│  Layer 2 — "NOURISH" text   │  z-index: 2
+│  Layer 2 - "NOURISH" text   │  z-index: 2
 │                             │  parallax speed: 0.4 (moves medium)
 ├─────────────────────────────┤
-│  Layer 1 — Background       │  z-index: 1  ← furthest from viewer
+│  Layer 1 - Background       │  z-index: 1  ← furthest from viewer
 │                             │  parallax speed: 0.15 (moves slow)
 └─────────────────────────────┘
 ```
 
 The plant PNG overlaps the text at z-index 3.
 Because the PNG background is transparent, only the plant shape covers the text.
-The text "disappears" behind the plant — no masking, no clip-path needed.
+The text "disappears" behind the plant - no masking, no clip-path needed.
 
 ---
 
-*Generated for MicandMac Shopify theme — Antigravity IDE + Shopify CLI + TypeScript*
+*Generated for MicandMac Shopify theme - Antigravity IDE + Shopify CLI + TypeScript*

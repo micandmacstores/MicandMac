@@ -57,7 +57,7 @@
 
 #### `assets`
 
-- Contains static files like CSS, JavaScript, and images—including compiled and optimized assets—referenced in templates via the `asset_url` filter
+- Contains static files like CSS, JavaScript, and images-including compiled and optimized assets-referenced in templates via the `asset_url` filter
 - Keep it here only `critical.css` and static files necessary for every page, otherwise prefer the usage of the `{% stylesheet %}` and `{% javascript %}` tags
 
 #### `locales`
@@ -1107,7 +1107,7 @@ Locale files are JSON files containing translations for all the text strings use
 
 #### Schema locale files
 
-Schema locale files, saved with a .schema.json extension, store translation strings specifically for theme editor setting schemas. They follow a structured organization—category, group, and description—to give context to each translation, enabling accurate localization of editor content. Schema locale files must use the IETF language tag format in their naming, such as en-GB.schema.json for British English or fr-CA.schema.json for Canadian French.
+Schema locale files, saved with a .schema.json extension, store translation strings specifically for theme editor setting schemas. They follow a structured organization-category, group, and description-to give context to each translation, enabling accurate localization of editor content. Schema locale files must use the IETF language tag format in their naming, such as en-GB.schema.json for British English or fr-CA.schema.json for Canadian French.
 
 **Example:**
 ```json

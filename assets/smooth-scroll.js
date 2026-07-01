@@ -1,10 +1,10 @@
 /**
- * Mic & Mac — End-Glide Inertial Scroll
+ * Mic & Mac - End-Glide Inertial Scroll
  *
- * Phase 1 (INITIAL) — user is actively scrolling:
+ * Phase 1 (INITIAL) - user is actively scrolling:
  *   → completely native, zero interference, no passive:false, no preventDefault
  *
- * Phase 2 (FINAL) — user lifts finger / stops wheel:
+ * Phase 2 (FINAL) - user lifts finger / stops wheel:
  *   → takes the last velocity and glides to a stop over ~0.4s
  */
 (function () {
@@ -19,9 +19,9 @@
   var rafId      = null;
   var wheelTimer = null;
 
-  /* ── Phase 1: Native scroll — just track the last delta ─────── */
+  /* ── Phase 1: Native scroll - just track the last delta ─────── */
   window.addEventListener('wheel', function (e) {
-    /* No preventDefault — browser scrolls completely natively */
+    /* No preventDefault - browser scrolls completely natively */
 
     velocity = e.deltaY;   /* seed for the glide */
 
@@ -37,7 +37,7 @@
   /* ── Phase 2: End-glide ─────────────────────────────────────── */
   function glide() {
     function step() {
-      velocity *= 0.80;                  /* friction — lower = stops sooner */
+      velocity *= 0.80;                  /* friction - lower = stops sooner */
 
       if (Math.abs(velocity) < 0.5) {   /* fully stopped */
         velocity = 0;

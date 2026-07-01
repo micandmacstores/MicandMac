@@ -1,5 +1,5 @@
 /* ============================================
-   MIC & MAC — LAYOUT
+   MIC & MAC - LAYOUT
    Container, grid system, flex helpers, section spacing.
    Import order: 4 of 8
    ============================================ */
@@ -40,9 +40,17 @@
   gap: var(--space-6);
 }
 
-.grid--2 { grid-template-columns: repeat(2, 1fr); }
-.grid--3 { grid-template-columns: repeat(3, 1fr); }
-.grid--4 { grid-template-columns: repeat(4, 1fr); }
+.grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
 
 .flex {
   display: flex;
@@ -57,6 +65,14 @@
   justify-content: center;
 }
 
-.flex--gap-sm { gap: var(--space-3); }
-.flex--gap-md { gap: var(--space-6); }
-.flex--gap-lg { gap: var(--space-8); }
+.flex--gap-sm {
+  gap: var(--space-3);
+}
+
+.flex--gap-md {
+  gap: var(--space-6);
+}
+
+.flex--gap-lg {
+  gap: var(--space-8);
+}

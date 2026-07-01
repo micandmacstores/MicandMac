@@ -1,5 +1,5 @@
 {% comment %}
-  Section: Curated Combos — Ritual Sets Page
+  Section: Curated Combos - Ritual Sets Page
 {% endcomment %}
 
 {{ 'product-card.css' | asset_url | stylesheet_tag }}
@@ -33,7 +33,7 @@
           <div class="combos-featured__content">
             <span class="combos-featured__label">⭐ Featured Ritual</span>
             <h2 class="combos-featured__title">{{ section.settings.featured_title | default: featured.title | split: '|' | first }}</h2>
-            <p class="combos-featured__benefit">{{ section.settings.featured_benefit | default: 'Your complete daily ritual — cleanse, restore, and protect in one curated set.' }}</p>
+            <p class="combos-featured__benefit">{{ section.settings.featured_benefit | default: 'Your complete daily ritual - cleanse, restore, and protect in one curated set.' }}</p>
             <div class="combos-featured__pricing">
               <span class="combos-featured__price">{{ featured.price | money }}</span>
               {%- if featured.compare_at_price > featured.price -%}
@@ -139,7 +139,7 @@
   <div class="combos-why">
     <div class="container text-center">
       <h3 class="combos-why__title">{{ section.settings.why_title | default: 'Why ritual sets?' }}</h3>
-      <p class="combos-why__desc">{{ section.settings.why_desc | default: 'Skin responds better to paired care. Our sets are formulated to work in sequence — each step amplifying the next for deeper, lasting results.' }}</p>
+      <p class="combos-why__desc">{{ section.settings.why_desc | default: 'Skin responds better to paired care. Our sets are formulated to work in sequence - each step amplifying the next for deeper, lasting results.' }}</p>
     </div>
   </div>
 
@@ -402,7 +402,7 @@
     position: relative;
   }
   .combo-card__includes-list li::before {
-    content: '—';
+    content: '-';
     position: absolute;
     left: 0;
     font-size: 0.7rem;
@@ -545,7 +545,7 @@
 
 {% schema %}
 {
-  "name": "Combos — Ritual Sets",
+  "name": "Combos - Ritual Sets",
   "settings": [
     {
       "type": "text",
@@ -584,7 +584,7 @@
       "type": "textarea",
       "id": "featured_benefit",
       "label": "Featured Ritual Benefit",
-      "default": "Your complete daily ritual — cleanse, restore, and protect in one curated set."
+      "default": "Your complete daily ritual - cleanse, restore, and protect in one curated set."
     },
     {
       "type": "header",
@@ -616,12 +616,12 @@
       "type": "textarea",
       "id": "why_desc",
       "label": "Context Description",
-      "default": "Skin responds better to paired care. Our sets are formulated to work in sequence — each step amplifying the next for deeper, lasting results."
+      "default": "Skin responds better to paired care. Our sets are formulated to work in sequence - each step amplifying the next for deeper, lasting results."
     }
   ],
   "presets": [
     {
-      "name": "Combos — Ritual Sets"
+      "name": "Combos - Ritual Sets"
     }
   ]
 }

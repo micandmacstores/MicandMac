@@ -1,5 +1,5 @@
 /* ============================================
-   MIC & MAC — SEARCH OVERLAY
+   MIC & MAC - SEARCH OVERLAY
    Premium predictive search UI
    ============================================ */
 
@@ -101,7 +101,9 @@
   transition: opacity var(--transition-fast);
 }
 
-.search-overlay__close-internal:hover { opacity: 1; }
+.search-overlay__close-internal:hover {
+  opacity: 1;
+}
 
 /* --- Body & Sections --- */
 .search-overlay__body {
@@ -130,7 +132,9 @@
   margin-bottom: var(--space-4);
 }
 
-.search-section__header .search-section__title { margin-bottom: 0; }
+.search-section__header .search-section__title {
+  margin-bottom: 0;
+}
 
 .search-section__view-all {
   font-size: var(--text-sm);
@@ -139,7 +143,9 @@
   font-weight: 500;
 }
 
-.search-section__view-all:hover { text-decoration: underline; }
+.search-section__view-all:hover {
+  text-decoration: underline;
+}
 
 .search-section__list {
   list-style: none;
@@ -150,7 +156,7 @@
   gap: var(--space-3);
 }
 
-.suggestion-btn, 
+.suggestion-btn,
 .recent-search-btn {
   background: none;
   border: none;
@@ -164,7 +170,7 @@
   text-align: left;
 }
 
-.suggestion-btn:hover, 
+.suggestion-btn:hover,
 .recent-search-btn:hover {
   color: var(--mm-terracotta-rose);
 }
@@ -176,11 +182,13 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: var(--space-6);
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .search-overlay__products-scroll::-webkit-scrollbar {
-  display: none; /* Safari/Chrome */
+  display: none;
+  /* Safari/Chrome */
 }
 
 .search-product-card {
@@ -241,7 +249,7 @@
 }
 
 /* Grid Layouts */
-.search-overlay__grid, 
+.search-overlay__grid,
 .search-overlay__typing-grid {
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -249,13 +257,16 @@
 }
 
 @media (max-width: 768px) {
-  .search-overlay__grid, 
+
+  .search-overlay__grid,
   .search-overlay__typing-grid {
     grid-template-columns: 1fr;
   }
+
   .search-overlay__header {
     gap: var(--space-4);
   }
+
   .search-overlay__input {
     font-size: var(--text-xl);
   }

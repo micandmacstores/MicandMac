@@ -1,4 +1,4 @@
-# Mic & Mac — Full Brand Audit
+# Mic & Mac - Full Brand Audit
 > Audited from: https://micandmacstores.com
 > Prepared for: Antigravity IDE Agent
 > Purpose: Use this document as your complete brand reference when building, editing, or designing anything for the MicandMac Shopify theme.
@@ -15,7 +15,7 @@
 - **Shopify Store ID:** mic-mac-dev.myshopify.com (dev)
 
 ### Brand Positioning
-Mic & Mac positions itself as a **premium clinical-organic skincare brand** — the intersection of artisan craftsmanship and laboratory precision. They explicitly distance themselves from generic "handmade" beauty by emphasising professional manufacturing standards, lab certification, and science-backed formulations.
+Mic & Mac positions itself as a **premium clinical-organic skincare brand** - the intersection of artisan craftsmanship and laboratory precision. They explicitly distance themselves from generic "handmade" beauty by emphasising professional manufacturing standards, lab certification, and science-backed formulations.
 
 Key positioning phrases used on the site:
 - "Artisan-formulated, lab-certified organic skincare"
@@ -38,7 +38,7 @@ From the About Us page:
 
 | Value | Description |
 |---|---|
-| Proprietary Owner's Blends | Every formula is a unique, expertly crafted recipe — not off-the-shelf |
+| Proprietary Owner's Blends | Every formula is a unique, expertly crafted recipe - not off-the-shelf |
 | Lab Certified Safety | Manufactured under strict professional oversight for hygiene and consistency |
 | Clean & Sulfate-Free | Formulated without harsh additives for safe daily use |
 | Ingredient-Led Efficacy | Powered by targeted actives; prioritises dermatology and safety |
@@ -70,9 +70,9 @@ From the About Us page:
 
 ### Individual Products (Live & Active)
 
-#### Handmade Soaps — Signature Line
+#### Handmade Soaps - Signature Line
 
-**1. Donkey Milk Soap — Deep Hydration**
+**1. Donkey Milk Soap - Deep Hydration**
 - URL: `/products/donkey-milk-soap-100gm`
 - Price: Rs. 199 (Sale from Rs. 320)
 - Weight: 100gm
@@ -82,25 +82,25 @@ From the About Us page:
 - Skin types: All skin types, especially dry and sensitive
 - Product images available: front, bar, packaging open, application guide, organic ingredients, hydration benefits
 
-**2. Red Wine Radiance Soap — Luxury Formula**
+**2. Red Wine Radiance Soap - Luxury Formula**
 - URL: `/products/redwine-soap-100gm`
 - Price: Rs. 149 (Sale from Rs. 300)
 - Weight: 100gm
 - Key claim: "Deep, antioxidant-rich owner's blend for ultimate skin recovery. Lab-certified luxury."
 - Benefits: Moisturising (glycerin, lanolin), gentle cleansing, soothing, rich in nutrients (Vit E), versatile face & body use
 - Key ingredients: Red wine extract (resveratrol, antioxidants), vegetable oils (olive, coconut, palm), sodium hydroxide, glycerin, essential oils, botanical extracts, natural colorants
-- Skin types: All — especially suited to those wanting anti-aging and radiance
+- Skin types: All - especially suited to those wanting anti-aging and radiance
 - Product images available: front, bar, packaging open, organic ingredients, antioxidant benefits, application guide
 
-**3. Skin Radiance Glow Soap — Lab Certified**
+**3. Skin Radiance Glow Soap - Lab Certified**
 - URL: `/products/skjn-whitening-soap-100gm`
 - Price: Rs. 149 (Sale from Rs. 300)
 - Weight: 100gm
 - Key claim: "Replaced harsh bleaching agents with a safe, clinical organic formula that naturally brightens your complexion."
 - Benefits: Brightening, dark spot reduction, exfoliation, moisturisation, antioxidant protection, soothing
 - Key ingredients: Kojic acid, Vitamin C, arbutin, niacinamide, licorice extract, AHAs (glycolic acid), papaya extract, glycerin, essential oils
-- Skin types: All — especially for hyperpigmentation and uneven skin tone
-- Important note: Positioned as a SAFE alternative to harsh bleaching agents — this is a key differentiator
+- Skin types: All - especially for hyperpigmentation and uneven skin tone
+- Important note: Positioned as a SAFE alternative to harsh bleaching agents - this is a key differentiator
 
 ---
 
@@ -117,16 +117,16 @@ From the About Us page:
 
 ---
 
-#### Other Product Lines (Listed in Nav — some pages returning 404)
+#### Other Product Lines (Listed in Nav - some pages returning 404)
 
 | Product | Status | Nav Label |
 |---|---|---|
-| Rice Water Body Wash | 404 — page missing | "Body Wash" |
+| Rice Water Body Wash | 404 - page missing | "Body Wash" |
 | Rice Water Face Wash | URL: /products/rice-water-body-wash-1 | "Face Wash" |
-| Anti-Dandruff Hair Oil | 404 — page missing | "Hair Oil" |
-| Anti-Dandruff Shampoo | 404 — page missing | "Hair Shamboo" (typo in nav) |
+| Anti-Dandruff Hair Oil | 404 - page missing | "Hair Oil" |
+| Anti-Dandruff Shampoo | 404 - page missing | "Hair Shamboo" (typo in nav) |
 
-> ⚠️ AGENT NOTE: Several nav links return 404 errors or point to wrong URLs. The Body Wash and Hair Care product pages need to be fixed or the nav links updated. "Hair Shamboo" in the nav is a typo — should be "Hair Shampoo".
+> ⚠️ AGENT NOTE: Several nav links return 404 errors or point to wrong URLs. The Body Wash and Hair Care product pages need to be fixed or the nav links updated. "Hair Shamboo" in the nav is a typo - should be "Hair Shampoo".
 
 ---
 
@@ -156,7 +156,7 @@ From the About Us page:
 | City | Coimbatore, Tamil Nadu, India |
 
 **Customer support channels (in order of prominence on site):**
-1. WhatsApp button (sticky, always visible — "Love Your Body 365" label)
+1. WhatsApp button (sticky, always visible - "Love Your Body 365" label)
 2. Contact form (on /pages/contact-us)
 3. Email
 4. Phone
@@ -199,16 +199,16 @@ About Us               → /pages/about-us
 
 ## 7. Homepage Sections (Top to Bottom)
 
-1. **Announcement bar** — "Love Your Body 365" + WhatsApp CTA (sticky)
-2. **Navigation** — 3-tier header (announcement / logo strip / desktop nav)
-3. **Best Sellers carousel** — 6 products, auto-scrolling
-4. **Category grid** — Body Care, Hair Care, Combo Gifts, All Collection
-5. **Video reel section** — 5 product/brand videos embedded
-6. **Suggested Products** — 8 product image banners (linked)
-7. **Trust badges** — Free shipping over Rs. 1000 / 100% Organic / 15% Special Offer
-8. **Beauty Supplies section** — brand copy block
+1. **Announcement bar** - "Love Your Body 365" + WhatsApp CTA (sticky)
+2. **Navigation** - 3-tier header (announcement / logo strip / desktop nav)
+3. **Best Sellers carousel** - 6 products, auto-scrolling
+4. **Category grid** - Body Care, Hair Care, Combo Gifts, All Collection
+5. **Video reel section** - 5 product/brand videos embedded
+6. **Suggested Products** - 8 product image banners (linked)
+7. **Trust badges** - Free shipping over Rs. 1000 / 100% Organic / 15% Special Offer
+8. **Beauty Supplies section** - brand copy block
 9. **Email subscribe form**
-10. **Footer** — payment methods, policies, copyright
+10. **Footer** - payment methods, policies, copyright
 
 ---
 
@@ -220,7 +220,7 @@ About Us               → /pages/about-us
 - Format: PNG
 
 ### Colour Palette (observed from site)
-Based on visual audit — no official brand colour doc was publicly available:
+Based on visual audit - no official brand colour doc was publicly available:
 
 | Role | Colour | Notes |
 |---|---|---|
@@ -256,13 +256,13 @@ Based on visual audit — no official brand colour doc was publicly available:
 **Tone:** Warm, confident, science-informed, premium but approachable
 
 **Recurring copy patterns:**
-- "Lab-certified" — used on nearly every product
-- "Artisan-formulated" — key differentiator phrase
-- "Owner's blend" — proprietary formula positioning
-- "Clinical organic" — bridges clinical credibility with natural ingredients
-- "Sulfate-free / clean beauty" — safety assurance
-- "Radiant glow / naturally radiant" — outcome-focused language
-- "Safe for all skin types" — inclusivity
+- "Lab-certified" - used on nearly every product
+- "Artisan-formulated" - key differentiator phrase
+- "Owner's blend" - proprietary formula positioning
+- "Clinical organic" - bridges clinical credibility with natural ingredients
+- "Sulfate-free / clean beauty" - safety assurance
+- "Radiant glow / naturally radiant" - outcome-focused language
+- "Safe for all skin types" - inclusivity
 
 **Phrases to use consistently in any copy written for this brand:**
 - Lab-certified
@@ -276,15 +276,15 @@ Based on visual audit — no official brand colour doc was publicly available:
 - Safe for all skin types
 
 **Phrases to AVOID (brand has explicitly moved away from these):**
-- "Handmade" (they consider this inconsistent — they use "artisan-formulated" instead)
-- "Bleaching" (the Skin Radiance soap avoids this — use "brightening" or "radiance")
+- "Handmade" (they consider this inconsistent - they use "artisan-formulated" instead)
+- "Bleaching" (the Skin Radiance soap avoids this - use "brightening" or "radiance")
 - Anything that sounds unscientific or unregulated
 
 ---
 
 ## 10. Known Issues & Bugs (Audit Findings)
 
-> ⚠️ These are real issues found during the audit — fix or flag these:
+> ⚠️ These are real issues found during the audit - fix or flag these:
 
 | Issue | Location | Severity |
 |---|---|---|
@@ -307,7 +307,7 @@ Based on visual audit — no official brand colour doc was publicly available:
 ## 11. E-commerce Setup
 
 - **Platform:** Shopify
-- **Theme:** Custom (MicandMac theme — being developed)
+- **Theme:** Custom (MicandMac theme - being developed)
 - **Dev store:** mic-mac-dev.myshopify.com
 - **Customer login:** Enabled (standard Shopify auth)
 - **Cart:** Standard Shopify cart
@@ -316,7 +316,7 @@ Based on visual audit — no official brand colour doc was publicly available:
 - **Shipping:** Free over Rs. 1,000
 
 ### Subscription/Deferred Purchase
-Product pages contain this text: "This item is a deferred, subscription, or recurring purchase." — suggesting a subscription app may be installed or planned but not fully configured.
+Product pages contain this text: "This item is a deferred, subscription, or recurring purchase." - suggesting a subscription app may be installed or planned but not fully configured.
 
 ---
 
@@ -328,13 +328,13 @@ Product pages contain this text: "This item is a deferred, subscription, or recu
 - 15% Offer For Our Special Products
 
 ### WhatsApp CTA
-Sticky WhatsApp button is a primary customer support and sales channel — always visible on all pages.
+Sticky WhatsApp button is a primary customer support and sales channel - always visible on all pages.
 
 ### Email Marketing
-Email subscription form in footer — platform not specified (likely Shopify Email or Klaviyo).
+Email subscription form in footer - platform not specified (likely Shopify Email or Klaviyo).
 
 ### Video Content
-The brand heavily uses video — 5+ videos on homepage, 3 on About Us, 5 on Combo Offers page. This is a core marketing asset.
+The brand heavily uses video - 5+ videos on homepage, 3 on About Us, 5 on Combo Offers page. This is a core marketing asset.
 
 ---
 
@@ -345,7 +345,7 @@ Brand:          MIC & MAC
 Tagline:        Love Your Body 365
 Niche:          Clinical-organic skincare, India
 Location:       Coimbatore, Tamil Nadu, India
-Platform:       Shopify (custom theme — MicandMac)
+Platform:       Shopify (custom theme - MicandMac)
 Currency:       INR (Indian Rupees)
 Price range:    Rs. 149 – Rs. 499
 Flagship SKUs:  Donkey Milk Soap, Red Wine Radiance Soap, Skin Radiance Glow Soap

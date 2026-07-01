@@ -1,5 +1,5 @@
 /* ============================================
-   MIC & MAC — PDP (Product Detail Page)
+   MIC & MAC - PDP (Product Detail Page)
    All styles for the redesigned PDP.
    Sections: Hero, Gallery, Form, Trust,
    Benefits, Ingredients, How-to-Use,
@@ -23,7 +23,7 @@
   align-items: start;
 }
 
-/* Gallery column stays sticky — content column scrolls */
+/* Gallery column stays sticky - content column scrolls */
 .pdp__gallery {
   position: sticky;
   top: calc(148px + var(--space-6));
@@ -157,8 +157,15 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
 
 /* Delivery reassurance */
@@ -179,10 +186,10 @@
 
 
 /* =============================================
-   2. GALLERY — VERTICAL RAIL DESKTOP
+   2. GALLERY - VERTICAL RAIL DESKTOP
    ============================================= */
 
-/* Gallery — thumbnails BELOW main image */
+/* Gallery - thumbnails BELOW main image */
 .product-gallery {
   display: flex;
   flex-direction: column;
@@ -200,7 +207,9 @@
   order: 2;
 }
 
-.product-gallery__rail::-webkit-scrollbar { display: none; }
+.product-gallery__rail::-webkit-scrollbar {
+  display: none;
+}
 
 .product-gallery__thumb {
   flex-shrink: 0;
@@ -291,13 +300,14 @@
   }
 
   .product-gallery__img {
-    transform: none !important; /* no zoom on mobile */
+    transform: none !important;
+    /* no zoom on mobile */
   }
 }
 
 
 /* =============================================
-   3. PRODUCT FORM — CLEAN
+   3. PRODUCT FORM - CLEAN
    ============================================= */
 
 .product-form {
@@ -346,7 +356,7 @@
   color: var(--mm-soft-blush);
 }
 
-/* CTA row — side-by-side layout */
+/* CTA row - side-by-side layout */
 .product-form__actions {
   display: flex;
   flex-direction: column;
@@ -425,7 +435,10 @@
   opacity: 0.6;
   transition: opacity 0.2s;
 }
-.product-form__qty-btn:hover { opacity: 1; }
+
+.product-form__qty-btn:hover {
+  opacity: 1;
+}
 
 .product-form__qty-input {
   width: 40px;
@@ -439,6 +452,7 @@
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
 .product-form__qty-input::-webkit-outer-spin-button,
 .product-form__qty-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -460,20 +474,24 @@
   color: var(--color-text-primary);
   transition: all var(--transition-fast);
 }
+
 .product-form__util-btn:hover {
   border-color: var(--mm-dark-espresso, #2E1F1A);
   color: var(--mm-dark-espresso, #2E1F1A);
 }
+
 /* Gold state when bookmarked/saved */
 .product-form__util-btn.is-active,
 .product-form__util-btn[data-saved="true"] {
   color: #C9A84C;
   border-color: #C9A84C;
 }
+
 .product-form__util-btn.is-active svg,
 .product-form__util-btn[data-saved="true"] svg {
   fill: #C9A84C;
 }
+
 .product-form__util-btn.is-copied {
   background: var(--color-success);
   color: white;
@@ -538,7 +556,7 @@
 
 
 /* =============================================
-   5. WHY IT WORKS — BENEFIT STRIP
+   5. WHY IT WORKS - BENEFIT STRIP
    ============================================= */
 
 .pdp-benefits {
@@ -617,7 +635,7 @@
 
 
 /* =============================================
-   6. INGREDIENT STORY — DEPRECATED
+   6. INGREDIENT STORY - DEPRECATED
    Legacy "Powered by / Our Actives" section.
    Hidden because this content is embedded in the
    Shopify product description HTML. The new
@@ -719,7 +737,7 @@
 
 
 /* =============================================
-   8. SOCIAL PROOF — EDITORIAL
+   8. SOCIAL PROOF - EDITORIAL
    ============================================= */
 
 .pdp-reviews {
@@ -797,7 +815,7 @@
 }
 
 /* =============================================
-   9. BETTER TOGETHER — COMBOS
+   9. BETTER TOGETHER - COMBOS
    ============================================= */
 
 .pdp-combos {
@@ -1037,7 +1055,7 @@
   right: 0;
   z-index: var(--z-nav);
   background: var(--mm-dark-espresso);
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 -4px 24px rgba(46, 31, 26, 0.25);
   transform: translateY(100%);
   transition: transform var(--transition-base);
@@ -1068,7 +1086,7 @@
   border-radius: var(--radius-sm);
   object-fit: cover;
   flex-shrink: 0;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .sticky-atc__title {
@@ -1110,20 +1128,25 @@
 }
 
 .sticky-atc__btn:disabled {
-  background: rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.5);
   cursor: not-allowed;
   transform: none;
 }
 
 @media (max-width: 639px) {
-  .sticky-atc__info { display: none; }
-  .sticky-atc__btn  { width: 100%; }
+  .sticky-atc__info {
+    display: none;
+  }
+
+  .sticky-atc__btn {
+    width: 100%;
+  }
 }
 
 
 /* =============================================
-   12. RESPONSIVE — PDP HERO
+   12. RESPONSIVE - PDP HERO
    ============================================= */
 
 @media (max-width: 1023px) {

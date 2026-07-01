@@ -1,11 +1,11 @@
 /**
- * Hero Parallax — src/modules/hero-parallax.ts
+ * Hero Parallax - src/modules/hero-parallax.ts
  * ─────────────────────────────────────────────────────────────
  * Reads `data-parallax-speed` from each layer and applies a
  * proportional translateY on scroll via requestAnimationFrame.
  *
  * Speed semantics:
- *   0    → no movement  (product PNG — appears closest to viewer)
+ *   0    → no movement  (product PNG - appears closest to viewer)
  *   0.15 → very slow    (background drifts gently)
  *   0.40 → medium       (heading text moves moderately)
  *

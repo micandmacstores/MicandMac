@@ -158,7 +158,7 @@ UI appeared 3–4 versions older
 
 # Correct Workflow
 
-## Step 1 — Edit Source Files
+## Step 1 - Edit Source Files
 
 Example:
 
@@ -168,7 +168,7 @@ src/css/header.css
 
 ---
 
-## Step 2 — Build
+## Step 2 - Build
 
 ```bash
 npm run build
@@ -176,7 +176,7 @@ npm run build
 
 ---
 
-## Step 3 — Run Local Shopify Preview
+## Step 3 - Run Local Shopify Preview
 
 ```bash
 shopify theme dev
@@ -184,7 +184,7 @@ shopify theme dev
 
 ---
 
-## Step 4 — Hard Refresh
+## Step 4 - Hard Refresh
 
 Windows:
 

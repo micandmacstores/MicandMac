@@ -1,5 +1,5 @@
 /* ============================================
-   MIC & MAC — MOBILE NAVIGATION
+   MIC & MAC - MOBILE NAVIGATION
    Mobile top bar, full-screen sidebar (mnav),
    accordion layout, and bottom dock.
    Import order: 7 of 8
@@ -24,10 +24,11 @@
   border-bottom: 1px solid rgba(75, 42, 49, 0.1);
   transition: box-shadow var(--transition-base);
 }
+
 .mobile-topbar.is-scrolled {
   box-shadow: 0 2px 12px rgba(46, 31, 26, 0.1);
   backdrop-filter: blur(8px);
-  background: rgba(243,232,228,0.97);
+  background: rgba(243, 232, 228, 0.97);
 }
 
 /* ── TRANSPARENT TOPBAR (HOMEPAGE HERO) ── */
@@ -36,13 +37,16 @@ body.template-index:not(.is-scrolled) .mobile-topbar {
   border-bottom-color: transparent !important;
   box-shadow: none !important;
 }
+
 body.template-index:not(.is-scrolled) .mobile-topbar .mtb__logo img {
   filter: brightness(0) invert(1);
 }
+
 body.template-index:not(.is-scrolled) .mobile-topbar .mtb__logo span,
 body.template-index:not(.is-scrolled) .mobile-topbar .mtb__btn {
   color: #fff !important;
 }
+
 body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   background: #fff !important;
 }
@@ -61,6 +65,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   padding: 8px;
   flex-shrink: 0;
 }
+
 .mtb__burger span {
   display: block;
   height: 1.5px;
@@ -70,9 +75,19 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   transition: all var(--transition-base);
   transform-origin: left center;
 }
-.mtb__burger.is-open span:nth-child(1) { transform: rotate(41deg) translateY(-1px); }
-.mtb__burger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.mtb__burger.is-open span:nth-child(3) { transform: rotate(-41deg) translateY(1px); }
+
+.mtb__burger.is-open span:nth-child(1) {
+  transform: rotate(41deg) translateY(-1px);
+}
+
+.mtb__burger.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mtb__burger.is-open span:nth-child(3) {
+  transform: rotate(-41deg) translateY(1px);
+}
 
 /* Logo */
 .mtb__logo {
@@ -85,7 +100,11 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   text-decoration: none;
   pointer-events: auto;
 }
-.mtb__logo img { object-fit: contain; }
+
+.mtb__logo img {
+  object-fit: contain;
+}
+
 .mtb__logo span {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 18px;
@@ -101,6 +120,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   align-items: center;
   gap: 2px;
 }
+
 .mtb__btn {
   width: 40px;
   height: 40px;
@@ -115,7 +135,10 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   position: relative;
   transition: background var(--transition-fast);
 }
-.mtb__btn:active { background: rgba(75,42,49,0.08); }
+
+.mtb__btn:active {
+  background: rgba(75, 42, 49, 0.08);
+}
 
 /* Cart badge on top bar */
 .mtb__cart-badge {
@@ -134,17 +157,21 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   color: var(--mm-dark-espresso);
   line-height: 1;
 }
-.mtb__cart-badge--hidden { display: none; }
+
+.mtb__cart-badge--hidden {
+  display: none;
+}
 
 
 /* ============================================
-   MOBILE SIDEBAR DRAWER (mnav) — Full Screen Accordion
+   MOBILE SIDEBAR DRAWER (mnav) - Full Screen Accordion
    ============================================ */
 .mnav {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;           /* Full screen width */
+  width: 100%;
+  /* Full screen width */
   height: 100dvh;
   background: var(--mm-soft-blush);
   z-index: var(--z-modal);
@@ -155,6 +182,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   overflow: hidden;
   will-change: transform;
 }
+
 .mnav.is-open {
   transform: translateX(0);
 }
@@ -168,13 +196,20 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   background: linear-gradient(to bottom, var(--mm-deep-garnet), var(--mm-dark-espresso));
   flex-shrink: 0;
 }
+
 .mnav__logo {
   display: flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
 }
-.mnav__logo img { object-fit: contain; filter: brightness(0) invert(1) sepia(1) saturate(0.5) hue-rotate(0deg); opacity: 0.9; }
+
+.mnav__logo img {
+  object-fit: contain;
+  filter: brightness(0) invert(1) sepia(1) saturate(0.5) hue-rotate(0deg);
+  opacity: 0.9;
+}
+
 .mnav__logo span {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 17px;
@@ -183,20 +218,24 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   text-transform: uppercase;
   color: var(--mm-soft-blush);
 }
+
 .mnav__close {
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   color: var(--mm-soft-blush);
   border: none;
   cursor: pointer;
   transition: background var(--transition-fast);
 }
-.mnav__close:hover { background: rgba(255,255,255,0.2); }
+
+.mnav__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
 /* Scrollable body */
 .mnav__body {
@@ -206,16 +245,27 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   padding: 0;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: rgba(75,42,49,0.15) transparent;
+  scrollbar-color: rgba(75, 42, 49, 0.15) transparent;
 }
-.mnav__body::-webkit-scrollbar { width: 3px; }
-.mnav__body::-webkit-scrollbar-track { background: transparent; }
-.mnav__body::-webkit-scrollbar-thumb { background: rgba(75,42,49,0.18); border-radius: 4px; }
+
+.mnav__body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.mnav__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mnav__body::-webkit-scrollbar-thumb {
+  background: rgba(75, 42, 49, 0.18);
+  border-radius: 4px;
+}
 
 /* ── Primary nav links (Home, Combo Offers) ── */
 .mnav__primary {
   padding: 8px 0;
 }
+
 .mnav__primary-link {
   display: flex;
   align-items: center;
@@ -227,16 +277,30 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   letter-spacing: 0.04em;
   color: var(--mm-dark-espresso);
   text-decoration: none;
-  border-bottom: 1px solid rgba(75,42,49,0.08);
+  border-bottom: 1px solid rgba(75, 42, 49, 0.08);
   transition: color var(--transition-fast), padding-left var(--transition-fast);
 }
-.mnav__primary-link svg { opacity: 0.3; flex-shrink: 0; transition: opacity var(--transition-fast), transform var(--transition-fast); }
+
+.mnav__primary-link svg {
+  opacity: 0.3;
+  flex-shrink: 0;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
 .mnav__primary-link:hover {
   color: var(--mm-deep-garnet);
   padding-left: 30px;
 }
-.mnav__primary-link:hover svg { opacity: 0.8; transform: translateX(4px); }
-.mnav__primary-link.is-active { color: var(--mm-deep-garnet); font-weight: 400; }
+
+.mnav__primary-link:hover svg {
+  opacity: 0.8;
+  transform: translateX(4px);
+}
+
+.mnav__primary-link.is-active {
+  color: var(--mm-deep-garnet);
+  font-weight: 400;
+}
 
 /* Pill badge */
 .mnav__pill {
@@ -252,6 +316,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   margin-left: 10px;
   flex-shrink: 0;
 }
+
 .mnav__pill--gold {
   background: var(--mm-champagne-gold);
   color: var(--mm-dark-espresso);
@@ -260,20 +325,21 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
 /* Heavy divider (between primary + rest) */
 .mnav__divider-heavy {
   height: 6px;
-  background: rgba(75,42,49,0.06);
+  background: rgba(75, 42, 49, 0.06);
 }
 
 /* Thin divider */
 .mnav__divider {
   height: 1px;
-  background: rgba(75,42,49,0.1);
+  background: rgba(75, 42, 49, 0.1);
   margin: 0 24px;
 }
 
 /* ── ACCORDION ── */
 .mnav__accordion {
-  border-bottom: 1px solid rgba(75,42,49,0.08);
+  border-bottom: 1px solid rgba(75, 42, 49, 0.08);
 }
+
 .mnav__accordion-trigger {
   width: 100%;
   display: flex;
@@ -288,7 +354,10 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   gap: 16px;
   transition: background var(--transition-fast);
 }
-.mnav__accordion-trigger:active { background: rgba(75,42,49,0.04); }
+
+.mnav__accordion-trigger:active {
+  background: rgba(75, 42, 49, 0.04);
+}
 
 .mnav__accordion-label {
   display: flex;
@@ -296,6 +365,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   gap: 2px;
   flex: 1;
 }
+
 .mnav__acc-eyebrow {
   font-family: var(--font-body);
   font-size: 9px;
@@ -305,7 +375,8 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   color: var(--mm-terracotta-rose);
   display: block;
 }
-.mnav__accordion-trigger .mnav__accordion-label + svg,
+
+.mnav__accordion-trigger .mnav__accordion-label+svg,
 .mnav__acc-chevron {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 22px;
@@ -329,17 +400,19 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   opacity: 0.4;
   transition: transform var(--transition-base), opacity var(--transition-fast);
 }
+
 .mnav__accordion-trigger[aria-expanded="true"] .mnav__acc-chevron {
   transform: rotate(180deg);
   opacity: 0.8;
 }
 
-/* Accordion body — animated with max-height */
+/* Accordion body - animated with max-height */
 .mnav__accordion-body {
   overflow: hidden;
   max-height: 600px;
   transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .mnav__accordion-body--closed {
   max-height: 0;
 }
@@ -350,6 +423,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   padding: 0 0 8px;
   margin: 0;
 }
+
 .mnav__sub-link {
   display: flex;
   align-items: center;
@@ -361,11 +435,20 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   letter-spacing: 0.02em;
   color: var(--mm-dark-espresso);
   text-decoration: none;
-  border-bottom: 1px solid rgba(75,42,49,0.05);
+  border-bottom: 1px solid rgba(75, 42, 49, 0.05);
   transition: background var(--transition-fast), padding-left var(--transition-fast);
 }
-.mnav__sub-link svg { flex-shrink: 0; color: var(--mm-terracotta-rose); opacity: 0.65; }
-.mnav__sub-link:hover { background: rgba(75,42,49,0.04); padding-left: 42px; }
+
+.mnav__sub-link svg {
+  flex-shrink: 0;
+  color: var(--mm-terracotta-rose);
+  opacity: 0.65;
+}
+
+.mnav__sub-link:hover {
+  background: rgba(75, 42, 49, 0.04);
+  padding-left: 42px;
+}
 
 /* Dot bullet */
 .mnav__sub-dot {
@@ -394,6 +477,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   text-align: center;
   transition: background var(--transition-fast), color var(--transition-fast);
 }
+
 .mnav__view-all:hover {
   background: var(--mm-deep-garnet);
   color: var(--mm-soft-blush);
@@ -403,6 +487,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
 .mnav__group {
   padding: 20px 0 8px;
 }
+
 .mnav__group-label {
   font-family: var(--font-body);
   font-size: 9px;
@@ -413,11 +498,13 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   padding: 0 24px;
   margin-bottom: 8px;
 }
+
 .mnav__flat-links {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .mnav__flat-link {
   display: flex;
   align-items: center;
@@ -429,11 +516,20 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   letter-spacing: 0.01em;
   color: var(--mm-dark-espresso);
   text-decoration: none;
-  border-bottom: 1px solid rgba(75,42,49,0.07);
+  border-bottom: 1px solid rgba(75, 42, 49, 0.07);
   transition: background var(--transition-fast), padding-left var(--transition-fast);
 }
-.mnav__flat-link svg { color: var(--mm-terracotta-rose); opacity: 0.65; flex-shrink: 0; }
-.mnav__flat-link:hover { background: rgba(75,42,49,0.04); padding-left: 30px; }
+
+.mnav__flat-link svg {
+  color: var(--mm-terracotta-rose);
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+
+.mnav__flat-link:hover {
+  background: rgba(75, 42, 49, 0.04);
+  padding-left: 30px;
+}
 
 /* ── Social row ── */
 .mnav__social-row {
@@ -441,6 +537,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   gap: 12px;
   padding: 4px 24px 20px;
 }
+
 .mnav__social-btn {
   flex: 1;
   display: flex;
@@ -449,7 +546,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   gap: 7px;
   padding: 14px 8px;
   border-radius: var(--radius-md);
-  border: 1.5px solid rgba(75,42,49,0.14);
+  border: 1.5px solid rgba(75, 42, 49, 0.14);
   background: white;
   text-decoration: none;
   color: var(--mm-deep-garnet);
@@ -461,12 +558,16 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   transition: all var(--transition-fast);
   -webkit-tap-highlight-color: transparent;
 }
+
 .mnav__social-btn:active {
   background: var(--mm-deep-garnet);
   color: var(--mm-soft-blush);
   border-color: var(--mm-deep-garnet);
 }
-.mnav__social-btn:active svg { stroke: var(--mm-soft-blush); }
+
+.mnav__social-btn:active svg {
+  stroke: var(--mm-soft-blush);
+}
 
 /* ── Brand quote ── */
 .mnav__brand-quote {
@@ -475,6 +576,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   background: var(--mm-deep-garnet);
   border-radius: var(--radius-md);
 }
+
 .mnav__brand-quote p {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 17px;
@@ -492,10 +594,11 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   gap: 10px;
   padding: 14px 20px;
   padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid rgba(75,42,49,0.1);
+  border-top: 1px solid rgba(75, 42, 49, 0.1);
   background: var(--mm-soft-blush);
   flex-shrink: 0;
 }
+
 .mnav__footer-btn {
   flex: 1;
   display: flex;
@@ -515,12 +618,20 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   background: transparent;
   transition: all var(--transition-fast);
 }
-.mnav__footer-btn:active { background: rgba(75,42,49,0.08); }
+
+.mnav__footer-btn:active {
+  background: rgba(75, 42, 49, 0.08);
+}
+
 .mnav__footer-btn--primary {
   background: var(--mm-deep-garnet);
   color: var(--mm-soft-blush);
 }
-.mnav__footer-btn--primary:active { background: var(--mm-dark-espresso); border-color: var(--mm-dark-espresso); }
+
+.mnav__footer-btn--primary:active {
+  background: var(--mm-dark-espresso);
+  border-color: var(--mm-dark-espresso);
+}
 
 
 /* ============================================
@@ -533,15 +644,16 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   right: 0;
   height: 64px;
   background: var(--mm-soft-blush);
-  border-top: 1px solid rgba(75,42,49,0.1);
+  border-top: 1px solid rgba(75, 42, 49, 0.1);
   display: flex;
   align-items: stretch;
   z-index: var(--z-nav);
   backdrop-filter: blur(12px);
-  background: rgba(243,232,228,0.97);
-  box-shadow: 0 -4px 20px rgba(46,31,26,0.08);
+  background: rgba(243, 232, 228, 0.97);
+  box-shadow: 0 -4px 20px rgba(46, 31, 26, 0.08);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+
 .bdock__item {
   flex: 1;
   display: flex;
@@ -563,13 +675,20 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   -webkit-tap-highlight-color: transparent;
   padding-bottom: 2px;
 }
+
 .bdock__item.is-active,
 .bdock__item:active {
   opacity: 1;
   color: var(--mm-deep-garnet);
 }
-.bdock__item.is-active svg { stroke: var(--mm-deep-garnet); }
-.bdock__item svg { stroke: currentColor; }
+
+.bdock__item.is-active svg {
+  stroke: var(--mm-deep-garnet);
+}
+
+.bdock__item svg {
+  stroke: currentColor;
+}
 
 /* Cart wrap (for badge positioning) */
 .bdock__cart-wrap {
@@ -578,6 +697,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   align-items: center;
   justify-content: center;
 }
+
 .bdock__badge {
   position: absolute;
   top: -6px;
@@ -594,4 +714,7 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
   color: var(--mm-dark-espresso);
   line-height: 1;
 }
-.bdock__badge--hidden { display: none; }
+
+.bdock__badge--hidden {
+  display: none;
+}

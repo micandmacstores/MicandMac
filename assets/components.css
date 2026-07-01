@@ -1,5 +1,5 @@
 /* ============================================
-   MIC & MAC — COMPONENTS
+   MIC & MAC - COMPONENTS
    Buttons, badges, forms, product card,
    section headings, trust icons, overlay.
    Import order: 5 of 8
@@ -26,12 +26,13 @@
   white-space: nowrap;
 }
 
-/* Primary — Burgundy fill · cream text — 9.8:1 contrast */
+/* Primary - Burgundy fill · cream text - 9.8:1 contrast */
 .btn--primary {
   background: var(--color-burgundy);
   color: var(--color-text-on-dark);
   border-color: var(--color-burgundy);
 }
+
 .btn--primary:hover {
   background: var(--color-burgundy);
   border-color: var(--color-burgundy);
@@ -39,40 +40,44 @@
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
+
 .btn--primary:active {
   transform: translateY(0);
 }
 
-/* Secondary — Outlined burgundy */
+/* Secondary - Outlined burgundy */
 .btn--secondary {
   background: transparent;
   color: var(--color-burgundy);
   border-color: var(--color-burgundy);
 }
+
 .btn--secondary:hover {
   background: var(--color-burgundy);
   color: var(--color-text-on-dark);
   transform: translateY(-1px);
 }
 
-/* Gold CTA — hero + promo sections only · dark text on gold 5.4:1 */
+/* Gold CTA - hero + promo sections only · dark text on gold 5.4:1 */
 .btn--gold {
   background: var(--color-gold);
   color: var(--color-plum);
   border-color: var(--color-gold);
 }
+
 .btn--gold:hover {
   background: var(--color-gold-light);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
 
-/* Ghost — on dark burgundy/plum backgrounds · cream border + text */
+/* Ghost - on dark burgundy/plum backgrounds · cream border + text */
 .btn--ghost {
   background: transparent;
   color: var(--color-text-on-dark);
   border-color: rgba(245, 236, 215, 0.5);
 }
+
 .btn--ghost:hover {
   background: rgba(245, 236, 215, 0.12);
   border-color: var(--color-text-on-dark);
@@ -101,6 +106,7 @@
   pointer-events: none;
   position: relative;
 }
+
 .btn--loading::after {
   content: '';
   width: 14px;
@@ -126,31 +132,31 @@
   white-space: nowrap;
 }
 
-/* Bestseller badge — burgundy bg, gold-light text (6.1:1) */
+/* Bestseller badge - burgundy bg, gold-light text (6.1:1) */
 .badge--burgundy {
   background: var(--color-burgundy);
   color: var(--color-gold-light);
 }
 
-/* % Off badge — gold bg, plum text (5.4:1) */
+/* % Off badge - gold bg, plum text (5.4:1) */
 .badge--gold {
   background: var(--color-gold);
   color: var(--color-plum);
 }
 
-/* New / Skin-type badge — blush bg, brown text (8.2:1) */
+/* New / Skin-type badge - blush bg, brown text (8.2:1) */
 .badge--blush {
   background: var(--color-bg-blush);
   color: var(--color-text-secondary);
 }
 
-/* Lab certified — plum bg, gold-light text (6.1:1) */
+/* Lab certified - plum bg, gold-light text (6.1:1) */
 .badge--plum {
   background: var(--color-plum);
   color: var(--color-gold-light);
 }
 
-/* Cruelty Free — outlined gold */
+/* Cruelty Free - outlined gold */
 .badge--outline {
   background: transparent;
   color: var(--color-gold-dark);
@@ -164,7 +170,10 @@
 }
 
 /* Legacy alias */
-.badge--forest { background: var(--color-burgundy); color: var(--color-text-on-dark); }
+.badge--forest {
+  background: var(--color-burgundy);
+  color: var(--color-text-on-dark);
+}
 
 
 /* ---- FORMS ---- */
@@ -295,7 +304,8 @@
 }
 
 .trust-icon svg {
-  color: var(--color-gold);  /* Gold icons — decorative, safe */
+  color: var(--color-gold);
+  /* Gold icons - decorative, safe */
   flex-shrink: 0;
 }
 
@@ -304,7 +314,8 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(42, 21, 32, 0.6); /* Deep plum overlay */
+  background: rgba(42, 21, 32, 0.6);
+  /* Deep plum overlay */
   z-index: var(--z-overlay);
   opacity: 0;
   pointer-events: none;

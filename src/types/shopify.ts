@@ -1,4 +1,4 @@
-// src/types/shopify.ts — Shopify data shapes
+// src/types/shopify.ts - Shopify data shapes
 
 export interface ShopifyImage {
   id: number;

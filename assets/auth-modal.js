@@ -1,5 +1,5 @@
 /* ============================================
-   MIC & MAC — AUTH MODAL JS
+   MIC & MAC - AUTH MODAL JS
    Controls modal open/close, step switching,
    email pre-fill, and link interception
    ============================================ */

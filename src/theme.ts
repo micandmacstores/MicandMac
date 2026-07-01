@@ -1,4 +1,4 @@
-// src/theme.ts — Main theme entry point
+// src/theme.ts - Main theme entry point
 // Imports and conditionally initialises all feature modules.
 
 import { Header }         from './modules/header';

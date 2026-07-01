@@ -1,5 +1,5 @@
 /* ============================================
-   Product Card — Editorial Premium Style
+   Product Card - Editorial Premium Style
    Prefix: pc__ (avoids all legacy conflicts)
    ============================================ */
 
@@ -62,7 +62,7 @@
   border-radius: 999px;
 }
 
-/* ---- SAVE (BOOKMARK) BUTTON — sits in action row ---- */
+/* ---- SAVE (BOOKMARK) BUTTON - sits in action row ---- */
 .pc__wishlist-btn {
   position: static;
   background: transparent;
@@ -79,19 +79,23 @@
   border-radius: 4px;
   flex-shrink: 0;
 }
+
 .pc__wishlist-btn:hover {
   border-color: #2E1F1A;
 }
-/* Active / Saved state — gold */
+
+/* Active / Saved state - gold */
 .pc__wishlist-btn.is-wishlisted,
 .pc__wishlist-btn[data-saved="true"] {
   border-color: #C9A84C;
   color: #C9A84C;
 }
+
 .pc__wishlist-btn.is-wishlisted svg,
 .pc__wishlist-btn[data-saved="true"] svg {
   fill: #C9A84C;
 }
+
 .pc__wishlist-btn svg {
   width: 18px;
   height: 18px;
@@ -142,7 +146,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: auto 0 4px 0; /* Changed margin-top to auto to push it to the bottom */
+  margin: auto 0 4px 0;
+  /* Changed margin-top to auto to push it to the bottom */
 }
 
 .pc__price {
@@ -176,7 +181,7 @@
   color: #7A6F68;
 }
 
-/* ---- CTA ROW — Add to Bag + Save button side-by-side ---- */
+/* ---- CTA ROW - Add to Bag + Save button side-by-side ---- */
 .pc__form {
   padding-top: 8px;
   display: flex;

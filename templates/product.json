@@ -38,7 +38,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is this suitable for sensitive skin?",
-            "answer": "<p>Yes — all our bars are formulated without sulphates, parabens, or synthetic fragrance, making them gentle enough for daily use on sensitive skin.</p>"
+            "answer": "<p>Yes - all our bars are formulated without sulphates, parabens, or synthetic fragrance, making them gentle enough for daily use on sensitive skin.</p>"
           }
         },
         "faq_2": {
@@ -59,7 +59,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is free shipping available?",
-            "answer": "<p>Yes — free delivery on all orders above ₹999. Orders are dispatched within 48 hours from Coimbatore.</p>"
+            "answer": "<p>Yes - free delivery on all orders above ₹999. Orders are dispatched within 48 hours from Coimbatore.</p>"
           }
         }
       },

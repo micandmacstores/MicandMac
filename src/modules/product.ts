@@ -46,7 +46,7 @@ export class Product {
       const optionIndex  = Number(pill.dataset.optionIndex);
       const optionValue  = pill.dataset.optionValue!;
 
-      // Update UI — deselect others in this option group
+      // Update UI - deselect others in this option group
       container
         .querySelectorAll<HTMLButtonElement>(`.variant-pill[data-option-index="${optionIndex}"]`)
         .forEach(p => {

@@ -1,7 +1,7 @@
 /**
  * mobile-nav.js
  * Handles: Mobile Top Bar scroll state, Sidebar Drawer (tabs), Bottom Dock cart trigger
- * Mic & Mac — loaded via theme.liquid defer
+ * Mic & Mac - loaded via theme.liquid defer
  */
 'use strict';
 
@@ -18,7 +18,7 @@
   }
 
   /* ===================================================
-     1. TOP BAR — scroll shadow
+     1. TOP BAR - scroll shadow
      =================================================== */
   const topBar = document.getElementById('MobileTopBar');
 
@@ -200,7 +200,7 @@
   }
 
   /* ===================================================
-     6. BOTTOM DOCK — active state on page load
+     6. BOTTOM DOCK - active state on page load
      =================================================== */
   const dockItems  = document.querySelectorAll('.bdock__item');
   const currentUrl = window.location.pathname;

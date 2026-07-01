@@ -1,4 +1,4 @@
-// src/utils/money.ts — Indian Rupee formatting
+// src/utils/money.ts - Indian Rupee formatting
 
 export function formatMoney(cents: number, symbol = '₹'): string {
   const amount = cents / 100;

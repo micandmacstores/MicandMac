@@ -1,5 +1,5 @@
 /* ============================================
-   MIC & MAC — SEARCH OVERLAY LOGIC
+   MIC & MAC - SEARCH OVERLAY LOGIC
    Predictive results + LocalStorage persistence
    ============================================ */
 

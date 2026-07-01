@@ -1,6 +1,6 @@
 {% comment %}
   Section: page-my-account
-  Custom account dashboard — works with Shopify New Customer Accounts.
+  Custom account dashboard - works with Shopify New Customer Accounts.
   Upgraded UI: High contrast, Read/Edit modes, mobile top-tabs.
   URL: /pages/my-account
 {% endcomment %}
@@ -58,7 +58,7 @@
       <!-- ══ MAIN CONTENT ═══════════════════════════════════════════════ -->
       <main class="account-page__main">
 
-        <!-- ─── PANEL 1 — ORDERS ──────────────────────────────────────── -->
+        <!-- ─── PANEL 1 - ORDERS ──────────────────────────────────────── -->
         <div class="acct-panel is-active" id="panel-orders" role="tabpanel" aria-label="Orders">
 
           <div class="acct-header">
@@ -110,7 +110,7 @@
         </div>
 
 
-        <!-- ─── PANEL 2 — ADDRESSES ───────────────────────────────────── -->
+        <!-- ─── PANEL 2 - ADDRESSES ───────────────────────────────────── -->
         <div class="acct-panel" id="panel-addresses" role="tabpanel" aria-label="Addresses" hidden>
 
           <div class="acct-header acct-header--split">
@@ -271,7 +271,7 @@
 
         </div>
 
-        <!-- ─── PANEL 4 — ACCOUNT DETAILS ─────────────────────────────── -->
+        <!-- ─── PANEL 4 - ACCOUNT DETAILS ─────────────────────────────── -->
         <div class="acct-panel" id="panel-details" role="tabpanel" aria-label="Account details" hidden>
 
           <div class="acct-header acct-header--split">
@@ -290,11 +290,11 @@
             <div class="acct-details-grid">
               <div class="acct-detail-item">
                 <span class="acct-detail-label">First Name</span>
-                <span class="acct-detail-value">{{ customer.first_name | default: '—' }}</span>
+                <span class="acct-detail-value">{{ customer.first_name | default: '-' }}</span>
               </div>
               <div class="acct-detail-item">
                 <span class="acct-detail-label">Last Name</span>
-                <span class="acct-detail-value">{{ customer.last_name | default: '—' }}</span>
+                <span class="acct-detail-value">{{ customer.last_name | default: '-' }}</span>
               </div>
               <div class="acct-detail-item">
                 <span class="acct-detail-label">Email Address</span>
@@ -302,7 +302,7 @@
               </div>
               <div class="acct-detail-item">
                 <span class="acct-detail-label">Phone Number</span>
-                <span class="acct-detail-value">{{ customer.phone | default: '—' }}</span>
+                <span class="acct-detail-value">{{ customer.phone | default: '-' }}</span>
               </div>
             </div>
           </div>
@@ -364,7 +364,7 @@
 
 {% else %}
 
-{%- comment -%} ── GUEST STATE — not logged in ── {%- endcomment -%}
+{%- comment -%} ── GUEST STATE - not logged in ── {%- endcomment -%}
 
 <div class="account-page">
   <div class="container container--narrow">

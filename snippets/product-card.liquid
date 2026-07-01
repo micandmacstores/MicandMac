@@ -34,7 +34,7 @@
   comment
     Context line priority:
     1. custom metafield custom.primary_benefit (if set in Shopify admin)
-    2. All real product tags, skipping badge/system tags — shown as "Tag1 • Tag2"
+    2. All real product tags, skipping badge/system tags - shown as "Tag1 • Tag2"
     3. Hidden if nothing available
   endcomment
 
@@ -69,7 +69,7 @@
 
 <div class="pc" data-product-id="{{ product.id }}">
 
-  {%- comment -%} IMAGE BLOCK — self-contained, no card wrapper -%}{%- endcomment -%}
+  {%- comment -%} IMAGE BLOCK - self-contained, no card wrapper -%}{%- endcomment -%}
   <a href="{{ product.url | within: collection }}" class="pc__media">
     {%- if badge != blank -%}
       <span class="pc__badge">{{ badge }}</span>
@@ -89,7 +89,7 @@
     {%- endif -%}
   </a>
 
-  {%- comment -%} TEXT BLOCK — sits on page background, no wrapper -%}{%- endcomment -%}
+  {%- comment -%} TEXT BLOCK - sits on page background, no wrapper -%}{%- endcomment -%}
   <div class="pc__info">
     <a href="{{ product.url | within: collection }}" class="pc__name">
       {{ product.title | escape }}
