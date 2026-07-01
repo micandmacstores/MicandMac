@@ -11,7 +11,7 @@
    ============================================ */
 .mobile-topbar {
   position: fixed;
-  top: var(--announcement-height, 30px); /* sit below announcement bar */
+  top: 0;
   left: 0;
   right: 0;
   height: 58px;
@@ -23,10 +23,6 @@
   z-index: var(--z-nav);
   border-bottom: 1px solid rgba(75, 42, 49, 0.1);
   transition: box-shadow var(--transition-base);
-  /* iOS GPU compositing for smooth scroll */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: transform;
 }
 
 .mobile-topbar.is-scrolled {
@@ -721,43 +717,4 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
 
 .bdock__badge--hidden {
   display: none;
-}
-
-/* ============================================================
-   iOS / IPHONE PERFORMANCE & LAYOUT FIXES
-   ============================================================ */
-
-/* Native momentum scrolling on iOS — prevents jank */
-html {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* On mobile the first section of every page must clear
-   announcement bar (30px) + topbar (58px) = 88px.
-   Non-hero pages need padding; the hero overrides this with
-   its own min-height calculation. */
-@media (max-width: 767px) {
-  /* Bump all non-hero first sections below the fixed bars */
-  body:not(.template-index) .shopify-section:first-of-type > *:not(.full-width) {
-    padding-top: calc(var(--announcement-height, 30px) + 58px + 16px);
-  }
-
-  /* Hero section manages its own offset via min-height */
-  .hero-parallax {
-    min-height: 100svh;
-    min-height: calc(100dvh); /* Dynamic viewport height — hides Safari chrome correctly */
-  }
-
-  /* GPU compositing on scroll-heavy elements */
-  .hero-parallax__media,
-  .hero-parallax__overlay {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  /* Prevent sections from overflowing viewport width on iOS */
-  .shopify-section {
-    overflow-x: hidden;
-  }
 }
