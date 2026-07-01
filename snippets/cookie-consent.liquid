@@ -1,0 +1,153 @@
+{%- comment -%}
+  Snippet: cookie-consent
+  Minimal bottom banner shown once per browser session using localStorage.
+  Accepts/dismisses with a single button — no analytics or tracking.
+{%- endcomment -%}
+
+<div class="cookie-bar" id="CookieBar" role="dialog" aria-label="Cookie consent" aria-live="polite" hidden>
+  <div class="cookie-bar__inner">
+    <p class="cookie-bar__text">
+      We use cookies to improve your experience. By continuing, you agree to our
+      <a href="/policies/privacy-policy" class="cookie-bar__link">Privacy Policy</a>.
+    </p>
+    <div class="cookie-bar__actions">
+      <button class="cookie-bar__btn cookie-bar__btn--accept" id="CookieAccept" type="button">
+        Accept
+      </button>
+      <button class="cookie-bar__btn cookie-bar__btn--dismiss" id="CookieDismiss" type="button">
+        Dismiss
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+.cookie-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 12px 20px;
+  background: #2E1F1A;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  /* iOS GPU layer */
+  -webkit-transform: translateY(100%);
+  will-change: transform;
+}
+
+.cookie-bar.is-visible {
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+}
+
+.cookie-bar__inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cookie-bar__text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+.cookie-bar__link {
+  color: rgba(255,255,255,0.95);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cookie-bar__actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cookie-bar__btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  transition: opacity 0.2s;
+}
+
+.cookie-bar__btn--accept {
+  background: #B8924A;
+  color: #fff;
+}
+
+.cookie-bar__btn--dismiss {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.7);
+}
+
+.cookie-bar__btn:hover {
+  opacity: 0.85;
+}
+
+/* On mobile push it above the bottom dock nav (68px high) */
+@media (max-width: 767px) {
+  .cookie-bar {
+    bottom: 68px;
+    padding: 10px 16px;
+  }
+
+  .cookie-bar__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .cookie-bar__text {
+    font-size: 12px;
+  }
+
+  .cookie-bar__btn {
+    padding: 7px 16px;
+    font-size: 11px;
+  }
+}
+</style>
+
+<script>
+(function () {
+  var BAR_KEY = 'mm_cookie_ok';
+  var bar     = document.getElementById('CookieBar');
+  if (!bar) return;
+
+  // Show only if not already accepted/dismissed
+  if (!localStorage.getItem(BAR_KEY)) {
+    bar.removeAttribute('hidden');
+    // Slight delay so the slide-in is visible after page paint
+    setTimeout(function () { bar.classList.add('is-visible'); }, 300);
+  }
+
+  function dismiss() {
+    bar.classList.remove('is-visible');
+    setTimeout(function () { bar.setAttribute('hidden', ''); }, 360);
+  }
+
+  document.getElementById('CookieAccept').addEventListener('click', function () {
+    localStorage.setItem(BAR_KEY, '1');
+    dismiss();
+  });
+
+  document.getElementById('CookieDismiss').addEventListener('click', dismiss);
+})();
+</script>

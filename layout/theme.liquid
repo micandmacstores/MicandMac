@@ -89,11 +89,22 @@
   <!-- Scroll Reveal Engine (CSS IntersectionObserver - no dependencies) -->
   <script src="{{ 'cinematic.js' | asset_url }}" defer></script>
 
-  <!-- Inertial Smooth Scroll (desktop only; touch devices use native kinetic scroll) -->
-  <script src="{{ 'smooth-scroll.js' | asset_url }}" defer></script>
+  <!-- Inertial Smooth Scroll (desktop non-touch only; touch devices use native kinetic scroll) -->
+  <script>
+    // Only load custom smooth scroll on non-touch devices to prevent iPhone lag
+    if (!('ontouchstart' in window) && !navigator.maxTouchPoints) {
+      var s = document.createElement('script');
+      s.src = {{ 'smooth-scroll.js' | asset_url | json }};
+      s.defer = true;
+      document.head.appendChild(s);
+    }
+  </script>
 
   <!-- WhatsApp Sticky CTA -->
   {%- render 'whatsapp-sticky' -%}
+
+  <!-- Cookie Consent Banner -->
+  {%- render 'cookie-consent' -%}
 
 {%- capture ecom_footer_content -%}{%- render 'ecom_footer' -%}{%- endcapture -%}{%- unless ecom_footer_content contains 'Liquid error' -%}{{ ecom_footer_content }}{%- endunless -%}</body>
 </html>
