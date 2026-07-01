@@ -229,9 +229,22 @@
 
               <div class="form-group">
                 <label for="NewCountry" class="form-label">Country</label>
-                <select id="NewCountry" name="address[country]" class="form-input">
-                  {{ all_country_option_tags }}
-                </select>
+                <div class="custom-select-wrapper">
+                  <select id="NewCountry" name="address[country]" class="form-input custom-select-hidden" style="display: none;">
+                    {{ all_country_option_tags }}
+                  </select>
+                  <button type="button" class="custom-select-trigger" id="CountrySelectTrigger">
+                    <span class="custom-select-trigger-text">---</span>
+                    <svg class="custom-select-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                  <div class="custom-select-options-container" id="CountrySelectOptions">
+                    <ul class="custom-select-options">
+                      <!-- Dynamically populated via JS -->
+                    </ul>
+                  </div>
+                </div>
               </div>
 
               <div class="form-group">
@@ -457,6 +470,57 @@
   toggleNewAddressBtn?.addEventListener('click', () => toggleAddressForm());
   emptyAddAddressBtn?.addEventListener('click', () => toggleAddressForm(true));
   cancelNewAddressBtn?.addEventListener('click', () => toggleAddressForm(false));
+
+  /* ── Custom Select Component ───────────────────────────── */
+  const nativeSelect = document.getElementById('NewCountry');
+  const trigger = document.getElementById('CountrySelectTrigger');
+  const triggerText = trigger?.querySelector('.custom-select-trigger-text');
+  const optionsContainer = document.getElementById('CountrySelectOptions');
+  const optionsList = optionsContainer?.querySelector('.custom-select-options');
+
+  if (nativeSelect && trigger && optionsList && optionsContainer) {
+    const options = nativeSelect.querySelectorAll('option');
+    optionsList.innerHTML = '';
+    
+    let activeIndex = nativeSelect.selectedIndex >= 0 ? nativeSelect.selectedIndex : 0;
+    
+    options.forEach((opt, idx) => {
+      const li = document.createElement('li');
+      li.className = 'custom-select-option';
+      li.textContent = opt.textContent;
+      li.dataset.value = opt.value;
+      if (idx === activeIndex) {
+        li.classList.add('is-selected');
+        if (triggerText) triggerText.textContent = opt.textContent;
+      }
+      
+      li.addEventListener('click', () => {
+        optionsList.querySelectorAll('.custom-select-option').forEach(item => item.classList.remove('is-selected'));
+        li.classList.add('is-selected');
+        if (triggerText) triggerText.textContent = opt.textContent;
+        nativeSelect.value = opt.value;
+        nativeSelect.dispatchEvent(new Event('change'));
+        optionsContainer.classList.remove('is-open');
+        trigger.classList.remove('is-open');
+      });
+      
+      optionsList.appendChild(li);
+    });
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = optionsContainer.classList.contains('is-open');
+      optionsContainer.classList.toggle('is-open', !isOpen);
+      trigger.classList.toggle('is-open', !isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!optionsContainer.contains(e.target) && e.target !== trigger) {
+        optionsContainer.classList.remove('is-open');
+        trigger.classList.remove('is-open');
+      }
+    });
+  }
 
   /* ── Toast ──────────────────────────────────────────────── */
   function showToast(msg, dur) {
