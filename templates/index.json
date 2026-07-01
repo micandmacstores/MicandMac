@@ -1,9 +1,17 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "cinematic-hero",
       "settings": {
-        "background_video": "shopify://files/videos/hero video.mp4",
         "video_url": "",
         "tagline": "MIC AND MAC GLOW BARS",
         "heading_line1": "Withstand the transit.",
@@ -17,9 +25,9 @@
       "type": "featured-collection",
       "settings": {
         "heading": "BESTSELLERS",
+        "badge_text": "Bestseller",
         "description": "",
         "collection": "bestsellers",
-        "badge_text": "Bestseller",
         "products_to_show": 4,
         "columns_desktop": 4,
         "show_view_all": true,
@@ -94,7 +102,7 @@
         "heading": "",
         "paragraph": "<p>Engineered to help you <em>withstand the city</em>, preserving your <em>natural glow</em> and <em>morning confidence</em>.</p>",
         "micro_copy": "this is what urban freshness feels like.",
-        "image": "shopify://shop_images/hf_20260425_150555_ba4a4d4e-4964-47fd-ad56-ff1051cec49b.png",
+        "image": "shopify://shop_images/product_annotations_2.png",
         "padding_top": 80
       }
     }
