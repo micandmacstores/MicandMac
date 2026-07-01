@@ -1,22 +1,36 @@
-{% comment %}Section: Policy{% endcomment %}
-
-<div class="main-policy section-padding">
-  <div class="container container--narrow">
-    {% render 'breadcrumb' %}
-    <h1 class="main-policy__title split-heading--auto">{{ page.title }}</h1>
-    <div class="rte main-policy__body">
-      {{ page.content }}
+<div class="main-policy-page">
+  <div class="main-policy section-padding">
+    <div class="container container--narrow">
+      {% render 'breadcrumb' %}
+      <h1 class="main-policy__title split-heading--auto">{{ page.title }}</h1>
+      <div class="rte main-policy__body">
+        {{ page.content }}
+      </div>
     </div>
   </div>
 </div>
 
 <style>
+.main-policy-page {
+  background-color: var(--color-bg-page, #F3E8E4);
+  color: var(--mm-dark-espresso, #2E1F1A);
+  font-family: var(--font-body);
+  min-height: 80vh;
+}
 .main-policy__title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 300;
-  color: var(--color-text-dark);
+  color: var(--mm-deep-garnet, #4B2A31);
   margin-bottom: var(--space-8);
 }
-.main-policy__body { color: var(--color-text-mid); line-height: 1.8; }
+.main-policy__body {
+  color: var(--mm-dark-espresso, #2E1F1A);
+  opacity: 0.85;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+.main-policy__body p {
+  margin-bottom: 1.5rem;
+}
 </style>

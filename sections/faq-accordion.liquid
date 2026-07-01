@@ -65,6 +65,12 @@
 </section>
 
 <style>
+.faq-section {
+  background-color: var(--color-bg-page, #F3E8E4);
+  color: var(--mm-dark-espresso, #2E1F1A);
+  font-family: var(--font-body);
+}
+
 .faq-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -78,22 +84,31 @@
   }
 }
 
+.faq-layout__aside h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--mm-deep-garnet, #4B2A31);
+}
+
 .faq-subtext {
-  font-size: 1rem;
-  color: rgba(26, 26, 26, 0.6);
-  margin-top: 0.5rem;
-  line-height: 1.5;
+  font-size: 1.05rem;
+  color: var(--mm-dark-espresso, #2E1F1A);
+  opacity: 0.85;
+  margin-top: 0.75rem;
+  line-height: 1.6;
 }
 
 .faq-accordion {
   display: flex;
   flex-direction: column;
   margin-bottom: var(--space-10);
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(46, 31, 26, 0.1);
 }
 
 .faq-item {
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(46, 31, 26, 0.1);
 }
 
 /* 1. Click area = Full row */
@@ -112,10 +127,10 @@
 
 /* Typography: 18-20px, medium weight */
 .faq-item__question {
-  font-family: var(--font-body-family, sans-serif);
+  font-family: var(--font-body);
   font-size: 1.125rem; /* 18px */
   font-weight: 500;
-  color: var(--color-text-primary, #1a1a1a);
+  color: var(--mm-dark-espresso, #2E1F1A);
   line-height: 1.4;
   padding-right: 1rem;
 }
@@ -126,7 +141,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-primary, #1a1a1a);
+  color: var(--mm-dark-espresso, #2E1F1A);
   transition: transform 200ms ease;
 }
 
@@ -156,7 +171,8 @@
 .faq-item__answer-inner {
   padding-bottom: 1.5rem;
   font-size: 0.9375rem; /* 15px */
-  color: rgba(26, 26, 26, 0.7);
+  color: var(--mm-dark-espresso, #2E1F1A);
+  opacity: 0.8;
   line-height: 1.7;
 }
 
@@ -173,7 +189,8 @@
 
 .faq-section__cta-text {
   font-size: 1rem;
-  color: rgba(26, 26, 26, 0.7);
+  color: var(--mm-dark-espresso, #2E1F1A);
+  opacity: 0.8;
 }
 </style>
 

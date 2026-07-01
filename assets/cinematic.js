@@ -65,7 +65,7 @@
    * ───────────────────────────────────────────────────────────── */
   function init() {
     // Section headings - slide up
-    document.querySelectorAll('h2, h3.section-title, .section-eyebrow').forEach(function (el, i) {
+    document.querySelectorAll('h1, h2, h3.section-title, .section-eyebrow, .main-policy__body').forEach(function (el, i) {
       if (el.closest('.site-header, .site-footer, .the-act-hero')) return;
       el.classList.add('sr-hidden');
       el.style.transitionDelay = '0s';
