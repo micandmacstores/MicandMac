@@ -43,29 +43,28 @@
           <a href="tel:+917339663196" style="display: block; font-size: var(--text-sm); color: rgba(255,255,255,0.95); text-decoration: none; margin-bottom: 16px; transition: color 0.3s;">+91 73396 63196</a>
         </div>
 
-        <a href="/pages/contact" class="btn btn--secondary btn--outline" style="border-radius: var(--radius-sm); padding: 10px 28px; font-size: 13px; display: inline-flex; align-items: center; border: 1px solid rgba(255,255,255,0.4); color: #fff; background: transparent; transition: all var(--transition-fast); margin-bottom: 12px;">
+        <a href="/pages/contact-us" class="btn btn--secondary btn--outline" style="border-radius: var(--radius-sm); padding: 10px 28px; font-size: 13px; display: inline-flex; align-items: center; border: 1px solid rgba(255,255,255,0.4); color: #fff; background: transparent; transition: all var(--transition-fast); margin-bottom: 12px;">
           Contact Us <span style="margin-left: 6px;">&rarr;</span>
         </a>
 
         <div class="footer__social" style="display: flex; gap: var(--space-4); align-items: center;">
-          {%- if section.settings.instagram != blank -%}
-            <a href="{{ section.settings.instagram }}" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: rgba(255,255,255,0.85); text-decoration: none;">
-              <i class="fa-brands fa-instagram" style="font-size: 18px;"></i> <span>Instagram</span>
-            </a>
-          {%- else -%}
-            <a href="#" aria-label="Instagram" class="footer__social-link" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: rgba(255,255,255,0.85); text-decoration: none;">
-              <i class="fa-brands fa-instagram" style="font-size: 18px;"></i> <span>Instagram</span>
-            </a>
+          {%- assign instagram_url = section.settings.instagram -%}
+          {%- if instagram_url == blank -%}
+            {%- assign instagram_url = 'https://www.instagram.com/mic_and_macstore' -%}
           {%- endif -%}
-          {%- if section.settings.whatsapp != blank -%}
-            <a href="https://wa.me/{{ section.settings.whatsapp }}" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer__social-link" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: rgba(255,255,255,0.85); text-decoration: none;">
-              <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> <span>WhatsApp</span>
-            </a>
+          <a href="{{ instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: rgba(255,255,255,0.85); text-decoration: none;">
+            <i class="fa-brands fa-instagram" style="font-size: 18px;"></i> <span>Instagram</span>
+          </a>
+
+          {%- assign whatsapp_num = section.settings.whatsapp -%}
+          {%- if whatsapp_num == blank -%}
+            {%- assign whatsapp_num = '917339663196' -%}
           {%- else -%}
-             <a href="#" aria-label="WhatsApp" class="footer__social-link" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: rgba(255,255,255,0.85); text-decoration: none;">
-               <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> <span>WhatsApp</span>
-             </a>
+            {%- assign whatsapp_num = whatsapp_num | remove: '+' | remove: ' ' -%}
           {%- endif -%}
+          <a href="https://wa.me/{{ whatsapp_num }}" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer__social-link" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: rgba(255,255,255,0.85); text-decoration: none;">
+            <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> <span>WhatsApp</span>
+          </a>
         </div>
       </div>
 
