@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "favicon": "shopify://shop_images/web-app-manifest-192x192.png",
@@ -19,26 +28,6 @@
       },
       "announcement-bar": {
         "type": "announcement-bar",
-        "blocks": {
-          "announcement_4xtcAA": {
-            "type": "announcement",
-            "settings": {
-              "text": "Buy 2 & Get 1 Free",
-              "link": ""
-            }
-          },
-          "announcement_NYaeM4": {
-            "type": "announcement",
-            "settings": {
-              "text": "Free Shipping on Orders Over ₹999 + Use Code: WELCOME15",
-              "link": ""
-            }
-          }
-        },
-        "block_order": [
-          "announcement_4xtcAA",
-          "announcement_NYaeM4"
-        ],
         "settings": {
           "bg_color": "#2e1f1a",
           "text_color": "#d4af37"
