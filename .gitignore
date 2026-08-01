@@ -16,4 +16,6 @@ node_modules/
 
 # Release
 release
-*.zip
+# Secrets / Configs
+shopify_mcp_config.json
+.agents/

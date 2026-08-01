@@ -22,13 +22,13 @@
       assign seo_title = product.title | append: ' | ' | append: brand
       assign seo_desc  = product.description | strip_html | truncatewords: 25
       if seo_desc == blank
-        assign seo_desc = 'Shop ' | append: product.title | append: ' at Mic & Mac Glow Bars - premium natural skincare. Free shipping over ₹999.'
+        assign seo_desc = 'Shop ' | append: product.title | append: ' at Mic & Mac Glow Bars - premium natural skincare. Free shipping on all orders.'
       endif
     when 'collection'
       assign seo_title = collection.title | append: ' | ' | append: brand
       assign seo_desc  = collection.description | strip_html | truncatewords: 25
       if seo_desc == blank
-        assign seo_desc = 'Shop ' | append: collection.title | append: ' at Mic & Mac Glow Bars - premium natural skincare. Free shipping over ₹999.'
+        assign seo_desc = 'Shop ' | append: collection.title | append: ' at Mic & Mac Glow Bars - premium natural skincare. Free shipping on all orders.'
       endif
     when 'blog'
       assign seo_title = blog.title | append: ' | ' | append: brand

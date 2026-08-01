@@ -29,13 +29,81 @@
   <!-- 2. PRODUCT GRID -->
   <div class="bs-grid-section" id="bs-grid">
     <div class="container">
+      {%- liquid
+        assign key_list = 'donkey,grape,detox' | split: ','
+        assign store_products = collection.products
+        if collection == blank or collection.products_count == 0
+          assign store_products = collections['all'].products
+        endif
+      -%}
       <div class="bs-grid">
-        {%- for product in collection.products -%}
-          <div class="bs-grid__item relative">
-            {% render 'product-card', product: product, force_badge: 'Bestseller' %}
-          </div>
-        {%- else -%}
-          <p style="text-align:center; grid-column: 1 / -1; padding: 4rem 0;">No products found in this collection.</p>
+        {%- for key_raw in key_list -%}
+          {%- assign key = key_raw | strip | downcase -%}
+          {%- assign matched_product = nil -%}
+          {%- for prod in store_products -%}
+            {%- assign p_title = prod.title | downcase -%}
+            {%- assign p_handle = prod.handle | downcase -%}
+            {%- if p_title contains key or p_handle contains key -%}
+              {%- assign matched_product = prod -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if matched_product != nil -%}
+            <div class="bs-grid__item relative">
+              {% render 'product-card', product: matched_product, force_badge: 'Bestseller' %}
+            </div>
+          {%- else -%}
+            <div class="bs-grid__item relative">
+              {%- case forloop.index -%}
+                {%- when 1 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">Bestseller</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #f0e6df 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Donkey Milk Glow Bar</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Donkey Milk Glow Bar</a>
+                      <p class="pc__context">Gentle Cleansing • Deep Moisture • Sensitive Skin</p>
+                      <div class="pc__pricing"><span class="pc__price">₹299</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+                {%- when 2 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">Bestseller</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #f8e8e4 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Grape Fruit Lip Balm</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Grape Fruit Lip Balm</a>
+                      <p class="pc__context">Vitamin C Rich • Daily Defense • Fresh Citrus</p>
+                      <div class="pc__pricing"><span class="pc__price">₹149</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+                {%- when 3 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">Bestseller</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #e2ded8 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Detox Cleanse Set</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Detox Cleanse Set</a>
+                      <p class="pc__context">Deep Detox • Charcoal Bar & Lip Shield</p>
+                      <div class="pc__pricing"><span class="pc__price">₹649</span><span class="pc__mrp">₹749</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+              {%- endcase -%}
+            </div>
+          {%- endif -%}
         {%- endfor -%}
       </div>
     </div>
@@ -45,13 +113,13 @@
   <div class="bs-cta">
     <div class="container text-center">
       <h2 class="bs-cta__title">{{ section.settings.cta_title | default: 'Looking for something more specific?' }}</h2>
-      <p class="bs-cta__desc">{{ section.settings.cta_desc | default: 'Explore our complete range of cold-processed soaps and daily lip care.' }}</p>
+      <p class="bs-cta__desc">{{ section.settings.cta_desc | default: 'Explore our complete range of cold-processed soaps and daily lip balms.' }}</p>
       <div class="bs-cta__buttons">
-        <a href="{{ section.settings.cta_url_1 | default: routes.collections_url | append: '/glowing-bars' }}" class="btn btn--primary bs-cta__btn">
-          {{ section.settings.cta_label_1 | default: 'Shop Glowing Bars' }}
+        <a href="{{ section.settings.cta_url_1 | default: routes.collections_url | append: '/glow-bars' }}" class="btn btn--primary bs-cta__btn">
+          {{ section.settings.cta_label_1 | default: 'Shop Glow Bars' }}
         </a>
-        <a href="{{ section.settings.cta_url_2 | default: routes.collections_url | append: '/lip-care' }}" class="btn bs-cta__btn bs-cta__btn--secondary">
-          {{ section.settings.cta_label_2 | default: 'Explore Lip Care' }}
+        <a href="{{ section.settings.cta_url_2 | default: routes.collections_url | append: '/lip-balms' }}" class="btn bs-cta__btn bs-cta__btn--secondary">
+          {{ section.settings.cta_label_2 | default: 'Explore Lip Balms' }}
         </a>
       </div>
     </div>
@@ -288,13 +356,13 @@
       "type": "text",
       "id": "cta_desc",
       "label": "Description",
-      "default": "Explore our complete range of cold-processed soaps and daily lip care."
+      "default": "Explore our complete range of cold-processed soaps and daily lip balms."
     },
     {
       "type": "text",
       "id": "cta_label_1",
       "label": "Primary Button Label",
-      "default": "Shop Glowing Bars"
+      "default": "Shop Glow Bars"
     },
     {
       "type": "url",
@@ -305,7 +373,7 @@
       "type": "text",
       "id": "cta_label_2",
       "label": "Secondary Button Label",
-      "default": "Explore Lip Care"
+      "default": "Explore Lip Balms"
     },
     {
       "type": "url",

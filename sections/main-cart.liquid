@@ -162,19 +162,9 @@
             <h2 class="summary-card__title">Order Summary</h2>
 
             <!-- Free Shipping Incentive -->
-            {%- liquid
-              assign threshold = section.settings.threshold_cents | default: 99900
-              assign cart_total = cart.total_price
-              assign remaining = threshold | minus: cart_total
-            -%}
             <div class="summary-incentive">
-              {%- if remaining > 0 -%}
-                <span class="incentive-msg">Add <strong>{{ remaining | money }}</strong> more for free shipping</span>
-                <div class="incentive-track"><div class="incentive-fill" style="width: {{ cart_total | times: 100 | divided_by: threshold }}%"></div></div>
-              {%- else -%}
-                <span class="incentive-msg incentive-msg--success">✓ You unlocked free shipping</span>
-                <div class="incentive-track"><div class="incentive-fill" style="width: 100%"></div></div>
-              {%- endif -%}
+              <span class="incentive-msg incentive-msg--success">✓ Free Shipping on All Orders</span>
+              <div class="incentive-track"><div class="incentive-fill" style="width: 100%"></div></div>
             </div>
 
             <div class="summary-rows">
@@ -184,7 +174,7 @@
               </div>
               <div class="summary-row summary-row--shipping">
                 <span>Shipping</span>
-                <span>Calculated at checkout</span>
+                <span style="color: #27ae60; font-weight: 600; text-transform: uppercase;">Free</span>
               </div>
               
               {%- if cart.cart_level_discount_applications.size > 0 -%}

@@ -29,13 +29,81 @@
   <!-- 2. PRODUCT GRID -->
   <div class="na-grid-section" id="na-grid">
     <div class="container">
+      {%- liquid
+        assign key_list = 'kojic,beetroot,essential' | split: ','
+        assign store_products = collection.products
+        if collection == blank or collection.products_count == 0
+          assign store_products = collections['all'].products
+        endif
+      -%}
       <div class="na-grid">
-        {%- for product in collection.products -%}
-          <div class="na-grid__item">
-            {% render 'product-card', product: product %}
-          </div>
-        {%- else -%}
-          <p style="text-align:center; grid-column: 1 / -1; padding: 4rem 0;">No products found in this collection.</p>
+        {%- for key_raw in key_list -%}
+          {%- assign key = key_raw | strip | downcase -%}
+          {%- assign matched_product = nil -%}
+          {%- for prod in store_products -%}
+            {%- assign p_title = prod.title | downcase -%}
+            {%- assign p_handle = prod.handle | downcase -%}
+            {%- if p_title contains key or p_handle contains key -%}
+              {%- assign matched_product = prod -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if matched_product != nil -%}
+            <div class="na-grid__item">
+              {% render 'product-card', product: matched_product, force_badge: 'NEW' %}
+            </div>
+          {%- else -%}
+            <div class="na-grid__item">
+              {%- case forloop.index -%}
+                {%- when 1 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">NEW</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #f4eae1 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Kojic Glow Bar</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Kojic Glow Bar</a>
+                      <p class="pc__context">Brightening • Evening Tone • Daily Glow</p>
+                      <div class="pc__pricing"><span class="pc__price">₹249</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+                {%- when 2 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">NEW</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #f5e4e6 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Beetroot Lip Balm</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Beetroot Lip Balm</a>
+                      <p class="pc__context">Hydrating • Natural Tint • Organic Beeswax</p>
+                      <div class="pc__pricing"><span class="pc__price">₹149</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+                {%- when 3 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">NEW</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #eae5df 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Glow Essential Set</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Glow Essential Set</a>
+                      <p class="pc__context">Complete Ritual • Cleanse & Protect Pair</p>
+                      <div class="pc__pricing"><span class="pc__price">₹599</span><span class="pc__mrp">₹699</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+              {%- endcase -%}
+            </div>
+          {%- endif -%}
         {%- endfor -%}
       </div>
     </div>

@@ -4,32 +4,16 @@
   Progress bar towards free shipping threshold
 {% endcomment %}
 
-{%- liquid
-  assign threshold = section.settings.threshold_cents | default: 99900
-  assign cart_total = cart.total_price
-  assign remaining = threshold | minus: cart_total
-  assign pct = cart_total | times: 100 | divided_by: threshold
-  if pct > 100
-    assign pct = 100
-  endif
--%}
-
 {%- unless section.settings.hide_when_empty and cart.item_count == 0 -%}
   <div class="shipping-bar">
-    {%- if remaining > 0 -%}
-      <p class="shipping-bar__msg">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-        </svg>
-        Add {{ remaining | money }} more for <strong>free delivery</strong>
-      </p>
-    {%- else -%}
-      <p class="shipping-bar__msg shipping-bar__msg--achieved">
-        🎉 You've unlocked <strong>free delivery!</strong>
-      </p>
-    {%- endif -%}
+    <p class="shipping-bar__msg shipping-bar__msg--achieved">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+      </svg>
+      🎉 You qualify for <strong>free delivery on all orders!</strong>
+    </p>
     <div class="shipping-bar__track">
-      <div class="shipping-bar__fill" style="width: {{ pct }}%"></div>
+      <div class="shipping-bar__fill" style="width: 100%"></div>
     </div>
   </div>
 {%- endunless -%}

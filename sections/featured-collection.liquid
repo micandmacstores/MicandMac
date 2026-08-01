@@ -10,18 +10,25 @@
     }
   }
 
-  /* Standardized Product Grid */
-  .product-grid {
+  /* 1x3 Responsive Product Grid */
+  #FeaturedCollection-{{ section.id }} .product-grid-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  #FeaturedCollection-{{ section.id }} .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-6);
+    grid-template-columns: repeat({{ section.settings.columns_desktop | default: 3 }}, 1fr);
+    gap: var(--space-8, 32px);
     margin-bottom: var(--space-8);
+    width: 100%;
   }
 
   @media (max-width: 768px) {
-    .product-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-4);
+    #FeaturedCollection-{{ section.id }} .product-grid {
+      grid-template-columns: repeat(1, 1fr);
+      gap: var(--space-6, 24px);
     }
     .section-heading h2 {
       font-size: 1.8rem !important;
@@ -29,7 +36,7 @@
   }
 
   @media (min-width: 769px) and (max-width: 1023px) {
-    .product-grid {
+    #FeaturedCollection-{{ section.id }} .product-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -37,7 +44,7 @@
 
 <div class="featured-collection section-{{ section.id }}-padding bg-murmur" id="FeaturedCollection-{{ section.id }}">
   <div class="container px-4">
-    <div class="section-heading text-center" style="margin-bottom: 60px;">
+    <div class="section-heading text-center" style="margin-bottom: 50px;">
       {%- if section.settings.heading != blank -%}
         <h2 style="font-family: var(--font-body, 'Inter', sans-serif); font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 400; color: var(--mm-dark-espresso); text-transform: uppercase; letter-spacing: -0.02em;">
           {{ section.settings.heading }}
@@ -48,28 +55,152 @@
       {%- endif -%}
     </div>
 
-    <div class="product-grid" style="row-gap: 60px;">
-      {%- assign collection = section.settings.collection -%}
-      {%- assign display_products = collection.products -%}
-      {%- if collection == blank or collection.products_count == 0 -%}
-        {%- assign display_products = collections['all'].products | sort: 'published_at' | reverse -%}
-      {%- endif -%}
+    {%- liquid
+      assign heading_upper = section.settings.heading | upcase
+      assign target_keys = ''
+      assign is_new_arrivals = false
 
-      {%- if display_products != blank -%}
-        {%- assign count = 0 -%}
-        {%- for product in display_products -%}
-          {%- assign product_title_down = product.title | downcase -%}
-          {%- assign product_type_down = product.type | downcase -%}
-          {%- assign product_tags_down = product.tags | join: ' ' | downcase -%}
-          {%- assign product_benefit_down = product.metafields.custom.primary_benefit | downcase -%}
-          {%- if product_title_down contains 'combo' or product_title_down contains 'set' or product_type_down contains 'combo' or product_tags_down contains 'combo' or product_benefit_down contains 'combo' -%}
-            {%- continue -%}
+      if section.settings.product_keywords != blank
+        assign target_keys = section.settings.product_keywords
+      elsif heading_upper contains 'NEW' or heading_upper contains 'ARRIVAL'
+        assign target_keys = 'kojic,beetroot,essential'
+        assign is_new_arrivals = true
+      elsif heading_upper contains 'BEST' or heading_upper contains 'SELLER'
+        assign target_keys = 'donkey,grape,detox'
+      else
+        assign target_keys = 'kojic,beetroot,essential'
+      endif
+
+      if heading_upper contains 'NEW' or heading_upper contains 'ARRIVAL'
+        assign is_new_arrivals = true
+      endif
+
+      assign key_list = target_keys | split: ','
+      assign collection_obj = section.settings.collection
+      assign store_products = collection_obj.products
+      if collection_obj == blank or collection_obj.products_count == 0
+        assign store_products = collections['all'].products
+      endif
+    -%}
+
+    <div class="product-grid-container">
+      <div class="product-grid">
+        {%- for key_raw in key_list -%}
+          {%- assign key = key_raw | strip | downcase -%}
+          {%- assign matched_product = nil -%}
+
+          {%- for prod in store_products -%}
+            {%- assign p_title = prod.title | downcase -%}
+            {%- assign p_handle = prod.handle | downcase -%}
+            {%- if p_title contains key or p_handle contains key -%}
+              {%- assign matched_product = prod -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if matched_product != nil -%}
+            {% render 'product-card', product: matched_product, force_badge: section.settings.badge_text %}
+          {%- else -%}
+            {%- if is_new_arrivals -%}
+              {%- case forloop.index -%}
+                {%- when 1 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">{{ section.settings.badge_text | default: 'NEW' }}</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #f4eae1 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Kojic Glow Bar</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Kojic Glow Bar</a>
+                      <p class="pc__context">Brightening • Evening Tone • Daily Glow</p>
+                      <div class="pc__pricing"><span class="pc__price">₹249</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+                {%- when 2 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">{{ section.settings.badge_text | default: 'NEW' }}</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #f5e4e6 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Beetroot Lip Balm</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Beetroot Lip Balm</a>
+                      <p class="pc__context">Hydrating • Natural Tint • Organic Beeswax</p>
+                      <div class="pc__pricing"><span class="pc__price">₹149</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+                {%- when 3 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">{{ section.settings.badge_text | default: 'NEW' }}</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #eae5df 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Glow Essential Set</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Glow Essential Set</a>
+                      <p class="pc__context">Complete Ritual • Cleanse & Protect Pair</p>
+                      <div class="pc__pricing"><span class="pc__price">₹599</span><span class="pc__mrp">₹699</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+              {%- endcase -%}
+            {%- else -%}
+              {%- case forloop.index -%}
+                {%- when 1 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">{{ section.settings.badge_text | default: 'Bestseller' }}</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #f0e6df 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Donkey Milk Glow Bar</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Donkey Milk Glow Bar</a>
+                      <p class="pc__context">Gentle Cleansing • Deep Moisture • Sensitive Skin</p>
+                      <div class="pc__pricing"><span class="pc__price">₹299</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+                {%- when 2 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">{{ section.settings.badge_text | default: 'Bestseller' }}</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #f8e8e4 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Grape Fruit Lip Balm</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Grape Fruit Lip Balm</a>
+                      <p class="pc__context">Vitamin C Rich • Daily Defense • Fresh Citrus</p>
+                      <div class="pc__pricing"><span class="pc__price">₹149</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+                {%- when 3 -%}
+                  <div class="pc">
+                    <a href="/collections/all" class="pc__media">
+                      <span class="pc__badge">{{ section.settings.badge_text | default: 'Bestseller' }}</span>
+                      <div class="pc__img-placeholder" style="background: linear-gradient(135deg, #fdfbf7 0%, #e2ded8 100%); display:flex; align-items:center; justify-content:center; color:#5a2e2e; font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.2rem; text-align:center; padding:15px;">Detox Cleanse Set</div>
+                    </a>
+                    <div class="pc__info">
+                      <a href="/collections/all" class="pc__name">Detox Cleanse Set</a>
+                      <p class="pc__context">Deep Detox • Charcoal Bar & Lip Shield</p>
+                      <div class="pc__pricing"><span class="pc__price">₹649</span><span class="pc__mrp">₹749</span></div>
+                      <form method="post" action="{{ routes.cart_add_url }}" class="pc__form">
+                        <button type="button" class="pc__atc">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+              {%- endcase -%}
+            {%- endif -%}
           {%- endif -%}
-          {%- if count >= section.settings.products_to_show -%}{%- break -%}{%- endif -%}
-          {%- assign count = count | plus: 1 -%}
-          {% render 'product-card', product: product, force_badge: section.settings.badge_text %}
         {%- endfor -%}
-      {%- endif -%}
+      </div>
     </div>
 
     {%- if section.settings.show_view_all -%}
@@ -98,6 +229,12 @@
     },
     {
       "type": "text",
+      "id": "product_keywords",
+      "label": "Ordered Product Keywords",
+      "info": "Comma-separated search terms for products in order. e.g. kojic,beetroot,essential"
+    },
+    {
+      "type": "text",
       "id": "badge_text",
       "label": "Force Badge Text",
       "info": "Overrides default product badges (like 'NEW')"
@@ -119,7 +256,7 @@
       "min": 2,
       "max": 12,
       "step": 1,
-      "default": 4,
+      "default": 3,
       "label": "Maximum products to show"
     },
     {
@@ -128,7 +265,7 @@
       "min": 2,
       "max": 4,
       "step": 1,
-      "default": 4,
+      "default": 3,
       "label": "Number of columns on desktop"
     },
     {
