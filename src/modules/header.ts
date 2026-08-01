@@ -44,6 +44,9 @@ export class Header {
   }
 
   private _init(): void {
+    // Dynamic announcement bar height check
+    this._updateAnnouncementHeight();
+
     // Sticky behaviour
     window.addEventListener('scroll', this._scrollBound, { passive: true });
     this._onScroll();
@@ -148,6 +151,15 @@ export class Header {
       badge.textContent = count > 0 ? String(count) : '';
       badge.classList.toggle('is-hidden', count === 0);
     });
+  }
+  /** Check if announcement bar exists and is visible, then update --announcement-height token */
+  private _updateAnnouncementHeight(): void {
+    const bar = document.querySelector<HTMLElement>('.announcement-bar');
+    if (!bar || bar.children.length === 0 || bar.offsetHeight === 0 || window.getComputedStyle(bar).display === 'none') {
+      document.documentElement.style.setProperty('--announcement-height', '0px');
+    } else {
+      document.documentElement.style.setProperty('--announcement-height', `${bar.offsetHeight}px`);
+    }
   }
 }
 

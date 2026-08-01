@@ -22,7 +22,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: var(--announcement-height, 30px);
+  height: var(--announcement-height, 0px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,7 +58,7 @@
 */
 .site-header {
   position: fixed;
-  top: var(--announcement-height, 30px);
+  top: var(--announcement-height, 0px);
   /* Sits below the fixed announcement bar */
   left: 0;
   right: 0;
@@ -619,7 +619,7 @@
   }
 
   body {
-    padding-top: calc(var(--announcement-height, 30px) + 118px);
+    padding-top: calc(var(--announcement-height, 0px) + 118px);
     padding-bottom: 0;
   }
 
@@ -647,7 +647,7 @@
   /* Push mobile topbar below the fixed announcement bar */
   .mobile-topbar {
     display: flex;
-    top: var(--announcement-height, 30px);
+    top: var(--announcement-height, 0px);
   }
 
   .bottom-dock {
@@ -655,7 +655,7 @@
   }
 
   body {
-    padding-top: calc(var(--announcement-height, 30px) + 58px);
+    padding-top: calc(var(--announcement-height, 0px) + 58px);
     padding-bottom: 70px;
   }
 }
@@ -673,7 +673,7 @@
 /* ── SCROLLED STATE: restore full layout ── */
 /* Header drops back below the announcement bar */
 body.template-index.is-scrolled .site-header {
-  top: var(--announcement-height, 30px) !important;
+  top: var(--announcement-height, 0px) !important;
   background: var(--mm-soft-blush) !important;
   box-shadow: 0 4px 15px rgba(46, 31, 26, 0.1);
 }

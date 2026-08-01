@@ -11,7 +11,7 @@
    ============================================ */
 .mobile-topbar {
   position: fixed;
-  top: var(--announcement-height, 30px); /* sit below fixed announcement bar */
+  top: var(--announcement-height, 0px); /* sit below fixed announcement bar */
   left: 0;
   right: 0;
   height: 58px;

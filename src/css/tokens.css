@@ -5,6 +5,9 @@
    ============================================ */
 
 :root {
+  /* ---- Header & Announcement positioning ---- */
+  --announcement-height: 0px;
+
   /* ---- Mic & Mac Brand Palette (from Layout Guide) ---- */
   --mm-soft-blush: #F3E8E4;
   /* Page & header middle strip bg */
