@@ -82,17 +82,17 @@ From the About Us page:
 - Skin types: All skin types, especially dry and sensitive
 - Product images available: front, bar, packaging open, application guide, organic ingredients, hydration benefits
 
-**2. Red Wine Radiance Soap - Luxury Formula**
+**2. Red Wine Soap (Cold Process / Glycerine)**
 - URL: `/products/redwine-soap-100gm`
 - Price: Rs. 149 (Sale from Rs. 300)
 - Weight: 100gm
 - Key claim: "Deep, antioxidant-rich owner's blend for ultimate skin recovery. Lab-certified luxury."
 - Benefits: Moisturising (glycerin, lanolin), gentle cleansing, soothing, rich in nutrients (Vit E), versatile face & body use
 - Key ingredients: Red wine extract (resveratrol, antioxidants), vegetable oils (olive, coconut, palm), sodium hydroxide, glycerin, essential oils, botanical extracts, natural colorants
-- Skin types: All - especially suited to those wanting anti-aging and radiance
+- Skin types: All - especially suited to those wanting anti-aging and nourishment
 - Product images available: front, bar, packaging open, organic ingredients, antioxidant benefits, application guide
 
-**3. Skin Radiance Glow Soap - Lab Certified**
+**3. Kojic acid Glow Bars - Lab Certified**
 - URL: `/products/skjn-whitening-soap-100gm`
 - Price: Rs. 149 (Sale from Rs. 300)
 - Weight: 100gm
@@ -108,10 +108,10 @@ From the About Us page:
 
 | Product | Price | Original Price | URL |
 |---|---|---|---|
-| Donkey Milk + Red Wine + Radiance Soap Combo | Rs. 499 | Rs. 930 | /products/donkey-milk-red-wine-skin-whitening-soaps-combo |
+| Glow Essentials Set | Rs. 499 | Rs. 930 | /products/glow-essentials-set |
 | Donkey Milk Soap 1+1 Combo | Rs. 350 | Rs. 640 | /products/donkey-milk-soap-1-1-combo-offer |
 | Red Wine Soap 1+1 Combo | Rs. 290 | Rs. 600 | /products/red-wine-soap-1-1-combo-offer |
-| Skin Radiance Soap 1+1 Combo | Rs. 290 | Rs. 600 | /products/skin-whitening-soap-1-1-combo-offer |
+| Kojic Acid Soap 1+1 Combo | Rs. 290 | Rs. 600 | /products/skin-whitening-soap-1-1-combo-offer |
 
 **Combo discount strategy:** All combos offer ~45–55% off the combined individual price. This is a core conversion mechanic on the site.
 
@@ -348,8 +348,8 @@ Location:       Coimbatore, Tamil Nadu, India
 Platform:       Shopify (custom theme - MicandMac)
 Currency:       INR (Indian Rupees)
 Price range:    Rs. 149 – Rs. 499
-Flagship SKUs:  Donkey Milk Soap, Red Wine Radiance Soap, Skin Radiance Glow Soap
-Hero combos:    Triple soap combo (Rs. 499), 1+1 combos (Rs. 290–350)
+Flagship SKUs:  Donkey Milk Soap (Cold Pressed), Red Wine Soap (Cold Process), Kojic acid Glow Bars
+Hero combos:    Glow Essentials Set (Rs. 499), 1+1 combos (Rs. 290–350)
 Free shipping:  Orders above Rs. 1,000
 Contact:        +91 73396 63196 | micandmacstore@gmail.com
 WhatsApp:       https://wa.link/orm75u
