@@ -227,21 +227,181 @@ body.template-index:not(.is-scrolled) .mobile-topbar .mtb__burger span {
 }
 
 .mnav__close {
-  width: 36px;
-  height: 36px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  color: var(--mm-soft-blush);
+  gap: 8px;
+  padding: 4px 0;
+  background: transparent;
   border: none;
+  border-radius: 0;
+  color: var(--mm-soft-blush);
   cursor: pointer;
-  transition: background var(--transition-fast);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: opacity var(--transition-fast);
 }
 
 .mnav__close:hover {
-  background: rgba(255, 255, 255, 0.2);
+  opacity: 0.75;
+}
+
+.mnav__close svg {
+  flex-shrink: 0;
+}
+
+/* Hide floating WhatsApp button when mobile navigation drawer is open */
+.mnav.is-open ~ #WASticky,
+body:has(.mnav.is-open) #WASticky,
+body.is-drawer-open #WASticky {
+  display: none !important;
+}
+
+/* ── Main Menu Items List (Inspired by Image 2) ── */
+.mnav__menu {
+  padding: 32px 0 20px;
+}
+
+.mnav__menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mnav__menu-link {
+  display: block;
+  padding: 12px 28px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  color: var(--mm-dark-espresso);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+@media (max-width: 380px) {
+  .mnav__menu-link {
+    font-size: 36px;
+    padding: 10px 20px;
+  }
+}
+
+.mnav__menu-link:hover,
+.mnav__menu-link:focus-visible {
+  color: var(--mm-deep-garnet);
+  transform: translateX(6px);
+}
+
+/* ── Contact Info Section ── */
+.mnav__contact {
+  margin: 20px 28px 24px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(75, 42, 49, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mnav__contact-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mm-terracotta-rose);
+  margin: 0;
+}
+
+.mnav__contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mnav__contact-link {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--mm-dark-espresso);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mnav__contact-link:hover {
+  color: var(--mm-deep-garnet);
+  text-decoration: underline;
+}
+
+.mnav__contact-cta {
+  margin-top: 4px;
+}
+
+/* Less rounded / sharper corners for Contact Us button */
+.mnav__contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 3px;
+  background: var(--mm-deep-garnet);
+  color: var(--mm-soft-blush);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(75, 42, 49, 0.15);
+}
+
+.mnav__contact-btn:hover {
+  background: var(--mm-dark-espresso);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(75, 42, 49, 0.25);
+}
+
+.mnav__btn-arrow {
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.mnav__contact-btn:hover .mnav__btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Side-by-side WhatsApp and Instagram icon buttons */
+.mnav__contact-socials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.mnav__social-icon-link {
+  width: 28px;
+  height: 28px;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mm-dark-espresso);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mnav__social-icon-link:hover {
+  color: var(--mm-deep-garnet);
+  transform: translateY(-2px);
 }
 
 /* Scrollable body */

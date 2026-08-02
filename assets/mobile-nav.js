@@ -35,6 +35,8 @@
   const navToggle   = document.getElementById('NavToggle');
   const navClose    = document.getElementById('MNavClose');
 
+  const waSticky   = document.getElementById('WASticky');
+
   function openDrawer() {
     if (!drawer) return;
     drawer.classList.add('is-open');
@@ -42,6 +44,7 @@
     navToggle?.classList.add('is-open');
     navToggle?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    if (waSticky) waSticky.style.display = 'none';
     showOverlay();
     // focus first tab for accessibility
     drawer.querySelector('.mnav__tab')?.focus();
@@ -54,6 +57,7 @@
     navToggle?.classList.remove('is-open');
     navToggle?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    if (waSticky) waSticky.style.display = '';
     hideOverlay();
   }
 

@@ -17,7 +17,7 @@
   =============================================
 -->
 <div class="mnav" id="MobileNav" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <!-- Header: Garnet strip with logo + close -->
+  <!-- Header: Garnet/Espresso strip with logo + CLOSE X button -->
   <div class="mnav__head">
     <a
       href="{{ routes.root_url }}"
@@ -28,169 +28,72 @@
       <span>MIC &amp; MAC</span>
     </a>
     <button class="mnav__close" id="MNavClose" aria-label="Close menu">
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-      >
-        <path d="M18 6L6 18M6 6l12 12"/>
-      </svg>
+      <span>CLOSE</span>
     </button>
   </div>
 
-  <!-- Scrollable body: all sections sequential -->
+  <!-- Scrollable body: main navigation + contact details + brand quote -->
   <div class="mnav__body">
-    <!-- ── SHOP Group ── -->
-    <div class="mnav__group">
-      <p class="mnav__group-label">SHOP</p>
-      <ul class="mnav__flat-links">
-        <li><a href="{{ routes.all_products_collection_url }}" class="mnav__flat-link">All Products</a></li>
-      </ul>
-    </div>
-
-    <div class="mnav__divider"></div>
-
-    <!-- ── Direct links: Highlights ── -->
-    <div class="mnav__group">
-      <p class="mnav__group-label">HIGHLIGHTS</p>
-      <ul class="mnav__flat-links">
-        <li>
-          <a href="{{ routes.collections_url }}/best-sellers" class="mnav__flat-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-            Bestsellers
-          </a>
+    <!-- ── 4 Main Menu Items ── -->
+    <nav class="mnav__menu" aria-label="Mobile main navigation">
+      <ul class="mnav__menu-list">
+        <li class="mnav__menu-item">
+          <a href="{{ routes.all_products_collection_url }}" class="mnav__menu-link">All Products</a>
         </li>
-        <li>
-          <a href="{{ routes.collections_url }}/new-arrivals" class="mnav__flat-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 5v14M5 12h14"/>
-            </svg>
-            New Arrivals
-            <span class="mnav__pill mnav__pill--gold">New</span>
-          </a>
+        <li class="mnav__menu-item">
+          <a href="{{ routes.collections_url }}/new-arrivals" class="mnav__menu-link">New Arrivals</a>
+        </li>
+        <li class="mnav__menu-item">
+          <a href="{{ routes.collections_url }}/best-sellers" class="mnav__menu-link">Bestsellers</a>
+        </li>
+        <li class="mnav__menu-item">
+          <a href="/pages/our-story" class="mnav__menu-link">Our Story</a>
         </li>
       </ul>
-    </div>
+    </nav>
 
-    <div class="mnav__divider"></div>
-
-    <!-- ── Big Centered Link: Our Story ── -->
-    <div class="mnav__primary" style="text-align: center; display: flex; justify-content: center; padding: 16px 0;">
-      <a href="/pages/our-story" class="mnav__primary-link" style="justify-content: center; font-size: 28px; border-bottom: none; width: 100%; text-align: center; display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;">
-        Our Story
-      </a>
-    </div>
-
-    <div class="mnav__divider"></div>
-
-    <!-- ── ACCORDION: Support ── -->
-    <div class="mnav__accordion" data-accordion>
-      <button class="mnav__accordion-trigger" aria-expanded="false" data-trigger>
-        <span class="mnav__accordion-label">
-          <span class="mnav__acc-eyebrow">HELP</span>
-          Support
-        </span>
-        <svg
-          class="mnav__acc-chevron"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-        >
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-      </button>
-      <div class="mnav__accordion-body mnav__accordion-body--closed" data-body>
-        <ul class="mnav__sub-links">
-          <li>
-            <a href="/pages/track-order" class="mnav__sub-link">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
-              Track Order
-            </a>
-          </li>
-          <li>
-            <a href="/pages/shipping-policy" class="mnav__sub-link">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-              </svg>
-              Shipping Policy
-            </a>
-          </li>
-          <li>
-            <a href="/pages/returns" class="mnav__sub-link">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/>
-              </svg>
-              Returns &amp; Refunds
-            </a>
-          </li>
-          <li>
-            <a href="/pages/faq" class="mnav__sub-link">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
-              </svg>
-              FAQ
-            </a>
-          </li>
-          <li>
-            <a href="/pages/contact-us" class="mnav__sub-link">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-              Contact Us
-            </a>
-          </li>
-        </ul>
+    <!-- ── Contact Details Section ── -->
+    <div class="mnav__contact" id="MNavContact">
+      <p class="mnav__contact-label">Need help?</p>
+      <div class="mnav__contact-details">
+        <a href="mailto:care@micandmacstores.com" class="mnav__contact-link">care@micandmacstores.com</a>
+        <a href="tel:+917339663196" class="mnav__contact-link">+91 73396 63196</a>
       </div>
-    </div>
+      
+      <div class="mnav__contact-cta">
+        <a href="/pages/contact-us" class="mnav__contact-btn">
+          <span>CONTACT US</span>
+          <span class="mnav__btn-arrow">&rarr;</span>
+        </a>
+      </div>
 
-    <div class="mnav__divider"></div>
-
-    <!-- ── CONNECT: Social icons ── -->
-    <div class="mnav__group">
-      <p class="mnav__group-label">CONNECT</p>
-      <div class="mnav__social-row">
+      <div class="mnav__contact-socials">
         <a
           href="https://instagram.com/micandmacstores"
-          class="mnav__social-btn"
+          class="mnav__social-icon-link"
           target="_blank"
           rel="noopener"
           aria-label="Instagram"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
           </svg>
-          <span>Instagram</span>
         </a>
         <a
           href="https://wa.me/917339663196"
-          class="mnav__social-btn"
+          class="mnav__social-icon-link"
           target="_blank"
           rel="noopener"
           aria-label="WhatsApp"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
           </svg>
-          <span>WhatsApp</span>
         </a>
       </div>
     </div>
 
-    <div class="mnav__divider"></div>
-
-    <!-- ── Brand quote ── -->
+    <!-- ── Brand quote box ── -->
     <div class="mnav__brand-quote">
       <p>
         "Artisan-formulated. Lab-certified.<br>
@@ -198,7 +101,7 @@
       </p>
     </div>
 
-    <!-- bottom spacer so last item clears dock -->
+    <!-- Spacer -->
     <div style="height: 24px;"></div>
   </div>
   <!-- /mnav__body -->
@@ -562,21 +465,6 @@
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
       </svg>
       <span>Account</span>
-    </a>
-  {%- else -%}
-    <a href="{{ routes.account_login_url }}" class="bdock__item" aria-label="Sign in">
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-      >
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-      </svg>
-      <span>Sign in</span>
     </a>
   {%- endif -%}
 </nav>
