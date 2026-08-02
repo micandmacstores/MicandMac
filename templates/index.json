@@ -21,26 +21,10 @@
         "cta_primary_url": "/collections/all"
       }
     },
-
-    "bestsellers": {
-      "type": "featured-collection",
-      "settings": {
-        "heading": "BESTSELLERS",
-        "badge_text": "Bestseller",
-        "description": "The products our community relies on every day.",
-        "product_keywords": "donkey,grape,detox",
-        "collection": "bestsellers",
-        "products_to_show": 3,
-        "columns_desktop": 3,
-        "show_view_all": true,
-        "padding_top": 40,
-        "padding_bottom": 80
-      }
-    },
     "category_spotlight_soap": {
       "type": "category-spotlight",
       "settings": {
-        "image": "shopify://shop_images/soap.png",
+        "image": "shopify://shop_images/Glow_Bars.png",
         "badge_label": "Urban Freshness",
         "eyebrow": "Cold Pressed · 100% Natural",
         "heading": "Mic & Mac Glow Bars",
@@ -95,6 +79,21 @@
         "min_height": 600,
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "BESTSELLERS",
+        "product_keywords": "donkey,grape,detox",
+        "badge_text": "Bestseller",
+        "description": "The products our community relies on every day.",
+        "collection": "bestsellers",
+        "products_to_show": 3,
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "padding_top": 40,
+        "padding_bottom": 80
       }
     },
     "art_of_wellness": {
