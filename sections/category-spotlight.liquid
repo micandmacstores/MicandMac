@@ -216,19 +216,22 @@
 /* ── CTA ───────────────────────────────────────────── */
 .cat-spot-{{ section.id }} .cs__actions {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
-  max-width: 340px;
+  max-width: 100%;
 }
 
 .cat-spot-{{ section.id }} .cs__btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background: #4B2A31;
   color: #F5ECD7;
-  border: none;
-  padding: 14px 28px;
+  border: 1px solid #4B2A31;
+  padding: 13px 20px;
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 600;
@@ -237,12 +240,13 @@
   border-radius: 2px;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
   white-space: nowrap;
 }
 
 .cat-spot-{{ section.id }} .cs__btn-primary:hover {
   background: #2E1F1A;
+  border-color: #2E1F1A;
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(75, 42, 49, 0.25);
 }
@@ -250,11 +254,12 @@
 .cat-spot-{{ section.id }} .cs__btn-secondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   background: transparent;
   color: #4B2A31;
   border: 1px solid #4B2A31;
-  padding: 13px 24px;
+  padding: 13px 20px;
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 600;

@@ -9,8 +9,8 @@
       "settings": {
         "heading": "You May Also Like",
         "description": "",
-        "products_to_show": 4,
-        "columns_desktop": 4,
+        "products_to_show": 3,
+        "columns_desktop": 3,
         "show_view_all": false,
         "padding_top": 32,
         "padding_bottom": 64

@@ -66,7 +66,13 @@
               {%- assign p_check_tags = product.tags | join: ' ' | downcase -%}
               {%- assign p_check_title = product.title | downcase -%}
               {%- assign p_check_type = product.type | downcase -%}
-              {%- if p_check_tags contains 'glowing bars' or p_check_tags contains 'glowing-bar' or p_check_title contains 'soap' or p_check_title contains 'bar' -%}
+              {%- assign is_lip = false -%}
+              {%- if p_check_tags contains 'lip' or p_check_title contains 'lip' or p_check_title contains 'balm' or p_check_type contains 'lip' -%}
+                {%- assign is_lip = true -%}
+              {%- endif -%}
+              {%- if is_lip -%}{%- continue -%}{%- endif -%}
+
+              {%- if p_check_tags contains 'glowing bars' or p_check_tags contains 'glowing-bar' or p_check_title contains 'soap' or p_check_title contains 'bar' or p_check_title contains 'glow' -%}
                 {%- assign is_combo = false -%}
                 {%- if p_check_title contains 'combo' or p_check_type contains 'combo' or p_check_tags contains 'combo' -%}
                   {%- assign is_combo = true -%}
@@ -74,7 +80,7 @@
                 {%- if is_combo -%}{%- continue -%}{%- endif -%}
 
                 {%- assign p_search = product.title | append: ' ' | append: product.type | append: ' ' | append: p_check_tags | downcase | escape -%}
-                <div class="js-filter-item" data-search="{{ p_search }}">
+                <div class="js-filter-item" data-category="glow-bars" data-search="{{ p_search }}">
                   {% render 'product-card', product: product %}
                 </div>
               {%- endif -%}
@@ -85,7 +91,7 @@
               {%- assign p_check_tags = product.tags | join: ' ' | downcase -%}
               {%- assign p_check_title = product.title | downcase -%}
               {%- assign p_check_type = product.type | downcase -%}
-              {%- if p_check_tags contains 'lip care' or p_check_tags contains 'lip-care' or p_check_title contains 'lip' or p_check_title contains 'balm' -%}
+              {%- if p_check_tags contains 'lip care' or p_check_tags contains 'lip-care' or p_check_tags contains 'lip' or p_check_title contains 'lip' or p_check_title contains 'balm' or p_check_type contains 'lip' -%}
                 {%- assign is_combo = false -%}
                 {%- if p_check_title contains 'combo' or p_check_type contains 'combo' or p_check_tags contains 'combo' -%}
                   {%- assign is_combo = true -%}
@@ -93,7 +99,7 @@
                 {%- if is_combo -%}{%- continue -%}{%- endif -%}
 
                 {%- assign p_search = product.title | append: ' ' | append: product.type | append: ' ' | append: p_check_tags | downcase | escape -%}
-                <div class="js-filter-item" data-search="{{ p_search }}">
+                <div class="js-filter-item" data-category="lip-balms" data-search="{{ p_search }}">
                   {% render 'product-card', product: product %}
                 </div>
               {%- endif -%}
@@ -104,10 +110,16 @@
               {%- assign p_check_tags = product.tags | join: ' ' | downcase -%}
               {%- assign p_check_title = product.title | downcase -%}
               {%- assign p_check_type = product.type | downcase -%}
-              {%- assign is_soap = false -%}
               {%- assign is_lip = false -%}
-              {%- if p_check_tags contains 'glowing bars' or p_check_tags contains 'glowing-bar' or p_check_title contains 'soap' or p_check_title contains 'bar' -%}{%- assign is_soap = true -%}{%- endif -%}
-              {%- if p_check_tags contains 'lip care' or p_check_tags contains 'lip-care' or p_check_title contains 'lip' or p_check_title contains 'balm' -%}{%- assign is_lip = true -%}{%- endif -%}
+              {%- if p_check_tags contains 'lip' or p_check_title contains 'lip' or p_check_title contains 'balm' or p_check_type contains 'lip' -%}
+                {%- assign is_lip = true -%}
+              {%- endif -%}
+              {%- assign is_soap = false -%}
+              {%- if p_check_tags contains 'glowing bars' or p_check_tags contains 'glowing-bar' or p_check_title contains 'soap' or p_check_title contains 'bar' or p_check_title contains 'glow' -%}
+                {%- unless is_lip -%}
+                  {%- assign is_soap = true -%}
+                {%- endunless -%}
+              {%- endif -%}
               
               {%- unless is_soap or is_lip -%}
                 {%- assign is_combo = false -%}
@@ -117,7 +129,7 @@
                 {%- if is_combo -%}{%- continue -%}{%- endif -%}
 
                 {%- assign p_search = product.title | append: ' ' | append: product.type | append: ' ' | append: p_check_tags | downcase | escape -%}
-                <div class="js-filter-item" data-search="{{ p_search }}">
+                <div class="js-filter-item" data-category="other" data-search="{{ p_search }}">
                   {% render 'product-card', product: product %}
                 </div>
               {%- endunless -%}
@@ -557,33 +569,28 @@
     
     if (!filterBtns.length || !items.length) return;
     
-    // Check hash on load
-    const hash = window.location.hash.replace('#', '');
-    if (hash && ['all', 'glowing-bars', 'lip-care'].includes(hash)) {
-      applyFilter(hash);
-    }
-    
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const filter = this.getAttribute('data-filter');
-        window.history.pushState(null, null, '#' + filter);
-        applyFilter(filter);
-      });
-    });
-    
-    if(resetBtn) {
-      resetBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.history.pushState(null, null, '#all');
-        applyFilter('all');
-      });
-    }
-    
     function applyFilter(filter) {
-      // Update active state
+      const rawFilter = (filter || 'all').toLowerCase().trim();
+
+      // Normalize filter to category key
+      let catKey = 'all';
+      if (rawFilter.includes('glow') || rawFilter === 'soaps') {
+        catKey = 'glow-bars';
+      } else if (rawFilter.includes('lip') || rawFilter === 'balms') {
+        catKey = 'lip-balms';
+      }
+
+      // Update active state on tab buttons
       filterBtns.forEach(b => {
-        if (b.getAttribute('data-filter') === filter) {
+        const btnFilter = (b.getAttribute('data-filter') || '').toLowerCase().trim();
+        let btnKey = 'all';
+        if (btnFilter.includes('glow') || btnFilter === 'soaps') {
+          btnKey = 'glow-bars';
+        } else if (btnFilter.includes('lip') || btnFilter === 'balms') {
+          btnKey = 'lip-balms';
+        }
+
+        if (btnKey === catKey) {
           b.classList.add('is-active');
         } else {
           b.classList.remove('is-active');
@@ -593,19 +600,22 @@
       // Filter items
       let visibleCount = 0;
       items.forEach(item => {
-        const search = item.getAttribute('data-search') || '';
+        const cat = (item.getAttribute('data-category') || '').toLowerCase();
+        const search = (item.getAttribute('data-search') || '').toLowerCase();
         let show = false;
         
-        if (filter === 'all') {
+        if (catKey === 'all') {
           show = true;
-        } else if (filter === 'glowing-bars') {
-          // Check for explicit tag or fallbacks
-          if (search.includes('glowing bars') || search.includes('soap') || search.includes('bar') || search.includes('glowing')) {
+        } else if (catKey === 'glow-bars') {
+          if (cat === 'glow-bars') {
+            show = true;
+          } else if (!cat && !search.includes('lip') && !search.includes('balm') && (search.includes('soap') || search.includes('bar') || search.includes('glow'))) {
             show = true;
           }
-        } else if (filter === 'lip-care') {
-          // Check for explicit tag or fallbacks
-          if (search.includes('lip care') || search.includes('lip') || search.includes('balm')) {
+        } else if (catKey === 'lip-balms') {
+          if (cat === 'lip-balms') {
+            show = true;
+          } else if (!cat && (search.includes('lip') || search.includes('balm'))) {
             show = true;
           }
         }
@@ -622,6 +632,38 @@
       if (emptyMsg) {
         emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
       }
+    }
+
+    function checkHash() {
+      const hash = window.location.hash.replace('#', '').trim();
+      if (hash) {
+        applyFilter(hash);
+      } else {
+        applyFilter('all');
+      }
+    }
+
+    // Check hash on load
+    checkHash();
+
+    // Listen for URL hash changes
+    window.addEventListener('hashchange', checkHash);
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const filter = this.getAttribute('data-filter');
+        window.history.pushState(null, null, '#' + filter);
+        applyFilter(filter);
+      });
+    });
+    
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.history.pushState(null, null, '#all');
+        applyFilter('all');
+      });
     }
   });
 </script>
